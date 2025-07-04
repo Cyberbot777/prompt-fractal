@@ -1,0 +1,142 @@
+=== CASE STUDY: Prompt Tone & User Assumption Shift ===
+
+Date: July 4, 2025
+Experiment: Iris Phase 1 Prompt Review Impact on LLM Response Tone and Assumptions
+
+---
+
+## Overview
+
+This case study demonstrates how prompt quality, as evaluated and improved by Iris (Phase 1), can significantly affect the tone, depth, and assumptions of a large language model (LLM) response.
+
+### Key Insight:
+Higher-quality prompts, produced by Iris, lead LLMs to assume a more capable, mature user and result in more advanced, respectful, and realistic outputs.
+
+---
+
+## Test Procedure
+
+1. **Original Prompt (Low-Quality):**
+Prompt:
+> "Explain how to get are carrer as a lwayer but like go deep but also make it simple but not too simple and also give examples and maybe something else too idk."
+
+2. **Iris Analysis:**
+- Clarity rating: 3
+- Issues:
+  - Poor grammar and spelling.
+  - Contradictory instructions (deep but simple).
+  - Informal and ambiguous phrasing.
+- Fully Rewritten Prompt (By Iris):
+> "Explain the steps to pursue a career as a lawyer, providing detailed insights while maintaining clarity. Include relevant examples and any additional considerations you find helpful."
+
+---
+
+## LLM Response Comparison
+
+### Response to Original Prompt (Clarity Rating 3):
+- Tone: Extremely simplified, assumes low education.
+- Starts with Step 1: Finish High School (implying user may not have completed it).
+- Uses overly friendly, overly simplified language.
+- Emphasizes basic academic milestones and guidance.
+
+### Response to Iris-Rewritten Prompt (Clarity Rating Improved):
+- Tone: Professional and respectful, assumes user is capable.
+- Starts with Step 1: Earn a Bachelor's Degree (assuming high school completion).
+- Provides advanced legal career steps with depth.
+- Offers strategic advice (e.g., law review, internships) and considers long-term career paths.
+- Uses formal and technical phrasing, treating the user as an aspiring professional.
+
+---
+
+## Analysis
+
+The comparison reveals that LLMs infer user intent, background, and education level based heavily on prompt clarity, grammar, and tone.
+
+Poor-quality prompts lead the model to:
+- Simplify unnecessarily.
+- Focus on basic, remedial steps.
+- Use less respectful, overly simplistic phrasing.
+
+High-quality prompts lead the model to:
+- Assume a more sophisticated user.
+- Skip redundant or remedial steps.
+- Provide advanced, professional-level guidance.
+
+This demonstrates that **prompt quality directly influences not just the content of LLM responses but also the implicit assumptions about the user’s background and needs.**
+
+---
+
+## Conclusion
+
+Iris’s ability to rewrite prompts into a more professional, clear format materially improves the LLM’s responses in both tone and informational depth.
+
+This insight strongly supports integrating Iris as a practical tool (e.g., “Prompt Tudor” within PromptPilot) to assist users in optimizing their prompts before submission to an LLM.
+
+---
+
+## Future Considerations
+
+- Expand testing to additional domains (medicine, finance, tech) to validate consistency of this effect.
+- Explore automatic tone calibration as a future capability for Iris.
+- Document additional case studies of tone, depth, and content shift effects.
+
+****
+=== EVIDENCE LOG: LLM Responses to Prompt Variations ===
+
+Date: July 4, 2025
+Experiment: Iris Phase 1 — Prompt Review Impact on LLM Response Tone and Assumptions
+
+---
+
+## Test 1: Response to Original Low-Quality Prompt (Clarity Rating 3)
+Prompt Used:
+"Explain how to get are carrer as a lwayer but like go deep but also make it simple but not too simple and also give examples and maybe something else too idk."
+
+LLM Response:
+
+Absolutely! I’ll guide you step by step — slowly, clearly, and deeply — but in a way that feels approachable. You’ll really understand the process by the end.
+
+How to Become a Lawyer (Deep but Simple Guide)
+Step 1: Finish High School (or Equivalent)
+You must finish high school or get a GED.
+Focus on subjects like English, history, and government—these help your thinking and writing skills.
+Example: A student interested in law joins the debate team and takes advanced English classes to improve argumentation skills.
+
+Step 2: Get a Bachelor's Degree (4-Year College Degree)
+In the U.S., you must earn a bachelor’s degree before law school.
+There is no specific required major—but common ones include:
+Political Science, History, English, Philosophy, Business
+Tip: Choose a major you enjoy that also sharpens skills like writing, reading, and analysis.
+Example: Maya studies Philosophy because she enjoys ethics and debate. She also takes criminal justice electives.
+
+[Response continues with detailed legal steps focusing on very basic academic progression.]
+
+---
+
+## Test 2: Response to Iris-Rewritten Prompt (Improved Clarity)
+Prompt Used:
+"Explain the steps to pursue a career as a lawyer, providing detailed insights while maintaining clarity. Include relevant examples and any additional considerations you find helpful."
+
+LLM Response:
+
+Absolutely! Let's walk step by step through how to become a lawyer in the U.S., keeping it clear but deep enough for you to really understand the process.
+
+Step 1: Earn a Bachelor’s Degree
+What You Need to Know:
+You must have a bachelor's degree before applying to law school.
+No specific major is required, but common choices include: Political Science, History, Philosophy, Business, English
+Example: Many future lawyers study Political Science to learn about government systems and legal principles.
+Key Tip: Focus on critical thinking, writing, and research skills in college. GPA is important for law school admissions.
+
+Step 2: Take the LSAT (Law School Admission Test)
+Details about LSAT, preparation tips, and strategic advice for test takers.
+
+Step 3 and Beyond: Application process, law school details, bar exam preparation, specialization opportunities, and ethical considerations.
+Provides rich, formal advice and optional advanced resources for aspiring lawyers.
+
+---
+
+## Summary:
+These transcripts provide a clear, direct comparison of how prompt quality shifts LLM assumptions, tone, and content depth.
+
+

@@ -1,14 +1,14 @@
-# 🌌 Prompt Fractal
+# ♾️ Recursive
 
-**Recursive Prompt Optimization Project — Featuring Iris, the Self-Reflective Prompt Agent**
+**Self-Refining Prompt Optimization System — Featuring Iris, the Recursive Prompt Agent**
 
 ---
 
 ## Overview
 
-**Prompt Fractal** is an AI project designed to automatically optimize, clarify, and refine prompts for large language models (LLMs) through recursive, self-referential prompting loops.
+**Recursive** is an AI project designed to automatically optimize, clarify, and refine prompts for large language models (LLMs) through recursive, self-referential prompting loops.
 
-At its core is **Iris** — the self-reflective prompt optimization agent within Prompt Fractal.
+At its core is **Iris** — the recursive prompt optimization agent within Recursive.
 
 Iris performs prompt self-improvement by:
 - Analyzing prompts for clarity, length, and effectiveness.
@@ -61,16 +61,16 @@ This project explores **recursive prompting** — where an LLM effectively teach
 
 ## Docker Usage
 
-Prompt Fractal runs fully inside Docker.
+Recursive runs fully inside Docker.
 
 ### Build the Docker Image:
 ```bash
-docker build -t prompt-fractal-backend ./backend
+docker build -t recursive-backend ./backend
 ```
 
 ### Run the Iris Agent:
 ```bash
-docker run --rm --env-file ./backend/.env prompt-fractal-backend
+docker run --rm --env-file ./backend/.env recursive-backend
 ```
 
 Docker ensures that Iris operates in a clean, reproducible environment without requiring local virtual environments.
@@ -94,7 +94,7 @@ Docker ensures that Iris operates in a clean, reproducible environment without r
 - [ ] Enable recall and knowledge transfer between similar prompts.
 
 ### **Phase 4:** PromptPilot Integration (Optional)
-- [ ] Connect Prompt Fractal to PromptPilot as an advanced lab feature.
+- [ ] Connect Recursive to PromptPilot as an advanced lab feature.
 
 ---
 
@@ -102,7 +102,7 @@ Docker ensures that Iris operates in a clean, reproducible environment without r
 
 **Early Research & Development** — Experimental and evolving.
 
-Prompt Fractal currently functions as a research-focused tool for advanced prompt engineering experiments, with a clean, reproducible backend foundation.
+Recursive currently functions as a research-focused tool for advanced prompt engineering experiments, with a clean, reproducible backend foundation.
 
 ---
 

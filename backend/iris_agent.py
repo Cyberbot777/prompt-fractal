@@ -13,8 +13,7 @@ def run_agent():
 
     # Hardcoded messy prompt to analyze
     messy_prompt = (
-        "Explain stuff about AI but like go deep but also make it simple "
-        "but not too simple and also give examples and maybe something else too idk."
+    "Explain how to get are carrer as a lwayer but like go deep but also make it simple but not too simple and also give examples and maybe something else too idk."
     )
 
     # Review meta-prompt template
@@ -58,17 +57,6 @@ Provide:
     print("Review Output:")
     print(review_output)
 
-    # Ensure 'tests' folder exists
-    os.makedirs("tests", exist_ok=True)
-
-    # Log results to test_log.txt
-    with open("tests/test_log.txt", "a", encoding="utf-8") as f:
-        f.write("\n=== Iris Prompt Review ===\n")
-        f.write(f"=== {phase} — {timestamp} ===\n\n")
-        f.write(f"Original Prompt:\n{messy_prompt}\n\n")
-        f.write("Review Output:\n")
-        f.write(review_output)
-        f.write("\n\n")
 
 if __name__ == "__main__":
     run_agent()

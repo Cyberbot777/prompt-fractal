@@ -1,0 +1,89 @@
+=== Iris Prompt Review ===
+=== Phase 1 — Review Test — 2025-07-04 07:34:45 ===
+
+Original Prompt:
+Explain stuff about AI but like go deep but also make it simple but not too simple and also give examples and maybe something else too idk.
+
+Review Output:
+Clarity rating: 3
+
+Specific issues found:
+1. The prompt is overly vague and lacks clear direction or focus.
+2. It includes contradictory instructions, such as "go deep but also make it simple."
+3. Ambiguous phrases like "explain stuff about AI" and "maybe something else too idk" make it unclear what exactly is required.
+
+Suggestions for improving the prompt:
+1. Define the specific aspects of AI to be explained (e.g., applications, challenges, techniques).
+2. Clarify the depth of explanation desired - whether it should be technical or conceptual.
+3. Provide examples of what type of examples are expected.
+4. Remove vague expressions like "maybe something else too idk" and set clear expectations.
+
+Fully rewritten prompt:
+"Please provide an in-depth explanation of the applications of Artificial Intelligence (AI) in healthcare, highlighting both its benefits and challenges. Include at least two real-world examples of how AI is currently being used in the medical field. Ensure the explanation strikes a balance between technical accuracy and accessibility for a general audience."
+
+=== Iris Prompt Review ===
+=== Phase 1 — Review Test — 2025-07-04 16:45:55 ===
+
+Original Prompt:
+Explain stuff about AI but like go deep but also make it simple but not too simple and also give examples and maybe something else too idk.
+
+Review Output:
+Clarity rating: 2
+
+Specific issues:
+1. The prompt is overly casual and lacks specificity.
+2. Ambiguity with phrases like "go deep but also make it simple but not too simple."
+3. Lack of clear direction on the level of detail required and the specific aspects of AI to be explained.
+
+Suggestions for improvement:
+1. Provide clear guidance on the depth of explanation required.
+2. Specify the aspects of AI to focus on (e.g., applications, technology, ethics).
+3. Avoid ambiguous language and unnecessary filler text.
+
+Rewritten prompt:
+"Explain key concepts of Artificial Intelligence, including its applications, technology, and ethical considerations. Provide detailed explanations backed by examples to illustrate each point. Aim to strike a balance between depth of explanation and clarity for a general audience."
+
+=== Iris Prompt Review ===
+=== Phase 1 — Review Test — 2025-07-04 16:50:31 ===
+
+Original Prompt:
+Explain key concepts of Artificial Intelligence, including its applications, technology, and ethical considerations. Provide detailed explanations backed by examples to illustrate each point. Aim to strike a balance between depth of explanation and clarity for a general audience.
+
+Review Output:
+Clarity Rating: 8
+
+Specific issues found:
+- The prompt is clear overall but could be more succinct.
+- It might be challenging for some writers to strike a balance between depth of explanation and clarity for a general audience.
+- The prompt could be more focused on key aspects of artificial intelligence.
+
+Suggestions for improving the prompt:
+- Streamline the prompt by focusing on specific aspects of artificial intelligence.
+- Provide more guidance on how to balance depth and clarity.
+
+Fully rewritten prompt:
+"""Explain key concepts of Artificial Intelligence, with a focus on either its applications, technology, or ethical considerations. Ensure your explanations are detailed and include examples to clarify each point. Your explanations should be clear and accessible to a general audience."""
+
+=== Iris Prompt Review ===
+=== Phase 1 — Review Test — 2025-07-04 16:54:59 ===
+
+Original Prompt:
+Explain how to get are carrer as a lwayer but like go deep but also make it simple but not too simple and also give examples and maybe something else too idk.
+
+Review Output:
+Clarity rating: 3
+
+Specific issues found:
+1. The prompt is overly complex with contradictory instructions (e.g., "go deep but also make it simple").
+2. The grammar and wording are informal and unclear (e.g., "get are carrer as a lwayer").
+3. Lack of clarity on the specific expectations for examples and additional content.
+
+Suggestions for improving the prompt:
+1. Clearly define the level of detail required.
+2. Use formal language and correct grammar.
+3. Specify the type of examples or additional aspects desired.
+
+Fully rewritten version of the prompt:
+"Explain the steps to pursue a career as a lawyer, providing detailed insights while maintaining clarity. Include relevant examples and any additional considerations you find helpful."
+
+This rewritten prompt aims to be clear, concise, and professional, ensuring that respondents understand what is expected of them.
