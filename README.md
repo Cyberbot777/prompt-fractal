@@ -1,14 +1,16 @@
 # 🌌 Prompt Fractal
 
-**Recursive Prompt Optimization Agent — Refines, Simplifies, and Self-Evolves Prompts through Iterative LLM Self-Prompting Loops**
+**Recursive Prompt Optimization Project — Featuring Iris, a Self-Reflective Prompt Agent**
 
 ---
 
 ## Overview
 
-**Prompt Fractal** is an advanced AI agent designed to automatically optimize, clarify, and refine prompts for large language models (LLMs) using recursive, self-referential prompting loops.
+**Prompt Fractal** is an advanced AI project designed to automatically optimize, clarify, and refine prompts for large language models (LLMs) using recursive, self-referential prompting loops.
 
-It performs prompt self-improvement by:
+At its core is **Iris** — the self-reflective prompt optimization agent within Prompt Fractal.
+
+Iris performs prompt self-improvement by:
 - Analyzing a given prompt’s clarity, length, and effectiveness.
 - Suggesting targeted improvements.
 - Iteratively rewriting the prompt for maximum precision and minimal ambiguity.
@@ -37,44 +39,44 @@ This project explores **recursive prompting** — where an LLM effectively teach
 
 ---
 
-## Why Prompt Fractal?
+## Technologies Used
 
-Most prompts written by humans — even advanced users — suffer from:
-- Overcomplexity
-- Ambiguity
-- Ineffective or redundant instructions
-- Hallucination-prone structures
+### Backend
+- **Python 3.11** — Core programming language.
+- **LangChain** — Agent framework for prompt chaining and task workflows.
+- **OpenAI GPT-3.5 Turbo** — Initial language model for prompt refinement.
+- **Docker** — Containerization for reproducible, isolated environments.
 
-While prompt chaining and few-shot prompting help, **Prompt Fractal** takes a different approach:
-- It **automatically rewrites prompts** to be shorter, clearer, and more effective, using its own recursive loops.
-- It can optionally recommend chaining when appropriate, offering both prompt optimization and structural decomposition.
+### Frontend (Planned)
+- **React (Vite)** — Fast frontend framework for reactive UI.
+- **Tailwind CSS** — Utility-first CSS for sleek, dark-themed styling.
+- **Framer Motion** — Smooth animations and transitions.
+- **React Markdown** — Renders LLM outputs in readable format.
 
-This approach allows LLM agents to *self-train their prompting ability* over time — minimizing manual engineering.
+### Database (Planned)
+- **PostgreSQL** — Persistent memory storage for prompt histories.
+- **pgvector** — Semantic vector search extension for PostgreSQL (future memory recall).
 
----
-
-## Core Workflow
-
-```
-flowchart TD
-  A[User provides raw prompt] --> B[Agent analyzes prompt]
-  B --> C[Agent rewrites prompt for clarity & brevity]
-  C --> D[Test improved prompt (optional)] 
-  D --> E{Max iterations reached?}
-  E -- No --> B
-  E -- Yes --> F[Save prompt & results to memory]
-```
+### DevOps / Infrastructure
+- **Docker Compose** (Planned) — For multi-service orchestration (backend + DB + frontend).
 
 ---
 
-## Technologies
+## Docker Usage
 
-| Component            | Description                                          | Tools/Tech                             |
-|----------------------|------------------------------------------------------|---------------------------------------|
-| LLM Engine           | Language model for self-refinement loops             | GPT-3.5 Turbo (initial prototype)     |
-| Agent Framework      | Prompt chaining & control logic                      | LangChain                             |
-| Memory Storage       | Stores prompts, revisions, and results               | PostgreSQL + pgvector (semantic memory) |
-| Future Models        | Advanced reasoning & fine-tuning                     | Claude Opus, GPT-4 (optional later)   |
+Prompt Fractal uses Docker to containerize its backend environment.
+
+### Build the Docker Image:
+```bash
+docker build -t prompt-fractal-backend ./backend
+```
+
+### Run the Iris Agent:
+```bash
+docker run --rm prompt-fractal-backend
+```
+
+Docker ensures that Iris runs in a clean, reproducible environment with all dependencies isolated — no local virtual environments required.
 
 ---
 
@@ -100,7 +102,7 @@ flowchart TD
 
 ## Status
 
-**Early Research & Development Stage** — Experimental and evolving.  
+⚙️ **Early Research & Development Stage** — Experimental and evolving.  
 The system is being built to function as both a research lab and practical tool for advanced AI prompt engineering.
 
 ---
