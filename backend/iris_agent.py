@@ -76,16 +76,18 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
 
         # Extract clarity rating from review output
         score = None
-        if "clarity rating" in result["review_output"].lower():
-
-            try:
-                lines = result["review_output"].splitlines()
-                for line in lines:
-                    if "Clarity rating" in line:
-                        score = int(''.join(filter(str.isdigit, line)))
+        try:
+            lines = result["review_output"].splitlines()
+            for line in lines:
+                if "clarity" in line.lower() and ("rating" in line.lower() or "score" in line.lower()):
+                    # Strip bold formatting and colons
+                    clean_line = line.replace("**", "").replace(":", "").strip()
+                    digits = [int(s) for s in clean_line.split() if s.isdigit()]
+                    if digits:
+                        score = digits[0]
                         break
-            except Exception as e:
-                print(f"Auto-stop check failed: {e}")
+        except Exception as e:
+            print(f"Auto-stop check failed: {e}")
 
         # Stability-based auto-stop: two consecutive passes ≥ auto_stop_score
         print(f"[Debug] Current score: {score}, Previous score: {previous_score}")
