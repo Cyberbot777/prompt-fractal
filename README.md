@@ -15,6 +15,7 @@ Iris performs prompt self-improvement by:
 - Providing detailed reviews with a clarity rating and specific improvement suggestions.
 - Automatically rewriting prompts to improve focus, reduce ambiguity, and increase precision.
 - Logging each review and rewrite cycle with timestamps for future analysis.
+- Auto-stopping once a stable clarity rating is achieved to prevent over-refinement.
 
 This project explores **recursive prompting** — where an LLM effectively teaches itself to write better prompts through structured self-review and refinement cycles.
 
@@ -29,10 +30,13 @@ This project explores **recursive prompting** — where an LLM effectively teach
   Iris generates fully rewritten versions of prompts based on its review feedback.
 
 - **Structured Test Logging:**  
-  All tests are logged automatically with timestamps and phase labels for future reference.
+  Logs test results with timestamps and phase labels for future reference.
+
+- **Stability-Based Auto-Stop:**  
+  Stops the refinement loop once stable clarity ratings (≥8) are detected across passes.
 
 - **Modular, Extensible Design:**  
-  Built with scalability in mind to enable multi-phase refinement and future integrations.
+  Built for scalability to support multi-phase refinement and future integrations.
 
 ---
 
@@ -79,30 +83,33 @@ Docker ensures that Iris operates in a clean, reproducible environment without r
 
 ## Roadmap
 
-### **Phase 1:** Prompt Review + Rewriting Agent (Active)
+### **Phase 1:** Prompt Review + Rewriting Agent (Completed)
 - [x] Single-pass prompt review and rewriting.
 - [x] Test logging with timestamps and phase tracking.
-- [ ] Multi-pass refinement loop (3–5 iterations).
-- [ ] Initial memory schema (PostgreSQL).
 
-### **Phase 2:** Auto-Chaining Recommender
+### **Phase 2:** Multi-Pass Refinement + Auto-Stop (Active)
+- [x] Multi-pass refinement loop with auto-stop.
+- [x] Auto-stopping once stable high clarity rating is achieved.
+- [ ] Additional case studies and dataset evaluation.
+
+### **Phase 3:** Auto-Chaining Recommender
 - [ ] Detect multi-goal prompts and suggest chaining.
 - [ ] Auto-generate optimized sub-prompts for subtasks.
 
-### **Phase 3:** Semantic Memory + Retrieval
+### **Phase 4:** Semantic Memory + Retrieval
 - [ ] Integrate pgvector for semantic memory search.
 - [ ] Enable recall and knowledge transfer between similar prompts.
 
-### **Phase 4:** PromptPilot Integration (Optional)
+### **Phase 5:** PromptPilot Integration (Optional)
 - [ ] Connect Recursive to PromptPilot as an advanced lab feature.
 
 ---
 
 ## Status
 
-**Early Research & Development** — Experimental and evolving.
+**Active Research & Development** — Experimental but increasingly stable.
 
-Recursive currently functions as a research-focused tool for advanced prompt engineering experiments, with a clean, reproducible backend foundation.
+Recursive is now in Phase 2 development, capable of fully automated multi-pass refinement with intelligent auto-stop logic, making it usable for real-world prompt optimization.
 
 ---
 

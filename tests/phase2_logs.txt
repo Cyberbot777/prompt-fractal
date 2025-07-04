@@ -1,0 +1,312 @@
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-04 19:28:30 UTC ===
+
+
+=== Pass 1 ===
+Clarity Rating: 3
+
+Specific issues found:
+1. The prompt is overly vague and contradictory in its instructions.
+2. Lack of clear direction on the level of detail or depth required.
+3. Ambiguity regarding what "go deep but make it simple" entails.
+
+Suggestions for improving the prompt:
+1. Specify the desired level of detail - whether it should be comprehensive or concise.
+2. Provide examples of the depth expected in the explanation.
+3. Remove conflicting instructions to make the prompt more straightforward.
+
+Rewritten Prompt:
+"Explain the process of becoming a lawyer, ensuring a balance between depth and simplicity in your explanation. Include specific examples to illustrate key points and enhance comprehensibility."
+
+This rewritten version provides clear guidance on the expected content and style of the response, eliminating ambiguity and contradictory instructions.
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The prompt is overly vague and contradictory in its instructions.
+2. Lack of clear direction on the level of detail or depth required.
+3. Ambiguity regarding what "go deep but make it simple" entails.
+
+Suggestions for improving the prompt:
+1. Specify the desired level of detail - whether it should be comprehensive or concise.
+2. Provide examples of the depth expected in the explanation.
+3. Remove conflicting instructions to make the prompt more straightforward.       
+
+Rewritten Prompt:
+"Explain the process of becoming a lawyer, ensuring a balance between depth and simplicity in your explanation. Include specific examples to illustrate key points and enhance comprehensibility."
+
+This rewritten version provides clear guidance on the expected content and style of the response, eliminating ambiguity and contradictory instructions.
+
+=== Pass 3 ===
+Clarity rating: 9
+
+Specific issues found:
+1. The prompt is overly vague and contradictory in its instructions.
+2. Lack of clear direction on the level of detail or depth required.
+3. Ambiguity regarding what "go deep but make it simple" entails.
+
+Suggestions for improving the prompt:
+1. Specify the desired level of detail - whether it should be comprehensive or concise.
+2. Provide examples of the depth expected in the explanation.
+3. Remove conflicting instructions to make the prompt more straightforward.       
+
+Rewritten Prompt:
+"Explain the process of becoming a lawyer, ensuring a balance between depth and simplicity in your explanation. Include specific examples to illustrate key points and enhance comprehensibility."
+
+=== Final Refined Prompt ===
+Clarity rating: 9
+
+Specific issues found:
+1. The prompt is overly vague and contradictory in its instructions.
+2. Lack of clear direction on the level of detail or depth required.
+3. Ambiguity regarding what "go deep but make it simple" entails.
+
+Suggestions for improving the prompt:
+1. Specify the desired level of detail - whether it should be comprehensive or concise.
+2. Provide examples of the depth expected in the explanation.
+3. Remove conflicting instructions to make the prompt more straightforward.       
+
+Rewritten Prompt:
+"Explain the process of becoming a lawyer, ensuring a balance between depth and simplicity in your explanation. Include specific examples to illustrate key points and enhance comprehensibility."
+
+
+
+
+
+**** NOTE The final prompt degraded. We will put a auto stop if the prompt hits >= 8/10 ****
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-04 19:42:04 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+Explain how to get are carrer as a lwayer but like go deep but also make it simple but not too simple and also give examples and maybe something else too idk.
+
+
+=== Pass 1 ===
+Clarity rating: 3
+
+Specific issues:
+1. The prompt is excessively long and convoluted, making it challenging to decipher the specific expectations.
+2. Ambiguity in phrases like "go deep but also make it simple but not too simple" can confuse the responder.
+3. Lack of clear direction on what examples or additional information are expected.
+
+Suggestions for improvement:
+1. Simplify and streamline the prompt by focusing on the essential elements.
+2. Clearly define the level of detail expected and remove conflicting instructions.
+3. Specify the type of examples or additional content required for a comprehensive response.
+
+Rewritten prompt:
+"Describe the steps to pursue a career as a lawyer, providing a balanced level of detail suitable for both novice and intermediate audiences. Include relevant examples to support your explanations."
+
+This revised prompt provides a clearer and more concise direction for the responder, ensuring a focused and informative response.
+
+=== Pass 2 ===
+Clarity rating: 8
+
+Specific issues:
+1. The prompt is clear and concise, but it could be further improved by including more specific criteria for what qualifies as a balanced level of detail.
+2. The term "balanced level of detail" may still be slightly subjective and could benefit from a more explicit definition.
+3. No other significant issues were identified.
+
+Suggestions for improvement:
+1. Define what constitutes a balanced level of detail - e.g., a mix of general overview and specific examples.
+2. Consider specifying the number of steps or examples expected for clarity.      
+3. Provide guidance on the expected length of the response, if applicable.        
+
+Rewritten prompt:
+"Describe the key steps involved in pursuing a career as a lawyer, ensuring your explanation strikes a balance between providing a general overview and specific examples to cater to both novice and intermediate audiences. Include at least three relevant examples to elucidate each step."
+
+=== Pass 3 ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt lacks specific criteria for what constitutes a balanced level of detail.
+2. The term "balanced level of detail" could be further defined for clarity.      
+3. It does not specify the expected length or number of steps/examples for the response more explicitly.
+
+Suggestions for improving the prompt:
+1. Clearly define a balanced level of detail as a mix of general overview and specific examples.
+2. Specify the number of steps or examples required for the response.
+3. Provide guidance on the expected length of the response for better clarity.    
+
+Rewritten prompt:
+"Instruct on the key steps to pursue a career as a lawyer. Aim for a balanced level of detail, encompassing both a general overview and specific examples to cater to both novices and intermediate audiences effectively. Each step should be explained with no less than three pertinent examples to enhance clarity and depth in understanding."
+
+=== Final Refined Prompt ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt lacks specific criteria for what constitutes a balanced level of detail.
+2. The term "balanced level of detail" could be further defined for clarity.      
+3. It does not specify the expected length or number of steps/examples for the response more explicitly.
+
+Suggestions for improving the prompt:
+1. Clearly define a balanced level of detail as a mix of general overview and specific examples.
+2. Specify the number of steps or examples required for the response.
+3. Provide guidance on the expected length of the response for better clarity.    
+
+Rewritten prompt:
+"Instruct on the key steps to pursue a career as a lawyer. Aim for a balanced level of detail, encompassing both a general overview and specific examples to cater to both novices and intermediate audiences effectively. Each step should be explained with no less than three pertinent examples to enhance clarity and depth in understanding."
+
+
+***WORKING ON LOGIC FOR AUTO-STOP. Auto-stop failed here but nice test!!!! ****
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-04 20:37:35 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+Describe how to apply for a driver’s license.
+
+
+=== Pass 1 ===
+Clarity Rating: 6
+
+Specific issues found:
+1. The prompt is too brief and lacks the necessary context and details on how to describe the process of applying for a driver's license.
+2. It does not specify the depth of detail or specific aspects that should be covered in the description.
+3. It might be unclear whether additional documents or requirements are expected to be addressed in the response.
+
+Suggestions for improving the prompt:
+1. Add specific subtopics or key steps that should be included in the description (e.g., required documents, age restrictions, testing procedures).
+2. Clarify the audience or location (e.g., applying for a driver's license in a specific state or country) to provide more context.
+3. Specify the level of detail expected, such as whether general steps or a comprehensive guide is being sought.
+
+Rewritten Prompt:
+"""Provide a detailed description of the process to apply for a driver’s license in California. Include information on required documents, eligibility criteria, testing procedures, and any additional steps applicants need to follow. Your response should cover both the written and practical aspects of the application process."""
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The prompt is clear and detailed, addressing all necessary aspects for describing the process of applying for a driver's license in California.
+
+Suggestions for improving the prompt: None.
+
+Rewritten Prompt:
+"""Provide a detailed description of the process to apply for a driver’s license in California. Include information on required documents, eligibility criteria, testing procedures, and any additional steps applicants need to follow. Your response should cover both the written and practical aspects of the application process."""
+
+=== Pass 3 ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The prompt is clear and detailed, addressing all necessary aspects for describing the process of applying for a driver's license in California.
+
+Suggestions for improving the prompt: None.
+
+Rewritten Prompt:
+"""Please provide a comprehensive guide detailing the steps required to apply for a driver’s license in California. Your guide should encompass the necessary documents, eligibility criteria, testing procedures, and any supplementary steps that applicants must adhere to. The response should offer insight into both the written and practical components of the application process."""
+
+=== Pass 4 ===
+Clarity Rating: 10
+
+Specific issues found:
+None.
+
+Suggestions for improving the prompt:
+None.
+
+Rewritten Prompt:
+"Please provide a detailed guide outlining the steps involved in applying for a driver’s license in California. Ensure your guide covers the required documents, eligibility criteria, testing procedures, and any additional steps applicants need to follow. Your response should encompass both the written and practical aspects of the application process."
+
+=== Pass 5 ===
+Clarity Rating: 10
+
+Specific issues found: None.
+
+Suggestions for improving the prompt: None.
+
+Rewritten Prompt:
+"Please provide a comprehensive guide detailing the process for obtaining a driver’s license in California. Your guide should include information on the necessary documents, eligibility requirements, testing procedures, and any additional steps that applicants must complete. Make sure to cover both the theoretical and practical aspects of the application process in detail."
+
+=== Final Refined Prompt ===
+Clarity Rating: 10
+
+Specific issues found: None.
+
+Suggestions for improving the prompt: None.
+
+Rewritten Prompt:
+"Please provide a comprehensive guide detailing the process for obtaining a driver’s license in California. Your guide should include information on the necessary documents, eligibility requirements, testing procedures, and any additional steps that applicants must complete. Make sure to cover both the theoretical and practical aspects of the application process in detail."
+
+
+
+
+
+*****SUCCESS!!!! AUTO-STOP ACHIEVED!!!****
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-04 20:43:57 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+Describe how to apply for a driver’s license.
+
+[Debug] Current score: 7, Previous score: None
+[Debug] Current score: 9, Previous score: 7
+[Debug] Current score: 10, Previous score: 9
+
+Auto-stop triggered at Pass 3 — Stable Clarity 10
+
+=== Pass 1 ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt is too short and lacking necessary context and details. It does not specify the audience (e.g., teenagers, first-time applicants, immigrants), type of driver's license (e.g., standard, commercial), or location (e.g., country, state) for which the process is to be described.
+2. The prompt lacks specific elements that the response should include, such as required documents, steps involved, potential tests, and any unique requirements.
+3. The prompt could be more specific to guide the response in a particular direction, as describing the process broadly may result in a surface-level response.
+
+Suggestions for improving the prompt:
+1. Specify the target audience (e.g., first-time drivers, adults renewing their license) and the type of driver's license (e.g., non-commercial, learner's permit) to ensure a more tailored response.
+2. Include key details like required documents, steps involved (application form submission, written test, driving test), and any specific requirements that vary based on location or license type.
+3. Provide clarity on the expectations for the response, such as emphasizing the need for a detailed, step-by-step guide or highlighting unique aspects of the application process.
+
+Fully rewritten prompt:
+"""Provide a detailed, step-by-step guide on applying for a standard non-commercial driver's license in California as a first-time driver over 18 years old. Include necessary documents, steps involved (from application submission to license issuance), any required tests, and additional requirements unique to California's application process."""
+
+=== Pass 2 ===
+Clarity rating: 9
+
+Specific issues found:
+1. The original prompt was too short and lacked necessary context, such as the target audience, type of driver's license, and location.
+2. It didn't specify essential elements to include in the response, like required documents, steps, tests, and unique requirements.
+3. The original prompt was too broad and might lead to a shallow response.        
+
+Suggestions for improving the prompt:
+1. Specify the target audience, license type, and location for a more focused response.
+2. Include key details like required documents, steps involved, tests, and unique requirements.
+3. Clarify the expectations for the response for more precise guidance.
+
+Fully rewritten prompt:
+"""Provide a comprehensive, step-by-step guide on applying for a standard non-commercial driver's license in California as a first-time driver aged 18 or above. Detail the necessary documents, application submission process, written and driving tests, and any additional requirements specific to California's application procedure."""
+
+=== Pass 3 ===
+Clarity rating: 10
+
+Specific issues found:
+1. The original prompt was too short and lacked necessary context, such as the target audience, type of driver's license, and location.
+2. It didn't specify essential elements to include in the response, like required documents, steps, tests, and unique requirements.
+3. The original prompt was too broad and might lead to a shallow response.        
+
+Suggestions for improving the prompt:
+1. Specify the target audience, license type, and location for a more focused response.
+2. Include key details like required documents, steps involved, tests, and unique requirements.
+3. Clarify the expectations for the response for more precise guidance.
+
+Fully rewritten prompt:
+"Provide a comprehensive, step-by-step guide on applying for a standard non-commercial driver's license in California as a first-time driver aged 18 or above. Detail the necessary documents, application submission process, written and driving tests, and any additional requirements specific to California's application procedure."
+
+=== Final Refined Prompt ===
+Clarity rating: 10
+
+Specific issues found:
+1. The original prompt was too short and lacked necessary context, such as the target audience, type of driver's license, and location.
+2. It didn't specify essential elements to include in the response, like required documents, steps, tests, and unique requirements.
+3. The original prompt was too broad and might lead to a shallow response.        
+
+Suggestions for improving the prompt:
+1. Specify the target audience, license type, and location for a more focused response.
+2. Include key details like required documents, steps involved, tests, and unique requirements.
+3. Clarify the expectations for the response for more precise guidance.
+
+Fully rewritten prompt:
+"Provide a comprehensive, step-by-step guide on applying for a standard non-commercial driver's license in California as a first-time driver aged 18 or above. Detail the necessary documents, application submission process, written and driving tests, and any additional requirements specific to California's application procedure."

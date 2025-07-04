@@ -87,3 +87,55 @@ Fully rewritten version of the prompt:
 "Explain the steps to pursue a career as a lawyer, providing detailed insights while maintaining clarity. Include relevant examples and any additional considerations you find helpful."
 
 This rewritten prompt aims to be clear, concise, and professional, ensuring that respondents understand what is expected of them.
+
+**** MULTI-PASS *****
+$ docker run --rm --env-file ./backend/.env prompt-fractal-backend
+\n=== Pass 1 ===
+Clarity rating: 3/10
+
+Specific issues found:
+1. The prompt is overly convoluted with conflicting instructions on depth and simplicity.
+2. Lacks clarity on what exactly the writer is asking for - career advice, guidance on practical steps, examples, or something else.
+3. Contains vague phrases such as "but go deep but also make it simple."
+
+Suggestions for improving the prompt:
+1. Clearly outline the specific elements the writer is seeking.
+2. Avoid contradictory instructions and ambiguous language.
+3. Provide more context to help guide the response.
+
+Rewritten prompt:
+"Provide detailed guidance on the steps to pursue a career as a lawyer. Include practical advice, key stages, and necessary qualifications. Back up your explanations with relevant examples to support your points."
+\n=== Pass 2 ===
+Clarity Rating: 9/10
+
+Specific issues found:
+1. The prompt is well-structured and provides clear guidance on what is expected. 
+2. No major issues found.
+
+Suggestions for improving the prompt:
+N/A
+
+Rewritten prompt:
+"Offer comprehensive guidance on the steps required to pursue a career as a lawyer. This should encompass practical advice, key milestones, and essential qualifications. Ensure your explanations are supported by relevant examples to enrich your insights."
+\n=== Pass 3 ===
+Clarity Rating: 10/10
+
+Specific issues found:
+1. No major issues found.
+
+Suggestions for improving the prompt:
+N/A
+
+Rewritten prompt:
+"Provide a detailed outline of the necessary steps to embark on a career in law. Include practical advice, important milestones, and essential qualifications in your explanation. Use relevant examples to enhance the depth of your insights."      
+\n=== Final Refined Prompt ===
+Clarity Rating: 10/10
+
+Specific issues found:
+1. No major issues found.
+
+Suggestions for improving the prompt:
+N/A
+
+Rewritten prompt:
+"Provide a detailed outline of the necessary steps to embark on a career in law. Include practical advice, important milestones, and essential qualifications in your explanation. Use relevant examples to enhance the depth of your insights."
