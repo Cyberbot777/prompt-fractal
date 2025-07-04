@@ -1,41 +1,38 @@
 # 🌌 Prompt Fractal
 
-**Recursive Prompt Optimization Project — Featuring Iris, a Self-Reflective Prompt Agent**
+**Recursive Prompt Optimization Project — Featuring Iris, the Self-Reflective Prompt Agent**
 
 ---
 
 ## Overview
 
-**Prompt Fractal** is an advanced AI project designed to automatically optimize, clarify, and refine prompts for large language models (LLMs) using recursive, self-referential prompting loops.
+**Prompt Fractal** is an AI project designed to automatically optimize, clarify, and refine prompts for large language models (LLMs) through recursive, self-referential prompting loops.
 
 At its core is **Iris** — the self-reflective prompt optimization agent within Prompt Fractal.
 
 Iris performs prompt self-improvement by:
-- Analyzing a given prompt’s clarity, length, and effectiveness.
-- Suggesting targeted improvements.
-- Iteratively rewriting the prompt for maximum precision and minimal ambiguity.
-- Saving its learning history to a memory system, allowing for continual evolution and optimization over time.
+- Analyzing prompts for clarity, length, and effectiveness.
+- Providing detailed reviews with a clarity rating and specific improvement suggestions.
+- Automatically rewriting prompts to improve focus, reduce ambiguity, and increase precision.
+- Logging each review and rewrite cycle with timestamps for future analysis.
 
-This project explores **recursive prompting** — where an LLM effectively teaches itself to write better prompts via structured self-review and refinement cycles.
+This project explores **recursive prompting** — where an LLM effectively teaches itself to write better prompts through structured self-review and refinement cycles.
 
 ---
 
 ## Key Features
 
-- **Recursive Self-Improvement:**  
-  Multi-pass prompt refinement via LLM-driven analysis and rewriting.
+- **Self-Reflective Prompt Review:**  
+  Iris evaluates prompts for clarity, complexity, and ambiguity, providing detailed analysis.
 
-- **Prompt Simplification:**  
-  Automatically removes unnecessary complexity, jargon, and vague phrasing.
+- **Automatic Prompt Rewriting:**  
+  Iris generates fully rewritten versions of prompts based on its review feedback.
 
-- **Auto-Chaining Detection (Planned):**  
-  Identifies when prompts should be split into smaller subtasks and suggests chaining.
+- **Structured Test Logging:**  
+  All tests are logged automatically with timestamps and phase labels for future reference.
 
-- **Memory & Semantic Recall (Planned):**  
-  Uses PostgreSQL + pgvector for semantic memory of prior prompt refinements.
-
-- **Modular Design:**  
-  Built for extensibility with LangChain as the core framework for agent logic and memory handling.
+- **Modular, Extensible Design:**  
+  Built with scalability in mind to enable multi-phase refinement and future integrations.
 
 ---
 
@@ -43,28 +40,28 @@ This project explores **recursive prompting** — where an LLM effectively teach
 
 ### Backend
 - **Python 3.11** — Core programming language.
-- **LangChain** — Agent framework for prompt chaining and task workflows.
-- **OpenAI GPT-3.5 Turbo** — Initial language model for prompt refinement.
-- **Docker** — Containerization for reproducible, isolated environments.
+- **OpenAI GPT-3.5 Turbo** — Current LLM used for analysis and rewriting.
+- **Docker** — Containerization for a reproducible, isolated environment.
+- **dotenv** — Secure API key management.
 
 ### Frontend (Planned)
-- **React (Vite)** — Fast frontend framework for reactive UI.
+- **React (Vite)** — Fast frontend framework for interactive UI.
 - **Tailwind CSS** — Utility-first CSS for sleek, dark-themed styling.
 - **Framer Motion** — Smooth animations and transitions.
-- **React Markdown** — Renders LLM outputs in readable format.
+- **React Markdown** — For clean LLM output rendering.
 
 ### Database (Planned)
 - **PostgreSQL** — Persistent memory storage for prompt histories.
 - **pgvector** — Semantic vector search extension for PostgreSQL (future memory recall).
 
 ### DevOps / Infrastructure
-- **Docker Compose** (Planned) — For multi-service orchestration (backend + DB + frontend).
+- **Docker Compose** (Planned) — For orchestrating multi-service setups.
 
 ---
 
 ## Docker Usage
 
-Prompt Fractal uses Docker to containerize its backend environment.
+Prompt Fractal runs fully inside Docker.
 
 ### Build the Docker Image:
 ```bash
@@ -73,43 +70,45 @@ docker build -t prompt-fractal-backend ./backend
 
 ### Run the Iris Agent:
 ```bash
-docker run --rm prompt-fractal-backend
+docker run --rm --env-file ./backend/.env prompt-fractal-backend
 ```
 
-Docker ensures that Iris runs in a clean, reproducible environment with all dependencies isolated — no local virtual environments required.
+Docker ensures that Iris operates in a clean, reproducible environment without requiring local virtual environments.
 
 ---
 
 ## Roadmap
 
-### **Phase 1:** Prompt Simplification Agent (Active)
-- [x] Multi-pass prompt simplification loop (3–5 iterations)
-- [x] Meta-prompt templates for review and rewriting
-- [ ] Initial memory schema (PostgreSQL)
+### **Phase 1:** Prompt Review + Rewriting Agent (Active)
+- [x] Single-pass prompt review and rewriting.
+- [x] Test logging with timestamps and phase tracking.
+- [ ] Multi-pass refinement loop (3–5 iterations).
+- [ ] Initial memory schema (PostgreSQL).
 
 ### **Phase 2:** Auto-Chaining Recommender
-- [ ] Agent detects multi-goal prompts and suggests chaining
-- [ ] Auto-generates optimized sub-prompts (subtasks)
+- [ ] Detect multi-goal prompts and suggest chaining.
+- [ ] Auto-generate optimized sub-prompts for subtasks.
 
 ### **Phase 3:** Semantic Memory + Retrieval
-- [ ] Integrate pgvector for semantic search of past prompts
-- [ ] Enable knowledge transfer between similar prompts
+- [ ] Integrate pgvector for semantic memory search.
+- [ ] Enable recall and knowledge transfer between similar prompts.
 
 ### **Phase 4:** PromptPilot Integration (Optional)
-- [ ] Connect Prompt Fractal to PromptPilot as an advanced lab feature
+- [ ] Connect Prompt Fractal to PromptPilot as an advanced lab feature.
 
 ---
 
 ## Status
 
-⚙️ **Early Research & Development Stage** — Experimental and evolving.  
-The system is being built to function as both a research lab and practical tool for advanced AI prompt engineering.
+**Early Research & Development** — Experimental and evolving.
+
+Prompt Fractal currently functions as a research-focused tool for advanced prompt engineering experiments, with a clean, reproducible backend foundation.
 
 ---
 
 ## License
 
-MIT License — Use freely, modify, and contribute.
+MIT License — Open for personal and commercial use, modification, and contribution.
 
 ---
 

@@ -1,27 +1,74 @@
-# iris_agent.py 
-
+# iris_agent.py — Iris Prompt Review Test (Phase 1)
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
+from datetime import datetime
 
 def run_agent():
     print("Iris Agent Starting...")
 
-    # Load API key from .env
+    # Load API key
     load_dotenv()
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    # Send a simple test prompt to GPT-3.5 Turbo (new API)
+    # Hardcoded messy prompt to analyze
+    messy_prompt = (
+        "Explain stuff about AI but like go deep but also make it simple "
+        "but not too simple and also give examples and maybe something else too idk."
+    )
+
+    # Review meta-prompt template
+    review_template = f"""
+Analyze the following prompt for clarity, length, and level of detail.
+
+Check specifically:
+1. Is this prompt too long or overly complex?
+2. Is this prompt too short or lacking necessary context or details?
+3. Are there any ambiguous or unclear phrases?
+
+Prompt:
+\"\"\"{messy_prompt}\"\"\"
+
+Provide:
+- A clarity rating from 1 to 10.
+- Specific issues found.
+- Suggestions for improving the prompt.
+- A fully rewritten version of the prompt that resolves the identified issues, phrased clearly and professionally.
+"""
+
+    # Send review task to LLM
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "Summarize the phrase 'Prompt Fractal' in one sentence."}
+            {"role": "system", "content": "You are an expert prompt engineer."},
+            {"role": "user", "content": review_template}
         ]
     )
 
-    reply = response.choices[0].message.content.strip()
-    print("LLM Response:", reply)
+    review_output = response.choices[0].message.content.strip()
+
+    # Prepare timestamp and phase label
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    phase = "Phase 1 — Review Test"
+
+    # Print results in clean order
+    print("\n=== Iris Prompt Review ===")
+    print(f"=== {phase} — {timestamp} ===\n")
+    print(f"Original Prompt:\n{messy_prompt}\n")
+    print("Review Output:")
+    print(review_output)
+
+    # Ensure 'tests' folder exists
+    os.makedirs("tests", exist_ok=True)
+
+    # Log results to test_log.txt
+    with open("tests/test_log.txt", "a", encoding="utf-8") as f:
+        f.write("\n=== Iris Prompt Review ===\n")
+        f.write(f"=== {phase} — {timestamp} ===\n\n")
+        f.write(f"Original Prompt:\n{messy_prompt}\n\n")
+        f.write("Review Output:\n")
+        f.write(review_output)
+        f.write("\n\n")
 
 if __name__ == "__main__":
     run_agent()

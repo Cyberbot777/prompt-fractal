@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.env
+.venv/
+venv/
+ENV/
+env/
+*.sqlite3
+*.db
+
+# Docker
+*.log
+*.pid
+*.tar
+*.sock
+
+# Environment Files
+.env
+.env.*
+
+# Test Logs
+tests/*.txt
+tests/test_log.txt
+
+# VSCode or IDE Settings (optional, but common)
+.vscode/
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
