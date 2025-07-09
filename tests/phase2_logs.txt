@@ -234,7 +234,7 @@ Rewritten Prompt:
 
 
 *****SUCCESS!!!! AUTO-STOP ACHIEVED!!!****
-
+ 
 === Iris Prompt Review ===
 === Phase 2 — Multi-Pass Refinement Test — 2025-07-04 20:43:57 UTC ===
 
@@ -310,3 +310,201 @@ Suggestions for improving the prompt:
 
 Fully rewritten prompt:
 "Provide a comprehensive, step-by-step guide on applying for a standard non-commercial driver's license in California as a first-time driver aged 18 or above. Detail the necessary documents, application submission process, written and driving tests, and any additional requirements specific to California's application procedure."
+
+
+
+
+
+
+
+
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 16:02:15 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+Describe how to apply for a driver’s license.
+
+[Debug] Current score: 8, Previous score: None
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 2 — Stable Clarity 9
+
+=== Pass 1 ===
+Clarity Rating: 8
+
+Specific Issues Found:
+1. The prompt is clear and straightforward. However, it could benefit from more specific details on what aspects of applying for a driver's license should be covered.
+2. The prompt does not specify any particular focus areas or steps to be included in the response, potentially leading to broad or overly detailed submissions.
+3. The prompt could be enhanced by indicating any preferred format or length for the description.
+
+Suggestions for Improving the Prompt:
+1. Specify whether the response should focus on the application process itself, requirements for eligibility, documentation needed, or any other specific aspect of applying for a driver's license.
+2. Provide guidelines on the depth of detail expected in the response to ensure a balanced level of information without being overly verbose.
+3. Consider mentioning any specific target audience or geographic location (as requirements for driver's licenses can vary by location) to tailor the response accordingly.
+
+Rewritten Prompt:
+"""Describe the process of applying for a driver's license in your state, including the required documentation and eligibility criteria.    
+
+Provide a detailed overview of the steps involved in obtaining a driver's license, such as scheduling a driving test, completing a driver's education course, and submitting necessary paperwork. Highlight any unique requirements or restrictions that applicants should be aware of to successfully secure a driver's license in your state.
+
+Please aim for a comprehensive yet concise explanation, focusing on the key aspects of the application process. Include any relevant tips or advice for individuals seeking to obtain a driver's license within the specified state."""
+
+This revised prompt provides more specific guidance on what aspects of applying for a driver's license should be covered, while also setting expectations for a balanced level of detail in the response.
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific Issues Found:
+1. The initial prompt lacked specificity on what aspects of applying for a driver's license should be addressed, potentially leading to vague or overly detailed responses.
+2. Lack of guidance on the expected level of detail and the target audience for the response.
+3. Absence of information on the preferred format or length for the description.
+
+Suggestions for Improving the Prompt:
+1. Clearly state whether the response should focus on the application process itself, eligibility criteria, required documentation, or any other particular aspect of obtaining a driver's license.
+2. Provide clear instructions on the depth of information expected in the response to maintain a balance without being overly detailed.     
+3. Specify any target audience or geographic location to tailor the response accordingly.
+
+Rewritten Prompt:
+"Explain the process of acquiring a driver's license in your state, detailing the necessary documents and eligibility prerequisites.        
+
+Give a comprehensive overview of the steps involved in obtaining a driver's license, including specifics on scheduling a driving test, completing driver education courses, and submitting essential paperwork. Highlight any unique conditions or limitations that applicants should consider for a successful driver's license application in your state.   
+
+Strive to offer a thorough yet succinct explanation, emphasizing the critical elements of the application procedure. Provide practical advice and tips for individuals striving to secure a driver's license within the specified state."
+
+This revised prompt increases specificity on the required content for explaining the driver's license application process and sets clear expectations for the level of detail desired in the response.
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific Issues Found:
+1. The initial prompt lacked specificity on what aspects of applying for a driver's license should be addressed, potentially leading to vague or overly detailed responses.
+2. Lack of guidance on the expected level of detail and the target audience for the response.
+3. Absence of information on the preferred format or length for the description.
+
+Suggestions for Improving the Prompt:
+1. Clearly state whether the response should focus on the application process itself, eligibility criteria, required documentation, or any other particular aspect of obtaining a driver's license.
+2. Provide clear instructions on the depth of information expected in the response to maintain a balance without being overly detailed.
+3. Specify any target audience or geographic location to tailor the response accordingly.       
+
+Rewritten Prompt:
+"Explain the process of acquiring a driver's license in your state, detailing the necessary documents and eligibility prerequisites.
+
+Give a comprehensive overview of the steps involved in obtaining a driver's license, including specifics on scheduling a driving test, completing driver education courses, and submitting essential paperwork. Highlight any unique conditions or limitations that applicants should consider for a successful driver's license application in your state.
+
+Strive to offer a thorough yet succinct explanation, emphasizing the critical elements of the application procedure. Provide practical advice and tips for individuals striving to secure a driver's license within the specified state."
+
+This revised prompt increases specificity on the required content for explaining the driver's license application process and sets clear expectations for the level of detail desired in the response.
+
+
+**** Ambiguous TEST 1 Full Log****
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 16:13:41 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+Can you explain about stuff that matters for being successful?
+
+[Debug] Current score: 3, Previous score: None
+[Debug] Current score: 9, Previous score: 3
+[Debug] Current score: 8, Previous score: 9
+[Debug] Current score: 8, Previous score: 8
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 5 — Stable Clarity 9
+
+=== Pass 1 ===
+Clarity rating: 3
+
+Specific issues found:
+1. The prompt is too brief and lacks specific direction or focus on what aspects of success to cover.
+2. The term "stuff that matters for being successful" is vague and open to interpretation.
+3. The prompt lacks details or examples to guide the response.
+
+Suggestions for improving the prompt:
+1. Define what "success" means in this context - whether it pertains to personal achievement, career success, academic success, etc.
+2. Specify the key areas or factors that should be discussed in relation to achieving success.
+3. Add context or examples to guide the responder on what kind of insights are being sought.
+
+Fully rewritten prompt:
+"In your opinion, what are the fundamental keys to achieving success in one's personal and professional life? Please provide detailed insights and examples on the key factors or strategies that contribute to success, such as goal-setting, resilience, time management, and interpersonal skills."
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The initial prompt was too vague and lacked specific guidance on what aspects of success to address.  
+2. The term "stuff that matters for being successful" was ambiguous and open to interpretation.
+3. Insufficient details or examples were provided to guide the response.
+
+Suggestions for improving the prompt:
+1. Clearly define the context of success, whether personal, academic, or professional.
+2. Identify key areas or factors essential for achieving success.
+3. Include specific examples or scenarios to aid respondents in providing relevant insights.
+
+Fully rewritten prompt:
+"In your perspective, what are the essential factors that contribute to success in both personal and professional contexts? Please offer detailed explanations and examples of key elements like goal-setting, resilience, time management, and interpersonal skills, demonstrating how these aspects shape individuals' achievements."
+
+=== Pass 3 ===
+Clarity Rating: 8
+
+Specific issues found:
+1. The prompt is slightly verbose and could be streamlined for conciseness.
+2. The term "essential factors that contribute to success" is broad and could benefit from more specific guidance.
+3. While the prompt provides some examples, it could offer more diverse scenarios to cover a wider range of perspectives.
+
+Suggestions for improving the prompt:
+1. Streamline the prompt by focusing on the most crucial elements of success.
+2. Define success within personal and professional contexts to provide a clearer framework.
+3. Expand the range of examples to encompass various aspects of success comprehensively.
+
+Fully rewritten prompt:
+"What fundamental factors lead to success in personal and professional spheres? Clearly outline key elements like goal-setting, resilience, time management, and interpersonal skills that drive individuals' accomplishments. Specify how these components interact to shape success, supplementing your insights with detailed real-life examples across different scenarios."
+
+=== Pass 4 ===
+- Clarity rating: 8
+
+Specific issues found:
+1. The prompt is slightly verbose and could be streamlined for conciseness.
+2. The term "essential factors that contribute to success" is broad and could benefit from more specific guidance.
+3. While the prompt provides some examples, it could offer more diverse scenarios to cover a wider range of perspectives.
+
+Suggestions for improving the prompt:
+1. Streamline the prompt by focusing on the most crucial elements of success.
+2. Define success within personal and professional contexts to provide a clearer framework.
+3. Expand the range of examples to encompass various aspects of success comprehensively.
+
+Fully rewritten prompt:
+"What fundamental factors lead to success in personal and professional spheres? Clearly outline key elements like goal-setting, resilience, time management, and interpersonal skills that drive individuals' accomplishments. Specify how these components interact to shape success, supplementing your insights with detailed real-life examples across different scenarios."
+
+=== Pass 5 ===
+Clarity Rating: 9
+
+Specific Issues Found:
+1. The prompt is slightly verbose and can be made more concise.
+2. The term "essential factors that contribute to success" is vague and could be more clearly defined.   
+3. The examples provided could be expanded to cover a wider range of perspectives.
+
+Suggestions for Improving the Prompt:
+1. Simplify the prompt by focusing on key elements critical for success.
+2. Define success within personal and professional realms for better clarity.
+3. Include a broader range of examples to encompass various aspects of success comprehensively.
+
+Fully Rewritten Prompt:
+"What are the key factors that drive success in personal and professional environments? Define essential components such as goal-setting, resilience, time management, and interpersonal skills that shape individuals' achievements. Illustrate how these elements synergize to influence success, incorporating diverse real-life examples across different contexts."
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific Issues Found:
+1. The prompt is slightly verbose and can be made more concise.
+2. The term "essential factors that contribute to success" is vague and could be more clearly defined.   
+3. The examples provided could be expanded to cover a wider range of perspectives.
+
+Suggestions for Improving the Prompt:
+1. Simplify the prompt by focusing on key elements critical for success.
+2. Define success within personal and professional realms for better clarity.
+3. Include a broader range of examples to encompass various aspects of success comprehensively.
+
+Fully Rewritten Prompt:
+"What are the key factors that drive success in personal and professional environments? Define essential components such as goal-setting, resilience, time management, and interpersonal skills that shape individuals' achievements. Illustrate how these elements synergize to influence success, incorporating diverse real-life examples across different contexts."

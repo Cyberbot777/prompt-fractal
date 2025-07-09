@@ -42,6 +42,7 @@ Provide:
 def run_agent():
     print("Iris Agent Starting...")
 
+    # Single Prompt Pass
     messy_prompt = (
         "Explain how to get are carrer as a lwayer but like go deep but also make it simple "
         "but not too simple and also give examples and maybe something else too idk."
@@ -111,7 +112,7 @@ if __name__ == "__main__":
     # run_agent()
 
     # PHASE 2 Multi-pass refinement test:
-    messy_prompt = "Describe how to apply for a driver’s license."
+    messy_prompt = "Can you explain about stuff that matters for being successful?"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     phase = "Phase 2 — Multi-Pass Refinement Test"
