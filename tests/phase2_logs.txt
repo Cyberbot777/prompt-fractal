@@ -508,3 +508,1131 @@ Suggestions for Improving the Prompt:
 
 Fully Rewritten Prompt:
 "What are the key factors that drive success in personal and professional environments? Define essential components such as goal-setting, resilience, time management, and interpersonal skills that shape individuals' achievements. Illustrate how these elements synergize to influence success, incorporating diverse real-life examples across different contexts."
+
+
+
+
+**** Ambiguous TEST 2 Full Log****
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 17:15:39 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+Can you explain about stuff that matters for being successful?
+
+[Debug] Current score: 4, Previous score: None
+[Debug] Current score: 9, Previous score: 4
+[Debug] Current score: 9, Previous score: 9
+
+Auto-stop triggered at Pass 3 — Stable Clarity 9
+
+=== Pass 1 ===
+Clarity Rating: 4
+
+Specific Issues:
+1. The prompt is too broad and lacks specificity. It doesn't clarify what aspects of success the response should cover.
+2. The term "stuff that matters" is vague and open to interpretation.
+3. The prompt is too short and lacks detail.
+
+Suggestions for Improving the Prompt:
+1. Specify the areas of success (e.g., career, personal growth, relationships) that the explanation should focus on.
+2. Replace "stuff that matters" with more specific terms related to success.
+3. Provide more context or details to guide the response.
+
+Rewritten Prompt:
+"""Can you explain important factors for achieving success in your professional life, such as goal setting, time management, and effective communication strategies? Please provide specific insights and examples to support your explanation."""
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The prompt is clear and concise. It effectively specifies the areas of success to be discussed and provides examples for guidance.
+2. No specific issues found in the prompt as it is well-structured and detailed.
+
+Suggestions for Improving the Prompt: None needed as the prompt is clear, detailed, and effectively guides the response.
+
+Rewritten Prompt:
+"""Explain the key factors that contribute to success in your professional life, including aspects such as goal setting, time management, and effective communication strategies. Provide detailed insights and relevant examples to support your explanation."""
+
+=== Pass 3 ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The original prompt is clear and detailed, with no specific issues identified.
+2. No particular problems were found in the length, complexity, or lack of context within the prompt.    
+
+Suggestions for Improving the Prompt: None needed as the prompt is already clear, concise, and detailed. 
+
+Rewritten Prompt:
+"Explain the key factors leading to success in your professional life, including elements like goal setting, time management, and effective communication strategies. Support your explanation with detailed insights and relevant examples to illustrate each aspect."
+
+Would you need any more assistance with this prompt analysis or rewriting?
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The original prompt is clear and detailed, with no specific issues identified.
+2. No particular problems were found in the length, complexity, or lack of context within the prompt.    
+
+Suggestions for Improving the Prompt: None needed as the prompt is already clear, concise, and detailed. 
+
+Rewritten Prompt:
+"Explain the key factors leading to success in your professional life, including elements like goal setting, time management, and effective communication strategies. Support your explanation with detailed insights and relevant examples to illustrate each aspect."
+
+Would you need any more assistance with this prompt analysis or rewriting?
+
+
+
+**** Ambiguous TEST 3 Full Log****
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 17:19:17 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+Can you explain about stuff that matters for being successful?
+
+[Debug] Current score: 3, Previous score: None
+[Debug] Current score: 9, Previous score: 3
+[Debug] Current score: 9, Previous score: 9
+
+Auto-stop triggered at Pass 3 — Stable Clarity 9
+
+=== Pass 1 ===
+Clarity Rating: 3
+
+Specific Issues Found:
+1. The prompt is too vague and lacks specificity.
+2. It doesn't provide any guidance on what aspects of success should be focused on.
+3. The term "stuff that matters for being successful" is overly broad and ambiguous.
+
+Suggestions for Improving the Prompt:
+1. Clearly define what aspects of success should be addressed (e.g., mindset, skills, habits).
+2. Provide a specific framework or context for the explanation.
+3. Use clear and precise language to avoid ambiguity.
+
+Rewritten Prompt:
+"""Please provide an explanation of the key mindset attributes necessary for achieving success in a competitive business environment, focusing on resilience, adaptability, and growth mindset. Your response should include examples illustrating how each attribute contributes to long-term success."""
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific Issues Found:
+1. The original prompt was too vague and lacked specificity.
+2. It didn't provide any guidance on what aspects of success should be focused on.
+3. The term "stuff that matters for being successful" was overly broad and ambiguous.
+
+Suggestions for Improving the Prompt:
+1. Clearly define what aspects of success should be addressed (e.g., mindset, skills, habits).
+2. Provide a specific framework or context for the explanation.
+3. Use clear and precise language to avoid ambiguity.
+
+Rewritten Prompt:
+"""Please provide an explanation of the key mindset attributes necessary for achieving success in a competitive business environment, focusing on resilience, adaptability, and growth mindset. Your response should include examples illustrating how each attribute contributes to long-term success."""
+
+=== Pass 3 ===
+Prompt Analysis:
+
+1. **Length and Complexity**: The original prompt is concise but lacks clarity and specificity, making it vague. The revised prompt is slightly longer but includes necessary details for a clear understanding. It strikes a balance between being concise and informative.
+
+2. **Context and Details**: The original prompt was lacking in necessary context and details. It did not specify what aspects of success should be covered. The revised prompt addresses this by clearly defining the key mindset attributes (resilience, adaptability, growth mindset) and requesting examples for illustration, providing necessary context for the response.
+
+3. **Ambiguity**: The original prompt suffers from ambiguity due to the vague term "stuff that matters for being successful." The revised prompt eliminates this ambiguity by specifying the exact mindset attributes required for success in a competitive business environment.
+
+Overall, the revised prompt is significantly improved in terms of clarity, length, level of detail, and specificity.
+
+Rating:
+- **Clarity Rating: 9**
+
+Specific Issues Found:
+1. Lack of specificity and clarity in the original prompt.
+2. Vagueness regarding the aspects of success to be focused on.
+3. Overly broad and ambiguous language used in the original prompt.
+
+Suggestions for Improving the Prompt:
+1. Clearly define the aspects of success to be addressed.
+2. Provide a specific framework or context for the explanation.
+3. Use clear and precise language to avoid ambiguity.
+
+Rewritten Prompt:
+"""Please provide an explanation of the key mindset attributes necessary for achieving success in a competitive business environment, focusing on resilience, adaptability, and growth mindset. Your response should include examples illustrating how each attribute contributes to long-term success.""""""
+
+Overall, the revised prompt is clear, specific, and provides guidance for the respondents.
+
+=== Final Refined Prompt ===
+Prompt Analysis:
+
+1. **Length and Complexity**: The original prompt is concise but lacks clarity and specificity, making it vague. The revised prompt is slightly longer but includes necessary details for a clear understanding. It strikes a balance between being concise and informative.
+
+2. **Context and Details**: The original prompt was lacking in necessary context and details. It did not specify what aspects of success should be covered. The revised prompt addresses this by clearly defining the key mindset attributes (resilience, adaptability, growth mindset) and requesting examples for illustration, providing necessary context for the response.
+
+3. **Ambiguity**: The original prompt suffers from ambiguity due to the vague term "stuff that matters for being successful." The revised prompt eliminates this ambiguity by specifying the exact mindset attributes required for success in a competitive business environment.
+
+Overall, the revised prompt is significantly improved in terms of clarity, length, level of detail, and specificity.
+
+Rating:
+- **Clarity Rating: 9**
+
+Specific Issues Found:
+1. Lack of specificity and clarity in the original prompt.
+2. Vagueness regarding the aspects of success to be focused on.
+3. Overly broad and ambiguous language used in the original prompt.
+
+Suggestions for Improving the Prompt:
+1. Clearly define the aspects of success to be addressed.
+2. Provide a specific framework or context for the explanation.
+3. Use clear and precise language to avoid ambiguity.
+
+Rewritten Prompt:
+"""Please provide an explanation of the key mindset attributes necessary for achieving success in a competitive business environment, focusing on resilience, adaptability, and growth mindset. Your response should include examples illustrating how each attribute contributes to long-term success.""""""
+
+Overall, the revised prompt is clear, specific, and provides guidance for the respondents.
+
+
+**COMPLEX TEST VALIDATION (SAME PROMPT) COMPLETE LOG**
+
+***PASS 1 ***
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 17:30:24 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+As part of a comprehensive strategy for improving workplace productivity and employee satisfaction, explain the interconnected roles of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles. Additionally, include examples demonstrating how each of these components influences organizational success, and suggest actionable methods for integrating them into daily business operations, considering both short-term and long-term perspectives.
+
+[Debug] Current score: 6, Previous score: None
+[Debug] Current score: 6, Previous score: 6
+[Debug] Current score: 8, Previous score: 6
+[Debug] Current score: 6, Previous score: 8
+[Debug] Current score: 8, Previous score: 6
+
+=== Pass 1 ===
+Clarity Rating: 6
+
+Specific issues found:
+1. The prompt is overly complex and includes too many components, potentially overwhelming participants.
+2. The prompt lacks specific examples of how these components are interconnected and influential.
+3. The prompt doesn't clearly specify the desired depth of analysis required for each component.
+
+Suggestions for improving the prompt:
+1. Simplify the prompt by focusing on one or two key areas for analysis.
+2. Provide clearer guidance on the level of detail expected in responses.
+3. Include specific examples to illustrate the concepts presented.
+
+Rewritten Prompt:
+"In the context of workplace productivity and employee satisfaction, explain the impact of effective time management techniques and collaborative teamwork approaches on organizational success. Provide specific examples to demonstrate how these components can be integrated into daily business operations for both short-term and long-term benefits."
+
+=== Pass 2 ===
+Clarity rating: 6
+
+Specific issues found:
+1. The original prompt is overly complex and includes too many components.
+2. Lack of specific examples to illustrate how components are interconnected and influential.
+3. Unclear guidance on the desired depth of analysis.
+
+Suggestions for improving the prompt:
+1. Focus on one key area for analysis, either time management or teamwork.
+2. Specify the level of detail expected in responses.
+3. Include concrete examples to demonstrate concepts presented.
+
+Rewritten prompt:
+"In the context of workplace productivity, analyze the impact of effective time management techniques on organizational success. Provide specific examples to illustrate how time management strategies can be integrated into daily business operations for short-term and long-term benefits. Ensure your analysis includes the level of detail required to showcase the significance of these strategies in improving employee satisfaction and overall productivity."
+
+=== Pass 3 ===
+Clarity Rating: 8
+
+Specific issues found:
+1. The original prompt lacks a clear focus and provides vague guidance on the scope of analysis.
+2. Missing specific examples to clarify the relationships between concepts.
+3. Ambiguity in the expectations for depth of analysis.
+
+Suggestions for improving the prompt:
+1. Narrow down the analysis area to a specific aspect, like the impact of communication on project outcomes.
+2. Clear instructions on the required depth of response should be included.
+3. Provide concrete examples or scenarios to aid in understanding the concepts being evaluated.
+
+Rewritten prompt:
+"In the context of project management, assess how effective communication strategies influence the success of cross-functional teams. Utilize real-world examples to demonstrate the integral role communication plays in resolving conflicts, enhancing collaboration, and meeting project deliverables. Your analysis should delve into the specifics of communication tools and methods used within diverse team dynamics to improve project outcomes effectively."
+
+=== Pass 4 ===
+Clarity rating: 6
+
+Specific issues found:
+1. The original prompt is lengthy and convoluted, making it challenging to grasp the main focus.
+2. Lack of specific examples to illustrate the relationships between communication strategies and project success.
+3. Ambiguity persists regarding the depth and extent of the analysis required.
+
+Suggestions for improving the prompt:
+1. Condense and streamline the prompt to focus on a specific aspect, such as the impact of communication strategies on cross-functional team success.
+2. Incorporate clear guidelines on the expected level of detail and examples required for analysis.      
+3. Provide concrete scenarios or case studies to clarify concepts and aid in understanding.
+
+Rewritten prompt:
+"Assess the influence of effective communication strategies on the success of cross-functional teams in project management. Use real-world examples to illustrate how communication contributes to conflict resolution, collaboration enhancement, and meeting project deliverables. Your analysis should explore the use of various communication tools and methods within diverse team dynamics to consistently enhance project outcomes."
+
+=== Pass 5 ===
+Clarity rating: 8
+
+Specific issues found:
+1. The original prompt lacks specificity and focus, making it challenging to understand the key areas for assessment.
+2. The prompt does not provide clear guidance on the required scope of analysis or context for the examples needed.
+3. Ambiguity exists in terms of the expected depth of exploration into communication strategies' impacts.
+
+Suggestions for improving the prompt:
+1. Define the specific objectives of the assessment clearly, focusing on the relationship between communication strategies and project success within cross-functional teams.
+2. Offer explicit expectations regarding the level of detail and examples needed to support the analysis.
+3. Incorporate concrete scenarios or case studies to enhance practical application and comprehension.    
+
+Rewritten prompt:
+"Analyze the impact of effective communication strategies on the success of cross-functional teams in project management. Utilize real-world examples to demonstrate how communication influences conflict resolution, collaboration, and achievement of project goals. Your analysis should examine the utilization of various communication tools and techniques in diverse team settings to consistently improve project outcomes."
+
+=== Final Refined Prompt ===
+Clarity rating: 8
+
+Specific issues found:
+1. The original prompt lacks specificity and focus, making it challenging to understand the key areas for assessment.
+2. The prompt does not provide clear guidance on the required scope of analysis or context for the examples needed.
+3. Ambiguity exists in terms of the expected depth of exploration into communication strategies' impacts.
+
+Suggestions for improving the prompt:
+1. Define the specific objectives of the assessment clearly, focusing on the relationship between communication strategies and project success within cross-functional teams.
+2. Offer explicit expectations regarding the level of detail and examples needed to support the analysis.
+3. Incorporate concrete scenarios or case studies to enhance practical application and comprehension.    
+
+Rewritten prompt:
+"Analyze the impact of effective communication strategies on the success of cross-functional teams in project management. Utilize real-world examples to demonstrate how communication influences conflict resolution, collaboration, and achievement of project goals. Your analysis should examine the utilization of various communication tools and techniques in diverse team settings to consistently improve project outcomes."
+
+
+** PASS 2 **
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 17:59:22 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+As part of a comprehensive strategy for improving workplace productivity and employee satisfaction, explain the interconnected roles of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles. Additionally, include examples demonstrating how each of these components influences organizational success, and suggest actionable methods for integrating them into daily business operations, considering both short-term and long-term perspectives.
+
+[Debug] Current score: 5, Previous score: None
+[Debug] Current score: 8, Previous score: 5
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 3 — Stable Clarity 9
+
+=== Pass 1 ===
+Clarity Rating: 5
+
+Specific Issues:
+1. The prompt is overly long and complex, covering multiple interconnected topics in a single sentence.
+2. Lack of clear guidance on the focus or depth required for each component mentioned.
+3. The prompt could benefit from slightly breaking down the interconnected roles for better comprehension.
+
+Suggestions for Improving the Prompt:
+1. Break down the prompt into separate sections for each component mentioned: time management techniques, teamwork approaches, goal-setting practices, and leadership styles.
+2. Specify the level of detail expected for each component.
+3. Provide clearer examples or scenarios to guide the response.
+
+Fully Rewritten Prompt:
+"In the context of enhancing workplace productivity and employee satisfaction, explain the role of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles individually. Provide specific examples illustrating how each component impacts organizational success and recommend practical methods for implementing them into daily business operations. Clarify both short-term and long-term perspectives in your response."
+
+This revised prompt aims to enhance clarity by addressing each component separately and providing more explicit guidance on what is expected from the response. It also streamlines the language for better understanding.
+
+=== Pass 2 ===
+Clarity Rating: 8
+
+Specific issues found:
+1. The original prompt is too long and complex, combining multiple interconnected topics into a single sentence.
+2. Lack of clear guidance on the focus and depth required for each component mentioned.
+3. Ambiguity in the interconnected roles presented in the prompt.
+
+Suggestions for improving the prompt:
+1. Break down the prompt into separate sections for each component: time management techniques, teamwork approaches, goal-setting practices, and leadership styles.
+2. Specify the required level of detail for each component.
+3. Provide clearer examples or scenarios to guide the response.
+
+Fully rewritten prompt:
+"Discuss the impact of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles on workplace productivity and employee satisfaction. Please explain each component individually, offer specific examples demonstrating their influence on organizational success, and propose practical methods for integrating them into daily business operations. Include insights from both short-term and long-term perspectives in your analysis."
+
+This revised prompt aims to improve clarity by addressing each component separately, offering explicit guidance on the expected response, and enhancing overall comprehensibility.
+
+=== Pass 3 ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The original prompt is overly detailed and complex, encompassing multiple interconnected topics in a single sentence.
+2. Lack of explicit guidance on the expected depth and focus for each component mentioned.        
+3. Ambiguity in the roles presented within the prompt.
+
+Suggestions for improving the prompt:
+1. Break down the prompt into distinct sections for each component: time management techniques, teamwork approaches, goal-setting practices, and leadership styles.
+2. Specify the level of detail expected for each component, providing clear guidance to respondents.
+3. Offer concrete examples or scenarios to assist in structuring the response effectively.        
+
+Fully rewritten prompt:
+"Discuss the impact of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles on workplace productivity and employee satisfaction. Please analyze each component separately, providing specific examples to illustrate their influence on organizational success. Additionally, propose practical strategies for integrating these elements into daily business operations. Your discussion should incorporate insights from short-term and long-term perspectives to enhance depth and relevance."
+
+This refined prompt aims to enhance clarity by addressing each component individually, offering explicit guidance on the expected response depth, and overall improving coherence and understanding.
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The original prompt is overly detailed and complex, encompassing multiple interconnected topics in a single sentence.
+2. Lack of explicit guidance on the expected depth and focus for each component mentioned.        
+3. Ambiguity in the roles presented within the prompt.
+
+Suggestions for improving the prompt:
+1. Break down the prompt into distinct sections for each component: time management techniques, teamwork approaches, goal-setting practices, and leadership styles.
+2. Specify the level of detail expected for each component, providing clear guidance to respondents.
+3. Offer concrete examples or scenarios to assist in structuring the response effectively.        
+
+Fully rewritten prompt:
+"Discuss the impact of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles on workplace productivity and employee satisfaction. Please analyze each component separately, providing specific examples to illustrate their influence on organizational success. Additionally, propose practical strategies for integrating these elements into daily business operations. Your discussion should incorporate insights from short-term and long-term perspectives to enhance depth and relevance."
+
+This refined prompt aims to enhance clarity by addressing each component individually, offering explicit guidance on the expected response depth, and overall improving coherence and understanding.
+
+** TEST 3 **
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 18:01:26 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+As part of a comprehensive strategy for improving workplace productivity and employee satisfaction, explain the interconnected roles of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles. Additionally, include examples demonstrating how each of these components influences organizational success, and suggest actionable methods for integrating them into daily business operations, considering both short-term and long-term perspectives.
+
+[Debug] Current score: 6, Previous score: None
+[Debug] Current score: 8, Previous score: 6
+[Debug] Current score: 7, Previous score: 8
+[Debug] Current score: 4, Previous score: 7
+[Debug] Current score: 8, Previous score: 4
+
+=== Pass 1 ===
+Clarity Rating: 6
+
+Specific Issues Found:
+1. The prompt is overly long and complex, which may overwhelm respondents.
+2. Lack of clarity on what exactly needs to be explained about the interconnected roles.
+3. Ambiguity in terms of the level of detail required for examples and actionable methods.
+4. Unclear whether the focus should be on theoretical understanding or practical implementation.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language and break down the prompt into more digestible parts.
+2. Clarify the exact expectations regarding the explanations, examples, and suggestions.
+3. Specify whether the emphasis should be on theory, application, or a balance of both.
+4. Provide more concise guidance on what needs to be discussed within the interconnected roles.   
+
+Fully Rewritten Prompt:
+"""Explain the roles of time management, teamwork, goal-setting, and leadership in workplace productivity and employee satisfaction. Discuss how each of these components contributes to organizational success and provide actionable methods for integrating them into daily business operations. Clarify the practical implications for short-term and long-term effectiveness."""
+
+=== Pass 2 ===
+Clarity Rating: 8
+
+Specific Issues Found:
+1. The prompt is concise and clear, but it could benefit from more explicit guidance on the level of detail required in explanations and actionable methods.
+2. The emphasis on practical implications for short-term and long-term effectiveness needs to be further clarified.
+3. While the roles of time management, teamwork, goal-setting, and leadership are listed, it's unclear if there is a specific focus or relationship among them that should be addressed.
+
+Suggestions for Improving the Prompt:
+1. Add a sentence explaining the interconnection between time management, teamwork, goal-setting, and leadership to provide a clearer direction for the responses.
+2. Specify whether the actionable methods should pertain to each component individually or their combined application.
+3. Consider providing a brief example of how these components can overlap in a workplace scenario for better understanding.
+
+Fully Rewritten Prompt:
+"Explain the interconnected roles of time management, teamwork, goal-setting, and leadership in enhancing workplace productivity and employee satisfaction. Describe how the synergy among these components drives organizational success. Provide practical strategies for implementing these roles in daily business operations to improve short-term efficiency and long-term sustainability. Include a brief illustrative example showcasing the collaborative effectiveness of these roles within a workplace setting."
+
+=== Pass 3 ===
+Clarity Rating: 7
+
+Specific Issues Found:
+1. The prompt lacks specificity in terms of the level of detail required in explanations and actionable methods.
+2. The relationships and interconnections between time management, teamwork, goal-setting, and leadership need further clarification.
+3. It is unclear whether the actionable methods should be discussed individually for each component or collectively for their combined application.
+
+Suggestions for Improving the Prompt:
+1. Clarify the depth of explanation and level of detail expected for each component.
+2. Explicitly define the interconnections and relationships between time management, teamwork, goal-setting, and leadership to guide the responses effectively.
+3. Specify whether the strategies should address each component individually or focus on their collaborative implementation for organizational success.
+
+Fully Rewritten Prompt:
+"Discuss the interconnected roles of time management, teamwork, goal-setting, and leadership in improving workplace productivity and employee satisfaction. Explain how these components work synergistically to drive organizational success. Provide specific strategies for implementing these roles effectively in daily business operations to enhance short-term efficiency and ensure long-term sustainability. Support your explanations with a workplace scenario illustrating the collaborative effectiveness of these interconnected components."
+
+=== Pass 4 ===
+Clarity Rating: 4
+
+Specific Issues Found:
+1. The prompt is overly complex and convoluted with a high level of detail that may overwhelm respondents.
+2. The relationships between time management, teamwork, goal-setting, and leadership are vaguely defined and could benefit from clearer explanations.
+3. It is unclear whether the strategies should be focused on individual components or their combined application.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language and structure of the prompt to make it more accessible to a wider range of respondents.
+2. Clearly define and elaborate on the relationships between time management, teamwork, goal-setting, and leadership to provide a solid foundation for responses.
+3. Specify whether strategies should be tailored to each component or emphasize their collaborative implementation.
+
+Fully Rewritten Prompt:
+"Explain how time management, teamwork, goal-setting, and leadership are interconnected in shaping workplace productivity and employee satisfaction. Describe how these components collectively contribute to organizational success. Offer specific strategies for integrating these elements effectively into daily business operations to enhance efficiency in the short term and ensure long-term sustainability. Support your insights with a workplace scenario that highlights the collaborative influence of these interconnected components."
+
+=== Pass 5 ===
+Clarity Rating: 8
+
+Specific Issues Found:
+1. The original prompt is overly complex and convoluted, potentially overwhelming respondents.    
+2. The relationships between time management, teamwork, goal-setting, and leadership lack clear explanations.
+3. Ambiguity surrounds whether strategies should target individual components or their combined application.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language and structure for broader accessibility.
+2. Clearly define the relationships among time management, teamwork, goal-setting, and leadership.
+3. Specify whether strategies should focus on each component or their collaboration.
+
+Fully Rewritten Prompt:
+"Discuss the interconnected nature of time management, teamwork, goal-setting, and leadership in influencing workplace productivity and employee satisfaction. Explain how these components jointly contribute to organizational success. Provide practical strategies for effectively integrating these elements into daily business operations to enhance short-term efficiency and ensure long-term sustainability. Use a workplace scenario to illustrate the synergistic impact of these interconnected components."
+
+=== Final Refined Prompt ===
+Clarity Rating: 8
+
+Specific Issues Found:
+1. The original prompt is overly complex and convoluted, potentially overwhelming respondents.    
+2. The relationships between time management, teamwork, goal-setting, and leadership lack clear explanations.
+3. Ambiguity surrounds whether strategies should target individual components or their combined application.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language and structure for broader accessibility.
+2. Clearly define the relationships among time management, teamwork, goal-setting, and leadership.
+3. Specify whether strategies should focus on each component or their collaboration.
+
+Fully Rewritten Prompt:
+"Discuss the interconnected nature of time management, teamwork, goal-setting, and leadership in influencing workplace productivity and employee satisfaction. Explain how these components jointly contribute to organizational success. Provide practical strategies for effectively integrating these elements into daily business operations to enhance short-term efficiency and ensure long-term sustainability. Use a workplace scenario to illustrate the synergistic impact of these interconnected components."
+
+
+**LONG PROMPT TEST VALIDATION (SAME PROMPT)**
+FULL LOGS
+
+***TEST 1***
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 18:24:17 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+In light of the increasingly fast-paced and ever-evolving nature of today’s modern professional environments, and taking into consideration the numerous and often unpredictable challenges that employees and organizations must navigate on a daily basis, please provide a comprehensive and detailed explanation—covering both theoretical concepts and practical applications—of the various ways in which effective communication, team collaboration, and strategic decision-making processes can collectively and individually contribute to not only improving but also sustaining high levels of workplace productivity, overall operational efficiency, and employee engagement and satisfaction, both in the short term and over an extended, long-term period of time.
+
+[Debug] Current score: 4, Previous score: None
+[Debug] Current score: 8, Previous score: 4
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 3 — Stable Clarity 9
+
+=== Pass 1 ===
+Clarity Rating: 4
+
+Specific Issues:
+1. The prompt is excessively long and complex, making it difficult to grasp the core question.
+2. It lacks a clear focus on what the writer is specifically looking for in terms of responses.
+3. The prompt contains multiple vague and jargon-heavy phrases that may confuse the respondents.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language and break down the prompt into more digestible parts.
+2. Clearly outline the key areas of communication, collaboration, and decision-making that need to be addressed.
+3. Provide more context on the purpose of the explanation and what outcomes are expected from the responses.
+
+Rewritten Prompt:
+"""Please explain how effective communication, team collaboration, and strategic decision-making can enhance workplace productivity, efficiency, and employee satisfaction. Focus on practical examples and theories. Your response should address short-term and long-term benefits."""
+
+=== Pass 2 ===
+Clarity Rating: 8
+
+Specific Issues:
+1. The prompt is concise and well-structured, avoiding unnecessary complexity.
+2. It provides clear direction on the key areas to be discussed but might benefit from specifying the length or depth expected in responses.
+3. The prompt could benefit from more concrete examples of practical scenarios to guide respondents.
+
+Suggestions for Improving the Prompt:
+1. Consider adding a statement on the expected length or depth of responses to provide clearer guidance.
+2. Include specific examples or scenarios related to communication, collaboration, and decision-making to aid respondents in framing their responses.
+
+Rewritten Prompt:
+"In your response, explain how effective communication, team collaboration, and strategic decision-making contribute to enhancing workplace productivity, efficiency, and employee satisfaction. Include practical examples and relevant theories to support your points. Discuss both short-term and long-term benefits for a comprehensive analysis."
+
+Please keep in mind the expected length of your response to ensure thorough coverage of the topic."
+
+=== Pass 3 ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The prompt is well-structured and clear overall.
+2. The prompt could benefit from specifying the expected length or depth of responses.
+3. Lack of specific examples or scenarios to guide respondents.
+
+Suggestions for Improving the Prompt:
+1. Mention the expected length or depth of responses explicitly.
+2. Incorporate practical scenarios in the prompt to guide respondents in their responses.
+
+Rewritten Prompt:
+"In your response, elaborate on how effective communication, team collaboration, and strategic decision-making foster workplace productivity, efficiency, and employee satisfaction. Support your arguments with practical examples and relevant theories. Discuss both immediate and long-term advantages for a comprehensive analysis. Your response should be detailed enough to cover each aspect thoroughly."
+
+Please ensure your response meets the required level of detail to analyze the topic comprehensively.
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The prompt is well-structured and clear overall.
+2. The prompt could benefit from specifying the expected length or depth of responses.
+3. Lack of specific examples or scenarios to guide respondents.
+
+Suggestions for Improving the Prompt:
+1. Mention the expected length or depth of responses explicitly.
+2. Incorporate practical scenarios in the prompt to guide respondents in their responses.
+
+Suggestions for Improving the Prompt:
+1. Mention the expected length or depth of responses explicitly.
+2. Incorporate practical scenarios in the prompt to guide respondents in their responses.
+
+
+
+
+Rewritten Prompt:
+"In your response, elaborate on how effective communication, team collaboration, and strategic decision-making foster workplace productivity, efficiency, and employee satisfaction. Support your arision-making foster workplace productivity, efficiency, and employee satisfaction. Support your arguments with practical examples and relevant theories. Discuss both immediate and long-term advantguments with practical examples and relevant theories. Discuss both immediate and long-term advantages for a comprehensive analysis. Your response should be detailed enough to cover each aspect thoroughly."
+oroughly."
+
+Please ensure your response meets the required level of detail to analyze the topic comprehensivelPlease ensure your response meets the required level of detail to analyze the topic comprehensively.
+
+**TEST 2**
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 18:39:12 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+In light of the increasingly fast-paced and ever-evolving nature of today’s modern professional environments, and taking into consideration the numerous and often unpredictable challenges that employees and organizations must navigate on a daily basis, please provide a comprehensive and detailed explanation—covering both theoretical concepts and practical applications—of the various ways in which effective communication, team collaboration, and strategic decision-making processes can collectively and individually contribute to not only improving but also sustaining high levels of workplace productivity, overall operational efficiency, and employee engagement and satisfaction, both in the short term and over an extended, long-term period of time.
+
+[Debug] Current score: 3, Previous score: None
+[Debug] Current score: 9, Previous score: 3
+[Debug] Current score: 8, Previous score: 9
+[Debug] Current score: 7, Previous score: 8
+[Debug] Current score: 7, Previous score: 7
+
+=== Pass 1 ===
+Clarity Rating: 3
+
+Specific Issues:
+1. The prompt is excessively long and convoluted, making it difficult for respondents to understand the core request.
+2. Lack of focus on a particular aspect could lead to a scattered response.
+3. Ambiguity in terms of which areas of communication, collaboration, and decision-making the respondent should address.
+
+Suggestions for Improving the Prompt:
+1. Simplify and clarify the language used in the prompt.
+2. Specify the key aspects or examples of communication, collaboration, and decision-making to be addressed.
+3. Break down the prompt into separate questions for more focused responses.
+
+Rewritten Prompt:
+"In today's fast-paced professional environments, explain how effective communication, team collaboration, and strategic decision-making can enhance workplace productivity and employee satisfaction. Focus on specific examples of strategies that contribute to short-term improvements and long-term sustainability."
+
+This revised prompt is more concise, focused, and clearer in its request for information, making it easier for respondents to comprehend and provide a targeted response.
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The prompt is clear and concise but could benefit from breaking down the key aspects further.  
+2. Minor potential issue with the term "strategic decision-making" that could be clarified.       
+
+Suggestions for Improving the Prompt:
+1. Maintain the clarity and conciseness but consider expanding briefly on the term "strategic decision-making" for better alignment.
+2. To provide more guidance, include a brief definition or examples of strategies in the prompt.  
+
+Rewritten Prompt:
+"In modern work settings, demonstrate how effective communication, teamwork, and strategic decision-making practices can boost productivity and employee satisfaction. Provide specific examples of strategies that drive short-term performance enhancements and ensure long-term sustainability in the workplace."
+
+=== Pass 3 ===
+Clarity Rating: 8
+
+Specific Issues:
+1. The prompt is clear but may be slightly overwhelming due to the level of detail and various components.
+2. The term "strategic decision-making" could be more explicitly defined to avoid confusion.      
+
+Suggestions for Improving the Prompt:
+1. Simplify the prompt by breaking down the components into separate sentences for better comprehension.
+2. Provide a concise definition or examples of strategic decision-making for better understanding.
+
+Rewritten Prompt:
+"In today's workplaces, illustrate the impact of effective communication, teamwork, and strategic decision-making on enhancing productivity and employee satisfaction. Define strategic decision-making as the process of evaluating long-term goals and utilizing resources efficiently to make informed choices. Offer examples of strategies that deliver immediate performance improvements and sustain long-term success in organizations."
+
+=== Pass 4 ===
+Clarity Rating: 7
+
+Specific Issues:
+1. The prompt is somewhat lengthy and has multiple components that could be simplified for better understanding.
+2. The term "strategic decision-making" lacks a clear definition, which could lead to confusion for participants.
+
+Suggestions for Improving the Prompt:
+1. Break down the prompt into simpler sentences to enhance clarity.
+2. Define "strategic decision-making" explicitly to ensure participants understand the concept.   
+
+Rewritten Prompt:
+"In the modern workplace, highlight how effective communication, teamwork, and strategic decision-making boost productivity and employee satisfaction. Strategic decision-making involves assessing long-term goals and optimizing resources for well-informed choices. Provide examples of strategies that yield immediate performance enhancements and sustain organizational success in the long run."
+
+=== Pass 5 ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt is somewhat lengthy and contains multiple components that could be streamlined for better understanding.
+2. The term "strategic decision-making" is not clearly defined, which may create confusion for participants.
+
+Suggestions for improving the prompt:
+1. Simplify the sentence structures and break down complex ideas into clearer points.
+2. Provide an explicit definition of "strategic decision-making" to ensure participant comprehension.
+
+Rewritten prompt:
+"In the modern workplace, explain how effective communication, teamwork, and strategic decision-making can enhance productivity and employee satisfaction. Strategic decision-making involves evaluating long-term objectives and optimizing resources to make well-informed choices. Please offer examples of strategies that can bring immediate performance improvements and lead to sustained organizational success."
+
+=== Final Refined Prompt ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt is somewhat lengthy and contains multiple components that could be streamlined for better understanding.
+2. The term "strategic decision-making" is not clearly defined, which may create confusion for participants.
+
+Suggestions for improving the prompt:
+1. Simplify the sentence structures and break down complex ideas into clearer points.
+2. Provide an explicit definition of "strategic decision-making" to ensure participant comprehension.
+
+Rewritten prompt:
+"In the modern workplace, explain how effective communication, teamwork, and strategic decision-making can enhance productivity and employee satisfaction. Strategic decision-making involves evaluating long-term objectives and optimizing resources to make well-informed choices. Please offer examples of strategies that can bring immediate performance improvements and lead to sustained organizational success."
+
+**TEST 3**
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 18:52:40 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+In light of the increasingly fast-paced and ever-evolving nature of today’s modern professional environments, and taking into consideration the numerous and often unpredictable challenges that employees and organizations must navigate on a daily basis, please provide a comprehensive and detailed explanation—covering both theoretical concepts and practical applications—of the various ways in which effective communication, team collaboration, and strategic decision-making processes can collectively and individually contribute to not only improving but also sustaining high levels of workplace productivity, overall operational efficiency, and employee engagement and satisfaction, both in the short term and over an extended, long-term period of time.
+
+[Debug] Current score: 4, Previous score: None
+[Debug] Current score: 9, Previous score: 4
+[Debug] Current score: 8, Previous score: 9
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 4 — Stable Clarity 9
+
+=== Pass 1 ===
+Clarity Rating: 4
+
+Specific Issues:
+1. The prompt is excessively long and complex, making it difficult to comprehend in one reading.
+2. It lacks specific examples or scenarios to help focus the response.
+3. The prompt contains jargon and overly formal language that may be overwhelming.
+
+Suggestions for Improving the Prompt:
+- Simplify and condense the prompt by focusing on key aspects.
+- Include specific examples or situations to guide the response.
+- Use clearer and more accessible language.
+
+Rewritten Prompt:
+"""Explain how effective communication, teamwork, and decision-making influence workplace productivity and satisfaction in both the short and long term. Provide practical examples to support your explanation."""
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The original prompt is excessively long and convoluted.
+2. It lacks specific examples or scenarios to help direct responses.
+3. The use of jargon and formal language may pose challenges for respondents.
+
+Suggestions for Improving the Prompt:
+- Simplify the language and structure for better comprehension.
+- Include concrete examples to illustrate key points.
+- Remove unnecessary complexity and focus on the core elements.
+
+Rewritten Prompt:
+"Explain how effective communication, teamwork, and decision-making impact workplace productivity and satisfaction over time. Support your explanation with practical examples."
+
+By implementing these changes, the prompt is now more straightforward, concise, and approachable for respondents.
+
+=== Pass 3 ===
+Clarity Rating: 8
+
+Specific Issues:
+1. The original prompt is too wordy and complex.
+2. It lacks specific examples or scenarios to guide responses.
+3. The formal language used could be a barrier for some respondents.
+
+Suggestions for Improving the Prompt:
+- Simplify the language and structure for better understanding.
+- Incorporate concrete examples to clarify key points.
+- Eliminate unnecessary complexity to focus on essential aspects.
+
+Rewritten Prompt:
+"Explain the impact of effective communication, teamwork, and decision-making on workplace productivity and satisfaction. Use practical examples to support your explanation."
+
+This revised version offers a clearer, more concise, and accessible prompt for participants.      
+
+=== Pass 4 ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The original prompt lacked conciseness and simplicity.
+2. It lacked specific examples or scenarios to aid responses.
+3. The formal tone could potentially be a hindrance to understanding.
+
+Suggestions for Improving the Prompt:
+- Use simpler language and structure to enhance understanding.
+- Include practical examples to illustrate key points effectively.
+- Remove unnecessary complexity to focus on essential elements.
+
+Rewritten Prompt:
+"Discuss how effective communication, teamwork, and decision-making impact workplace productivity and satisfaction. Support your discussion with real-life examples to enhance clarity and depth."  
+
+This revised version provides a clearer, succinct, and more user-friendly prompt for all participants.
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific Issues:
+1. The original prompt lacked conciseness and simplicity.
+2. It lacked specific examples or scenarios to aid responses.
+3. The formal tone could potentially be a hindrance to understanding.
+
+Suggestions for Improving the Prompt:
+- Use simpler language and structure to enhance understanding.
+- Include practical examples to illustrate key points effectively.
+- Remove unnecessary complexity to focus on essential elements.
+
+Rewritten Prompt:
+"Discuss how effective communication, teamwork, and decision-making impact workplace productivity and satisfaction. Support your discussion with real-life examples to enhance clarity and depth."  
+
+This revised version provides a clearer, succinct, and more user-friendly prompt for all participants.
+
+
+
+**MESSY PROMPT TEST VALIDATION (SAME PROMPT)**
+
+**TEST 1**
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 19:22:48 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+So I’ve been thinking about how businesses could improve, especially in terms of how people work together, or sometimes individually. There’s also motivation, which can be tricky, and maybe leadership plays a role here too. Plus, how people get along in teams or the way tasks are handled, or even how the company runs its processes — all that could matter. Can you explain all of this, like what really helps employees do better at work or makes the company run more effectively overall?
+
+[Debug] Current score: 3, Previous score: None
+[Debug] Current score: 7, Previous score: 3
+[Debug] Current score: 6, Previous score: 7
+[Debug] Current score: 7, Previous score: 6
+[Debug] Current score: 8, Previous score: 7
+
+=== Pass 1 ===
+Clarity rating: 3
+
+Specific issues:
+1. The prompt is overly long and lacks clear direction.
+2. There are too many vague and broad terms used like "improve," "motivation," "leadership," "get along," "tasks," "processes."
+3. It's not clear what specific aspect or problem the prompt is addressing.
+
+Suggestions for improving the prompt:
+1. Define the specific area of focus: Is it on employee productivity, team dynamics, leadership effectiveness, or process efficiency?
+2. Eliminate vague terms and provide more concrete examples or details.
+3. Narrow down the scope to one or two key aspects for a more focused response.
+
+Rewritten prompt:
+"""How can businesses enhance employee productivity through improved team dynamics and effective leadership strategies? Please provide insights on specific strategies or practices that have been successful in fostering a more collaborative and efficient work environment within companies."""   
+
+=== Pass 2 ===
+Clarity rating: 7
+
+Specific issues:
+1. The prompt is overly complex and could be simplified for better understanding.
+2. There are still some vague terms present, such as "fostering a more collaborative and efficient work environment."
+3. Lack of direct focus on the specific problem or area of improvement.
+
+Suggestions for improving the prompt:
+1. Simplify the language and focus on a specific area for improvement.
+2. Define the goals more explicitly and avoid vague terms.
+3. Clearly state the intended outcome or desired impact.
+
+Rewritten prompt:
+"How can businesses improve employee productivity by enhancing team dynamics and implementing effective leadership strategies? Please provide specific examples or tactics that have successfully promoted collaboration and efficiency in the workplace."
+
+=== Pass 3 ===
+Clarity rating: 6
+
+Specific issues found:
+1. The prompt is slightly complex and could be clearer with more focused language.
+2. Some terms like "enhancing team dynamics" and "effective leadership strategies" may still be a bit vague.
+3. The outcome or impact desired from the improvements is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Further simplify the language and make it more straightforward.
+2. Define terms like "team dynamics" and "effective leadership strategies" for better precision.  
+3. Clearly outline the expected results or benefits of the suggested improvements.
+
+Rewritten prompt:
+"How can businesses enhance employee productivity through better teamwork and leadership practices? Please provide specific examples or strategies that have successfully fostered collaboration and efficiency in the workplace, leading to measurable performance improvements."
+
+=== Pass 4 ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt is still slightly complex and could benefit from further simplification.
+2. The terms "team dynamics" and "effective leadership strategies" could be more clearly defined. 
+3. The expected outcome or impact of the improvements is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Simplify the language further to make it more accessible.
+2. Provide clear definitions for terms like "team dynamics" and "effective leadership strategies" to ensure understanding.
+3. Clearly outline the specific results or benefits expected from implementing the suggested improvements.
+
+Rewritten prompt:
+"How can businesses improve employee productivity through better teamwork and leadership practices? Please offer specific examples or strategies that have effectively promoted collaboration and efficiency in the workplace, leading to measurable performance enhancements."
+
+=== Pass 5 ===
+Clarity rating: 8
+
+Specific issues found:
+1. The prompt is still slightly complex and could benefit from further simplification.
+2. The terms "team dynamics" and "effective leadership strategies" could be more clearly defined. 
+3. The expected outcome or impact of the improvements is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Simplify the language further to make it more accessible.
+2. Provide clear definitions for terms like "team dynamics" and "effective leadership strategies" to ensure understanding.
+3. Clearly outline the specific results or benefits expected from implementing the suggested improvements.
+
+Rewritten prompt:
+"How can businesses enhance employee productivity by fostering better teamwork and implementing effective leadership techniques? Please share concrete examples or strategies that have successfully promoted collaboration and efficiency in the workplace, leading to measurable improvements in performance outcomes."
+
+=== Final Refined Prompt ===
+Clarity rating: 8
+
+Specific issues found:
+1. The prompt is still slightly complex and could benefit from further simplification.
+2. The terms "team dynamics" and "effective leadership strategies" could be more clearly defined. 
+3. The expected outcome or impact of the improvements is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Simplify the language further to make it more accessible.
+2. Provide clear definitions for terms like "team dynamics" and "effective leadership strategies" to ensure understanding.
+3. Clearly outline the specific results or benefits expected from implementing the suggested improvements.
+
+Rewritten prompt:
+"How can businesses enhance employee productivity by fostering better teamwork and implementing effective leadership techniques? Please share concrete examples or strategies that have successfully promoted collaboration and efficiency in the workplace, leading to measurable improvements in performance outcomes."
+
+**TEST 2**
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 19:26:33 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+So I’ve been thinking about how businesses could improve, especially in terms of how people work together, or sometimes individually. There’s also motivation, which can be tricky, and maybe leadership plays a role here too. Plus, how people get along in teams or the way tasks are handled, or even how the company runs its processes — all that could matter. Can you explain all of this, like what really helps employees do better at work or makes the company run more effectively overall?
+
+[Debug] Current score: 4, Previous score: None
+[Debug] Current score: 6, Previous score: 4
+[Debug] Current score: 7, Previous score: 6
+[Debug] Current score: 6, Previous score: 7
+[Debug] Current score: 7, Previous score: 6
+
+=== Pass 1 ===
+Clarity Rating: 4
+
+Specific Issues:
+1. The prompt is overly long and lacks clear direction.
+2. It rambles and doesn't provide specific focus for the response.
+3. The prompt uses vague language and lacks clear questions or points to address.
+
+Suggestions for Improving the Prompt:
+1. Streamline the prompt to focus on one key aspect of improving business effectiveness.
+2. Provide clear and direct questions for the expert to address.
+3. Remove unnecessary rambling and vague language to make the prompt more concise and specific.
+
+Rewritten Prompt:
+"""How can businesses enhance teamwork and individual productivity to improve overall effectiveness? Please provide insights on strategies that can motivate employees, enhance leadership effectiveness, improve team dynamics, optimize task handling, and streamline company processes for better performance."""
+
+=== Pass 2 ===
+Clarity Rating: 6
+
+Specific Issues:
+1. The prompt could still be more concise and focused.
+2. Some of the points listed in the prompt could be condensed or clarified.
+3. The prompt could benefit from being more direct in the questions posed.
+
+Suggestions for Improving the Prompt:
+1. Further streamline the prompt to focus more sharply on a specific aspect of enhancing business effectiveness.
+2. Clarify the points mentioned in the prompt to avoid ambiguity and ensure a clear direction.    
+3. Pose direct and specific questions to guide the expert's response.
+
+Rewritten Prompt:
+"How can businesses effectively boost teamwork and individual productivity to enhance overall performance? Please offer insights on motivating employees, improving leadership skills, fostering strong team dynamics, optimizing task management, and streamlining processes for maximal performance."
+
+=== Pass 3 ===
+Clarity Rating: 7
+
+Specific Issues:
+1. The prompt is slightly long and includes multiple components that could be more succinctly presented.
+2. The points listed in the prompt could be clearer and more direct.
+3. Some phrases, such as "business effectiveness," may need further clarification.
+
+Suggestions for Improving the Prompt:
+1. Streamline the prompt by focusing on boosting teamwork and productivity without mentioning specific aspects like leadership skills or task management.
+2. Clarify the key components mentioned in the prompt to provide a more direct focus for the expert.
+3. Define "business effectiveness" or specify what aspects of performance are being targeted.     
+
+Rewritten Prompt:
+"How can businesses enhance teamwork and individual productivity to improve overall performance? Share insights on motivating employees, fostering strong team dynamics, and streamlining processes for optimal performance."
+
+=== Pass 4 ===
+Clarity Rating: 6
+
+Specific Issues:
+1. The prompt is a bit lengthy and includes several components that could be more streamlined.    
+2. The focus on boosting teamwork and productivity could be clearer and more direct.
+3. The phrase "business effectiveness" lacks clarity and may need further explanation.
+
+Suggestions for Improving the Prompt:
+1. Simplify the prompt by concentrating on enhancing teamwork, productivity, and overall performance without mentioning specific elements like leadership skills.
+2. Provide clearer instructions on motivating employees, building effective team dynamics, and optimizing processes.
+3. Define "business effectiveness" or indicate the specific areas of performance under consideration.
+
+Rewritten Prompt:
+"In what ways can businesses improve teamwork and individual productivity to enhance overall performance? Provide insights on motivating staff, nurturing strong team cohesion, and refining processes for optimal outcomes."
+
+=== Pass 5 ===
+Clarity Rating: 7
+
+Specific Issues:
+1. The prompt could be simplified further by condensing the focus areas and eliminating unnecessary details.
+2. The mention of "business effectiveness" remains vague and requires clearer articulation.       
+3. The directive on providing insights could be more specific to guide respondents effectively.   
+
+Suggestions for Improving the Prompt:
+1. Streamline the prompt by emphasizing enhancing teamwork, productivity, and overall performance only.
+2. Define "business effectiveness" explicitly, highlighting key performance indicators or metrics.
+3. Offer specific guidance on how respondents should address motivating staff, fostering team cohesion, and optimizing processes.
+
+Rewritten Prompt:
+"How can businesses enhance teamwork and productivity to improve overall performance effectively? Please elaborate on strategies for motivating staff, cultivating cohesive teams, and refining processes to achieve optimal outcomes."
+
+=== Final Refined Prompt ===
+Clarity Rating: 7
+
+Specific Issues:
+1. The prompt could be simplified further by condensing the focus areas and eliminating unnecessary details.
+2. The mention of "business effectiveness" remains vague and requires clearer articulation.       
+3. The directive on providing insights could be more specific to guide respondents effectively.   
+
+Suggestions for Improving the Prompt:
+1. Streamline the prompt by emphasizing enhancing teamwork, productivity, and overall performance only.
+2. Define "business effectiveness" explicitly, highlighting key performance indicators or metrics.
+3. Offer specific guidance on how respondents should address motivating staff, fostering team cohesion, and optimizing processes.
+
+Rewritten Prompt:
+"How can businesses enhance teamwork and productivity to improve overall performance effectively? Please elaborate on strategies for motivating staff, cultivating cohesive teams, and refining processes to achieve optimal outcomes."
+
+
+**TEST 3**
+
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 19:29:54 UTC ===
+
+=== Original Messy Prompt (Starting Point) ===
+So I’ve been thinking about how businesses could improve, especially in terms of how people work together, or sometimes individually. There’s also motivation, which can be tricky, and maybe leadership plays a role here too. Plus, how people get along in teams or the way tasks are handled, or even how the company runs its processes — all that could matter. Can you explain all of this, like what really helps employees do better at work or makes the company run more effectively overall?
+
+[Debug] Current score: 4, Previous score: None
+[Debug] Current score: 8, Previous score: 4
+[Debug] Current score: 4, Previous score: 8
+[Debug] Current score: 8, Previous score: 4
+[Debug] Current score: 7, Previous score: 8
+
+=== Pass 1 ===
+Clarity Rating: 4
+
+Specific issues:
+1. The prompt is overly long and convoluted, lacking focus on a specific aspect of business improvement.
+2. It is vague and lacks clarity in terms of what specific information or insights are being sought.
+3. The prompt contains many unnecessary filler phrases, making it difficult to pinpoint the exact expectations.
+
+Suggestions for improvement:
+1. Provide a clear and specific focus for the prompt, such as teamwork, motivation, leadership, team dynamics, or process improvement.
+2. Avoid unnecessary rambling and streamline the prompt to make it more direct and concise.       
+3. Use clear language and ask specific questions to guide the response effectively.
+
+Rewritten prompt:
+"How can businesses effectively enhance teamwork within their workforce to improve overall performance and productivity? Discuss the key factors that contribute to employee success and organizational effectiveness, such as motivation, leadership, team dynamics, and process optimization."      
+
+=== Pass 2 ===
+Clarity Rating: 8
+
+Specific issues found:
+1. The prompt is too long and complex, lacking a specific focus.
+2. It is unclear about the exact information or insights required.
+3. Contains unnecessary filler phrases, making expectations difficult to discern.
+
+Suggestions for improving the prompt:
+1. Focus on one specific aspect of business improvement, such as teamwork, motivation, leadership, team dynamics, or process improvement.
+2. Be concise and direct, avoiding unnecessary details.
+3. Use clear language and ask specific questions to guide responses effectively.
+
+Rewritten prompt:
+"How can businesses enhance teamwork to improve overall performance and productivity? Discuss key factors contributing to employee success and organizational effectiveness, including motivation, leadership, team dynamics, and process optimization."
+
+=== Pass 3 ===
+Clarity Rating: 4
+
+Specific issues found:
+1. The prompt lacks clear direction and is too vague.
+2. It does not specify the scope or context of the business improvement aspect.
+3. The language used is overly complex and may be confusing for respondents.
+
+Suggestions for improving the prompt:
+1. Provide a clear focus on a specific area of business improvement, such as employee engagement, customer satisfaction, operational efficiency, or innovation.
+2. Clearly state the context for the business improvement aspect to guide respondents effectively.
+3. Use simplified language to enhance understanding and clarity.
+
+Rewritten prompt:
+"How can businesses boost employee engagement to enhance customer satisfaction and overall operational efficiency? Discuss key strategies and initiatives that have proven successful in achieving these goals within the organization."
+
+=== Pass 4 ===
+Clarity Rating: 8
+
+Specific issues found:
+1. The prompt lacks specific focus and may benefit from a more concise structure.
+2. Clarity could be enhanced by specifying the desired format or specific examples of successful strategies.
+3. The objective or desired outcome of the discussion is not clearly defined.
+
+Suggestions for improving the prompt:
+1. Clearly define the objective of the response, such as outlining recommended actions, discussing case studies, or providing a strategic analysis.
+2. Consider specifying the scope of the response, i.e., successful strategies in a particular industry or company size.
+3. Include a clear directive on the depth and breadth of the analysis expected from respondents.  
+
+Rewritten prompt:
+"In the context of small businesses, how can companies effectively enhance employee engagement to improve customer satisfaction and operational efficiency? Provide specific examples of successful strategies or initiatives that have demonstrated positive outcomes within a small business setting."
+
+=== Pass 5 ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt is slightly verbose and could benefit from more concise language.
+2. The objective is defined but lacks specificity on the desired format of the response.
+3. The scale or extent of the examples required for a response is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Simplify language for better clarity and precision.
+2. Clearly outline the expected response format - such as case studies, recommendations, or practical examples.
+3. Specify the depth or number of examples that should be provided for a comprehensive response.  
+
+Rewritten prompt:
+"In the context of small businesses, how can companies effectively improve employee engagement to boost customer satisfaction and operational efficiency? Share specific successful strategies or initiatives from small business scenarios to showcase positive outcomes in this area. Please provide at least two detailed examples to support your response."
+
+=== Final Refined Prompt ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt is slightly verbose and could benefit from more concise language.
+2. The objective is defined but lacks specificity on the desired format of the response.
+3. The scale or extent of the examples required for a response is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Simplify language for better clarity and precision.
+2. Clearly outline the expected response format - such as case studies, recommendations, or practical examples.
+3. Specify the depth or number of examples that should be provided for a comprehensive response.  
+
+Rewritten prompt:
+"In the context of small businesses, how can companies effectively improve employee engagement to boost customer satisfaction and operational efficiency? Share specific successful strategies or initiatives from small business scenarios to showcase positive outcomes in this area. Please provide at least two detailed examples to support your response."
+
+
+
+

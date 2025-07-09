@@ -21,7 +21,7 @@ Prompt:
 \"\"\"{messy_prompt}\"\"\"
 
 Provide:
-- A clarity rating from 1 to 10.
+- Provide a clarity rating from 1 to 10 in whole number only.
 - Specific issues found.
 - Suggestions for improving the prompt.
 - A fully rewritten version of the prompt that resolves the identified issues, phrased clearly and professionally.
@@ -64,7 +64,7 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
     """Runs Iris agent recursively to refine a prompt with stability-based auto-stop."""
     prompt = initial_prompt
     history = []
-    previous_score = None  # Track previous pass score for stability check
+    previous_score = None
 
     for i in range(passes):
         result = review_and_rewrite_prompt(prompt)
@@ -107,12 +107,11 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
     }
 
 
-
 if __name__ == "__main__":
     # run_agent()
 
     # PHASE 2 Multi-pass refinement test:
-    messy_prompt = "Can you explain about stuff that matters for being successful?"
+    messy_prompt = "How can teams work better together?"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     phase = "Phase 2 — Multi-Pass Refinement Test"
