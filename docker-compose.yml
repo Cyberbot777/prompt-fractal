@@ -1,0 +1,23 @@
+services:
+  db:
+    image: ankane/pgvector
+    environment:
+      POSTGRES_USER: iris_user
+      POSTGRES_PASSWORD: iris_pass
+      POSTGRES_DB: iris_memory
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+    command: ["tail", "-f", "/dev/null"]
+
+volumes:
+  pgdata:
