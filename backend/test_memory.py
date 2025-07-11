@@ -1,30 +1,45 @@
+# backend/test_memory.py
+
+import os
 from db import SessionLocal
 from models import Memory
+from openai import OpenAI
+from dotenv import load_dotenv
 
-# Dummy embedding — replace later with real embeddings
-dummy_embedding = [0.1] * 1536  # Just a simple vector of 1536 dimensions
+# Load .env and API key
+load_dotenv(dotenv_path="./backend/.env")
 
-# Create DB session
+# OpenAI client auto-loads API key from env
+client = OpenAI()
+
+# Text to embedding
+text = f"How can AI agents improve prompt optimization? Run ID {os.urandom(2).hex()}"
+
+
+# Fetch real embedding from OpenAI
+response = client.embeddings.create(
+    input=[text],
+    model="text-embedding-3-small"
+)
+embedding = response.data[0].embedding
+
+# Save to DB
 db = SessionLocal()
-
 try:
-    # Insert new memory
-    new_memory = Memory(
-        description="Test memory with dummy embedding",
-        embedding=dummy_embedding
+    memory = Memory(
+        description=text,
+        embedding=embedding
     )
-    db.add(new_memory)
+    db.add(memory)
     db.commit()
-    db.refresh(new_memory)
-
-    print("Memory saved with ID:", new_memory.id)
+    db.refresh(memory)
+    print("Memory saved with ID:", memory.id)
 
     # Query back from DB
-    memory = db.query(Memory).first()
+    result = db.query(Memory).order_by(Memory.id.desc()).first()
     print("Queried Memory:")
-    print("ID:", memory.id)
-    print("Description:", memory.description)
-    print("Embedding (first 5 dims):", memory.embedding[:5])  
-    
+    print("ID:", result.id)
+    print("Description:", result.description)
+    print("Embedding (first 5 dims):", result.embedding[:5])  # Print a few dims
 finally:
     db.close()
