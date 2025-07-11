@@ -7,127 +7,114 @@
 
 ## Overview
 
-**Recursive** is an AI project that automatically optimizes, clarifies, and refines prompts for large language models (LLMs) using recursive, self-referential prompting loops.
+**Recursive** is an AI research agent that automatically optimizes, clarifies, and refines prompts for large language models (LLMs) using structured, recursive prompting loops.
 
 At its core is **Iris** — the recursive prompt optimization agent.
 
-Iris performs prompt self-improvement by:
+Iris performs self-improvement by:
 - Analyzing prompts for clarity, length, and effectiveness.
-- Providing detailed reviews with a clarity rating and specific improvement suggestions.
-- Automatically rewriting prompts to improve focus, reduce ambiguity, and increase precision.
-- Logging each review and rewrite cycle with timestamps for testing and analysis.
-- Auto-stopping once a stable clarity rating is achieved to prevent over-refinement.
+- Providing structured reviews with clarity ratings and specific suggestions.
+- Rewriting prompts to reduce ambiguity and improve precision.
+- Logging every review and rewrite cycle for traceability.
+- Auto-stopping when clarity improvements stabilize.
 
-This project explores **recursive prompting** — where an LLM effectively teaches itself to write better prompts through structured self-review and refinement cycles.
-
----
-
-## Key Features
-
-- **Self-Reflective Prompt Review:**  
-  Iris evaluates prompts for clarity, complexity, and ambiguity, providing detailed analysis.
-
-- **Automatic Prompt Rewriting:**  
-  Iris generates fully rewritten versions of prompts based on its review feedback.
-
-- **Structured Test Logging:**  
-  Logs test results with timestamps and phase labels for reproducible analysis.
-
-- **Stability-Based Auto-Stop:**  
-  Stops the refinement loop once stable clarity ratings (≥8) are detected across passes.
-
-- **Modular, Extensible Design:**  
-  Built for scalability with future multi-phase refinements and memory integrations.
+This project explores **recursive prompting** — where an LLM teaches itself to write better prompts through feedback, iteration, and memory.
 
 ---
 
 ## Technologies Used
 
-### Backend
-- **Python 3.11** — Core programming language.
-- **OpenAI GPT-3.5 Turbo** — Current LLM used for analysis and rewriting.
-- **Docker** — Containerization for reproducible, isolated environments.
-- **dotenv** — Secure API key management.
+### Core
+- **Python** — Core logic and orchestration.
+- **OpenAI API** — Prompt evaluation and embeddings (`text-embedding-3-small`).
+- **Docker + Docker Compose** — Containerization and environment management.
 
-### Frontend (Planned)
-- **React (Vite)** — Fast frontend framework for interactive UI.
-- **Tailwind CSS** — Utility-first CSS for sleek, dark-themed styling.
-- **Framer Motion** — Smooth animations and transitions.
-- **React Markdown** — Clean LLM output rendering.
-
-### Database (Planned)
+### Database
 - **PostgreSQL** — Persistent memory storage for prompt histories.
-- **pgvector** — Semantic vector search extension for PostgreSQL (for future memory recall).
+- **pgvector** — Semantic vector search extension for PostgreSQL (now fully integrated for vector memory storage).
 
-### DevOps / Infrastructure
-- **Docker Compose** (Planned) — For orchestrating multi-service environments.
+---
+
+## Features
+
+- Recursive, multi-pass prompt optimization.
+- Automatic clarity scoring and rewriting.
+- Auto-stop mechanism when clarity stabilizes.
+- Memory table for storing prompt embeddings.
+- Dockerized backend and database.
+- Planned: Prompt recall and memory-augmented refinement.
+- Planned: Web UI for prompt testing.
+
+---
+
+## Vector Memory Testing
+
+Iris now has a fully functional vector memory backend using PostgreSQL + pgvector.
+
+The included `test_memory.py` script demonstrates:
+- Fetching real text embeddings from OpenAI’s Embedding API.
+- Saving vectorized memories into the database.
+- Querying stored memories from the DB.
+
+Example command to enter the DB and inspect:
+```bash
+docker-compose exec db psql -U iris_user -d iris_memory
+```
+
+Inside the DB terminal:
+```sql
+SELECT id, description FROM memories;
+```
+
+This system is ready for semantic recall and memory-augmented prompt refinement.
 
 ---
 
 ## Docker Usage
 
-Recursive runs fully inside Docker for consistency and isolation.
+Recursive runs inside Docker for consistent dev and testing environments.
 
-### Build the Docker Image:
+### Start (Backend + Vector Database):
 ```bash
-docker build -t recursive-backend ./backend
+docker-compose up --build -d
 ```
 
-### Run the Iris Agent:
+### Run Iris (Manually, On-Demand):
 ```bash
-docker run --rm --env-file ./backend/.env recursive-backend
+docker-compose exec backend python iris_agent.py
 ```
 
----
-
-## Testing & Stability Notes
-
-For consistent auto-stop and test stability:
-- All testing prompts **must include this instruction to Iris**:
-  > Provide a clarity rating as a whole number from 1 to 10.
-
-This ensures compatibility with the current score parser and prevents auto-stop issues.
+### Run Vector Memory Test:
+```bash
+docker-compose exec backend python test_memory.py
+```
 
 ---
 
 ## Roadmap
 
-### **Phase 1:** Prompt Review + Rewriting Agent (Completed)
-- [x] Single-pass prompt review and rewriting.
-- [x] Test logging with timestamps and phase tracking.
+### **Phase 1:** Prompt Refinement Core
+- [x] Clarity scoring
+- [x] Auto-rewriting
+- [x] Recursive cycles
+- [x] Auto-stop logic
 
-### **Phase 2:** Multi-Pass Refinement + Auto-Stop (Active)
-- [x] Multi-pass refinement loop with auto-stop.
-- [x] Auto-stopping once stable high clarity rating is achieved.
-- [ ] Additional case studies and dataset evaluation.
+### **Phase 2:** Embedding + Memory Storage
+- [x] Integrate OpenAI embedding API
+- [x] PostgreSQL + pgvector storage
+- [x] Manual insert/query test
 
-### **Phase 3:** Memory-Assisted Refinement (Planned)
-- [ ] Integrate pgvector for semantic memory search.
-- [ ] Enable prompt recall and prevent redundant refinements.
+### **Phase 3:** Memory-Assisted Refinement (In Progress)
+- [x] Integrate pgvector for semantic memory storage
+- [ ] Enable prompt recall and prevent redundant refinements
 
 ### **Phase 4:** Auto-Chaining Recommender (Planned)
 - [ ] Detect multi-goal prompts and suggest task decomposition.
 - [ ] Auto-generate sub-prompts for chained reasoning.
 
-### **Phase 5:** PromptPilot Integration (Optional)
-- [ ] Connect Recursive to PromptPilot as an advanced lab feature.
-
 ---
-
-## Status
-
-**Active Research & Development** — Experimental, but increasingly stable.
-
-Recursive is now in active Phase 2 testing, capable of fully automated multi-pass refinement with intelligent auto-stop logic for real-world prompt optimization tasks.
-
----
-
-## License
-
-MIT License — Open for personal and commercial use, modification, and contributions.
-
----
-
 ## Author
 
 Created and maintained by [Cyberbot777](https://github.com/Cyberbot777).
+
+

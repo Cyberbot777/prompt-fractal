@@ -15,8 +15,6 @@ client = OpenAI()
 # Text to embedding
 text = f"How can AI agents improve prompt optimization? Run ID {os.urandom(2).hex()}"
 
-
-# Fetch real embedding from OpenAI
 response = client.embeddings.create(
     input=[text],
     model="text-embedding-3-small"
