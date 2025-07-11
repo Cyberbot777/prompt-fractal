@@ -1,11 +1,17 @@
-# iris_agent.py — Iris  Test (Phase 1)
+# iris_agent.py — Iris
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from datetime import datetime
 
+# Database imports for vector memory
+from db import SessionLocal
+from models import Memory
+
+# Load environment variables and initialize OpenAI client
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 
 def review_and_rewrite_prompt(messy_prompt: str) -> dict:
     """Run Iris agent to review and rewrite a prompt."""
@@ -106,6 +112,24 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
         "history": history
     }
 
+# Database Embedding
+def save_prompt_to_memory(prompt_text: str):
+    """Save a prompt and its embedding to the vector memory DB."""
+    response = client.embeddings.create(
+        input=[prompt_text],
+        model="text-embedding-3-small"
+    )
+    embedding = response.data[0].embedding
+
+    db = SessionLocal()
+    try:
+        memory = Memory(description=prompt_text, embedding=embedding)
+        db.add(memory)
+        db.commit()
+        print("Memory saved successfully.")
+    finally:
+        db.close()
+
 
 if __name__ == "__main__":
     # run_agent()
@@ -129,5 +153,9 @@ if __name__ == "__main__":
 
     print("\n=== Final Refined Prompt ===")
     print(result["final_prompt"])
+
+    # Save final refined prompt to memory
+    save_prompt_to_memory(result["final_prompt"])
+
 
     
