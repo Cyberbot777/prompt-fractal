@@ -107,6 +107,7 @@ docker-compose exec backend python test_memory.py
 ### **Phase 3:** Memory-Assisted Refinement (In Progress)
 - [x] Integrate pgvector for semantic memory storage
 - [ ] Enable prompt recall and prevent redundant refinements
+- [ ] Memory-assisted prompt optimization
 
 ### **Phase 4:** Auto-Chaining Recommender (Planned)
 - [ ] Detect multi-goal prompts and suggest task decomposition.

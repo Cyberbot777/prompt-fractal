@@ -1,19 +1,25 @@
-# Dockerfile
-
-# Use lightweight Python image
+# Use lightweight Python base
 FROM python:3.11-slim
 
-# Set work directory inside container
+# Set environment to avoid prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set work directory
 WORKDIR /app
 
-# Copy dependencies
-COPY requirements.txt .
+# Install system packages needed to build psycopg[binary]
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
+# Copy and install Python dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app code into container
+# Copy app code
 COPY . .
 
-# Default command to run Iris agent
-CMD ["python", "iris_agent.py"]
+# Default to sleep so container stays up during dev
+CMD ["tail", "-f", "/dev/null"]

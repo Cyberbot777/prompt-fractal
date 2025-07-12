@@ -3,15 +3,19 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from datetime import datetime
+from sqlalchemy import text
 
 # Database imports for vector memory
 from db import SessionLocal
 from models import Memory
 
+# pgvector wrapper and adapter
+from pgvector import Vector
+from pgvector.psycopg import register_vector
+
 # Load environment variables and initialize OpenAI client
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 
 def review_and_rewrite_prompt(messy_prompt: str) -> dict:
     """Run Iris agent to review and rewrite a prompt."""
@@ -65,7 +69,6 @@ def run_agent():
     print("Review Output:")
     print(result["review_output"])
 
-# Mutli Pass Refinment w/Auto Stop
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9) -> dict:
     """Runs Iris agent recursively to refine a prompt with stability-based auto-stop."""
     prompt = initial_prompt
@@ -81,13 +84,11 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
         })
         prompt = result["review_output"]
 
-        # Extract clarity rating from review output
         score = None
         try:
             lines = result["review_output"].splitlines()
             for line in lines:
                 if "clarity" in line.lower() and ("rating" in line.lower() or "score" in line.lower()):
-                    # Strip bold formatting and colons
                     clean_line = line.replace("**", "").replace(":", "").strip()
                     digits = [int(s) for s in clean_line.split() if s.isdigit()]
                     if digits:
@@ -96,7 +97,6 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
         except Exception as e:
             print(f"Auto-stop check failed: {e}")
 
-        # Stability-based auto-stop: two consecutive passes ≥ auto_stop_score
         print(f"[Debug] Current score: {score}, Previous score: {previous_score}")
         if score is not None:
             if previous_score is not None and score >= auto_stop_score and previous_score >= (auto_stop_score - 1):
@@ -105,14 +105,13 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
                     "final_prompt": prompt,
                     "history": history
                 }
-            previous_score = score  # Update previous score for next pass
+            previous_score = score
 
     return {
         "final_prompt": prompt,
         "history": history
     }
 
-# Database Embedding
 def save_prompt_to_memory(prompt_text: str):
     """Save a prompt and its embedding to the vector memory DB."""
     response = client.embeddings.create(
@@ -130,13 +129,43 @@ def save_prompt_to_memory(prompt_text: str):
     finally:
         db.close()
 
+def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
+    """Find the most similar prompt from memory using vector similarity."""
+    response = client.embeddings.create(
+        input=[prompt_text],
+        model="text-embedding-3-small"
+    )
+    embedding = Vector(response.data[0].embedding)
+
+    db = SessionLocal()
+    try:
+        # ✅ Register the pgvector adapter on this live connection
+        register_vector(db.connection().connection)
+
+        result = db.execute(
+            text("""
+                SELECT id, description, embedding <=> :embedding AS distance
+                FROM memories
+                ORDER BY distance
+                LIMIT 1;
+            """),
+            {"embedding": embedding}
+        ).fetchone()
+
+        if result and result.distance <= similarity_threshold:
+            print(f"Found similar prompt (Distance: {result.distance}):\n{result.description}")
+            return result.description
+        else:
+            print("No similar prompt found (or not similar enough).")
+            return None
+
+    finally:
+        db.close()
 
 if __name__ == "__main__":
     # run_agent()
 
-    # PHASE 2 Multi-pass refinement test:
     messy_prompt = "How can teams work better together?"
-
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     phase = "Phase 2 — Multi-Pass Refinement Test"
 
@@ -154,8 +183,7 @@ if __name__ == "__main__":
     print("\n=== Final Refined Prompt ===")
     print(result["final_prompt"])
 
-    # Save final refined prompt to memory
     save_prompt_to_memory(result["final_prompt"])
 
-
-    
+    test_prompt = "How can team members in a technology development project enhance their communication and coordination strategies?"
+    find_similar_prompt(test_prompt, similarity_threshold=0.2)
