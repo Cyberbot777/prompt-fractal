@@ -121,14 +121,16 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
 # === Phase 3 — Memory Save ===
 def save_prompt_to_memory(prompt_text: str):
     """Save only the final rewritten prompt to the vector memory DB."""
+    
+    # Extract only the final rewritten prompt
+    final_prompt = extract_final_prompt(prompt_text)
+
+    # Generate embedding from the final prompt ONLY
     response = client.embeddings.create(
-        input=[prompt_text],
+        input=[final_prompt],
         model="text-embedding-3-small"
     )
     embedding = response.data[0].embedding
-
-    # Extract only the final rewritten prompt
-    final_prompt = extract_final_prompt(prompt_text)
 
     db = SessionLocal()
     try:
@@ -140,7 +142,6 @@ def save_prompt_to_memory(prompt_text: str):
         print(final_prompt)
     finally:
         db.close()
-
 
 
 # === Phase 4 — Memory Similarity Recall ===
@@ -185,7 +186,7 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
 
 # === Entry Point ===
 if __name__ == "__main__":
-    messy_prompt = "How do invasive species like feral cats and non-native plants threaten biodiversity on Pacific islands, and what conservation efforts can mitigate these risks?"
+    messy_prompt = "Explain how introducing feral cats to island environments like New Zealand impacts local wildlife, particularly native bird populations. Suggest effective conservation strategies to mitigate these effects."
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     phase = "Phase 2 — Multi-Pass Refinement Test"
