@@ -17,6 +17,7 @@ from pgvector.psycopg import register_vector
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+# === Prompt Review ===
 def review_and_rewrite_prompt(messy_prompt: str) -> dict:
     """Run Iris agent to review and rewrite a prompt."""
     review_template = f"""
@@ -49,6 +50,7 @@ Provide:
         "review_output": response.choices[0].message.content.strip()
     }
 
+# === Phase 1 — Single Pass ===
 def run_agent():
     print("Iris Agent Starting...")
 
@@ -69,6 +71,7 @@ def run_agent():
     print("Review Output:")
     print(result["review_output"])
 
+# === Phase 2 — Multi Pass Refinement ===
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9) -> dict:
     """Runs Iris agent recursively to refine a prompt with stability-based auto-stop."""
     prompt = initial_prompt
@@ -112,6 +115,7 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
         "history": history
     }
 
+# === Phase 3 — Memory Save ===
 def save_prompt_to_memory(prompt_text: str):
     """Save a prompt and its embedding to the vector memory DB."""
     response = client.embeddings.create(
@@ -129,6 +133,7 @@ def save_prompt_to_memory(prompt_text: str):
     finally:
         db.close()
 
+# === Phase 3 — Memory Similarity Recall ===
 def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
     """Find the most similar prompt from memory using vector similarity."""
     response = client.embeddings.create(
@@ -139,8 +144,9 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
 
     db = SessionLocal()
     try:
-        # ✅ Register the pgvector adapter on this live connection
-        register_vector(db.connection().connection)
+        # ✅ Register the pgvector adapter using raw psycopg connection
+        raw_conn = db.connection().connection
+        register_vector(raw_conn.connection)
 
         result = db.execute(
             text("""
@@ -162,6 +168,7 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
     finally:
         db.close()
 
+# === Entry Point ===
 if __name__ == "__main__":
     # run_agent()
 
