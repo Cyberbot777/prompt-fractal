@@ -12,6 +12,11 @@ from models import Memory
 # pgvector wrapper and adapter
 from pgvector import Vector
 from pgvector.psycopg import register_vector
+import psycopg
+
+# Final Prompt Util
+from utils import extract_final_prompt
+
 
 # Load environment variables and initialize OpenAI client
 load_dotenv()
@@ -54,7 +59,6 @@ Provide:
 def run_agent():
     print("Iris Agent Starting...")
 
-    # Single Prompt Pass
     messy_prompt = (
         "Explain how to get are carrer as a lwayer but like go deep but also make it simple "
         "but not too simple and also give examples and maybe something else too idk."
@@ -73,7 +77,6 @@ def run_agent():
 
 # === Phase 2 — Multi Pass Refinement ===
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9) -> dict:
-    """Runs Iris agent recursively to refine a prompt with stability-based auto-stop."""
     prompt = initial_prompt
     history = []
     previous_score = None
@@ -117,7 +120,6 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
 
 # === Phase 3 — Memory Save ===
 def save_prompt_to_memory(prompt_text: str):
-    """Save a prompt and its embedding to the vector memory DB."""
     response = client.embeddings.create(
         input=[prompt_text],
         model="text-embedding-3-small"
@@ -126,16 +128,17 @@ def save_prompt_to_memory(prompt_text: str):
 
     db = SessionLocal()
     try:
-        memory = Memory(description=prompt_text, embedding=embedding)
+        final_prompt_only = extract_final_prompt(prompt_text)
+        memory = Memory(description=final_prompt_only, embedding=embedding)
         db.add(memory)
         db.commit()
         print("Memory saved successfully.")
     finally:
         db.close()
 
-# === Phase 3 — Memory Similarity Recall ===
-def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
-    """Find the most similar prompt from memory using vector similarity."""
+
+# === Phase 4 — Memory Similarity Recall ===
+def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
     response = client.embeddings.create(
         input=[prompt_text],
         model="text-embedding-3-small"
@@ -144,9 +147,8 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
 
     db = SessionLocal()
     try:
-        # ✅ Register the pgvector adapter using raw psycopg connection
         raw_conn = db.connection().connection
-        register_vector(raw_conn.connection)
+        register_vector(raw_conn.driver_connection)
 
         result = db.execute(
             text("""
@@ -158,11 +160,16 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
             {"embedding": embedding}
         ).fetchone()
 
-        if result and result.distance <= similarity_threshold:
-            print(f"Found similar prompt (Distance: {result.distance}):\n{result.description}")
-            return result.description
+        if result:
+            print(f"[Similarity Score] Distance: {result.distance}")
+            if result.distance <= similarity_threshold:
+                print(f"Found similar prompt:\n{result.description}")
+                return result.description
+            else:
+                print("Prompt exists, but similarity score is too low.")
+                return None
         else:
-            print("No similar prompt found (or not similar enough).")
+            print("No similar prompt found.")
             return None
 
     finally:
@@ -170,9 +177,7 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
 
 # === Entry Point ===
 if __name__ == "__main__":
-    # run_agent()
-
-    messy_prompt = "How can teams work better together?"
+    messy_prompt = "How can development teams improve CI/CD workflows in a Java Spring Boot app using Jenkins and GitHub to maintain high code quality while ensuring fast deployments?"
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     phase = "Phase 2 — Multi-Pass Refinement Test"
 
