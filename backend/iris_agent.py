@@ -120,21 +120,27 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
 
 # === Phase 3 — Memory Save ===
 def save_prompt_to_memory(prompt_text: str):
+    """Save only the final rewritten prompt to the vector memory DB."""
     response = client.embeddings.create(
         input=[prompt_text],
         model="text-embedding-3-small"
     )
     embedding = response.data[0].embedding
 
+    # Extract only the final rewritten prompt
+    final_prompt = extract_final_prompt(prompt_text)
+
     db = SessionLocal()
     try:
-        final_prompt_only = extract_final_prompt(prompt_text)
-        memory = Memory(description=final_prompt_only, embedding=embedding)
+        memory = Memory(description=final_prompt, embedding=embedding)
         db.add(memory)
         db.commit()
         print("Memory saved successfully.")
+        print("Saved prompt:")
+        print(final_prompt)
     finally:
         db.close()
+
 
 
 # === Phase 4 — Memory Similarity Recall ===
@@ -159,6 +165,8 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
             """),
             {"embedding": embedding}
         ).fetchone()
+        if result:
+            print(f"\n[Debug] Result row: {dict(result._mapping)}")
 
         if result:
             print(f"[Similarity Score] Distance: {result.distance}")
@@ -177,7 +185,8 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
 
 # === Entry Point ===
 if __name__ == "__main__":
-    messy_prompt = "How can development teams improve CI/CD workflows in a Java Spring Boot app using Jenkins and GitHub to maintain high code quality while ensuring fast deployments?"
+    messy_prompt = "How do invasive species like feral cats and non-native plants threaten biodiversity on Pacific islands, and what conservation efforts can mitigate these risks?"
+
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     phase = "Phase 2 — Multi-Pass Refinement Test"
 
