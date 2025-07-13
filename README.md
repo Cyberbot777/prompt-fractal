@@ -1,4 +1,3 @@
-
 # ♾️ Recursive
 
 **Self-Refining Prompt Optimization System — Featuring Iris, the Recursive Prompt Agent**
@@ -81,6 +80,23 @@ SELECT * FROM pg_indexes WHERE tablename = 'memories';
 
 ---
 
+## Semantic Recall Proof of Concept
+
+In July 2025, Iris was successfully tested with automatic semantic memory recall:
+
+1. A messy informal prompt about zero trust security was refined through multi-pass review and stored in memory.
+2. A later prompt about firewall-based security was semantically similar (distance ≈ 0.256).
+3. Because the system threshold was set to 0.2, Iris chose not to reuse the match — but correctly located it, demonstrating accurate recall behavior.
+
+Memory is embedded via OpenAI’s `text-embedding-3-small`, stored in PostgreSQL as `vector(1536)`, queried using cosine distance via `<=>`, and filtered by a tunable similarity threshold.
+
+### Screenshots
+
+![Semantic Memory Screenshot 1](frontend/public/semantic1.png)
+![Semantic Memory Screenshot 2](frontend/public/semantic2.png)
+
+---
+
 ## Docker Usage
 
 Recursive runs inside Docker for consistent dev and testing environments.
@@ -135,3 +151,4 @@ docker-compose exec backend python test_vector_norm.py
 ## Author
 
 Created and maintained by [Cyberbot777](https://github.com/Cyberbot777).
+

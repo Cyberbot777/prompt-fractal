@@ -189,7 +189,7 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
 
 # === Entry Point — Memory-First Agent ===
 if __name__ == "__main__":
-    test_prompt = "like talk about zero trust, not like deep-deep but give the main stuff and explain how it's not like the old way with firewalls or whatever and why ppl use it now"
+    test_prompt = "How is zero trust different from the old firewall model and why is everyone using it now?"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     print("\n=== Iris Prompt Review (Memory-Aware Mode) ===")
