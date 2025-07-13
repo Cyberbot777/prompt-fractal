@@ -139,12 +139,13 @@ docker-compose exec backend python test_vector_norm.py
 ### **Phase 3:** Memory-Assisted Refinement (In Progress)
 - [x] Save only final rewritten prompt to DB
 - [x] Enable semantic recall via vector similarity
-- [ ] Improve memory recall quality (optimize distance threshold)
-- [ ] Use memory during refinement to avoid repeating known ideas
+- [x] Use memory during refinement to avoid repeating known ideas
+- [ ] Improve memory recall quality (threshold tuning, N-best ranking, logging)
 
 ### **Phase 4:** Auto-Chaining Recommender (Planned)
-- [ ] Detect multi-goal prompts and suggest task decomposition.
-- [ ] Auto-generate sub-prompts for chained reasoning.
+- [ ] Detect multi-goal prompts and suggest task decomposition
+- [ ] Auto-generate sub-prompts for chained reasoning
+
 
 ---
 
