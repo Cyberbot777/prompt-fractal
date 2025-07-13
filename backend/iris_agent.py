@@ -125,6 +125,9 @@ def save_prompt_to_memory(prompt_text: str):
     # Extract only the final rewritten prompt
     final_prompt = extract_final_prompt(prompt_text)
 
+    # DEBUG FINAL PROMPT
+    print("Debug: Extracted prompt:", final_prompt)
+
     # Generate embedding from the final prompt ONLY
     response = client.embeddings.create(
         input=[final_prompt],
@@ -184,12 +187,12 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
     finally:
         db.close()
 
-# === Entry Point ===
+# === Entry Point ===``
 if __name__ == "__main__":
-    messy_prompt = "Explain how introducing feral cats to island environments like New Zealand impacts local wildlife, particularly native bird populations. Suggest effective conservation strategies to mitigate these effects."
+    messy_prompt = "Discuss the engineering challenges of a sustainable lunar habitat, focusing on energy needs and radiation protection."
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    phase = "Phase 2 — Multi-Pass Refinement Test"
+    phase = "Phase 4 — Multi-Pass Semantic Memory Testing"
 
     print("\n=== Iris Prompt Review ===")
     print(f"=== {phase} — {timestamp} ===\n")
@@ -207,5 +210,5 @@ if __name__ == "__main__":
 
     save_prompt_to_memory(result["final_prompt"])
 
-    test_prompt = "How can team members in a technology development project enhance their communication and coordination strategies?"
-    find_similar_prompt(test_prompt, similarity_threshold=0.2)
+    similarity_prompt = "Analyze the impact of feral cats on native bird populations in New Zealand and suggest conservation strategies."
+    find_similar_prompt(similarity_prompt, similarity_threshold=0.2)

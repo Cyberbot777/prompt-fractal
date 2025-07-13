@@ -17,6 +17,8 @@ Iris performs self-improvement by:
 - Rewriting prompts to reduce ambiguity and improve precision.
 - Logging every review and rewrite cycle for traceability.
 - Auto-stopping when clarity improvements stabilize.
+- Saving final prompts to a vector database with OpenAI embeddings.
+- Comparing new prompts to historical memory using semantic similarity.
 
 This project explores **recursive prompting** — where an LLM teaches itself to write better prompts through feedback, iteration, and memory.
 
@@ -31,7 +33,7 @@ This project explores **recursive prompting** — where an LLM teaches itself to
 
 ### Database
 - **PostgreSQL** — Persistent memory storage for prompt histories.
-- **pgvector** — Semantic vector search extension for PostgreSQL (now fully integrated for vector memory storage).
+- **pgvector** — Semantic vector search extension for PostgreSQL (now fully integrated and operational).
 
 ---
 
@@ -40,33 +42,42 @@ This project explores **recursive prompting** — where an LLM teaches itself to
 - Recursive, multi-pass prompt optimization.
 - Automatic clarity scoring and rewriting.
 - Auto-stop mechanism when clarity stabilizes.
-- Memory table for storing prompt embeddings.
-- Dockerized backend and database.
-- Planned: Prompt recall and memory-augmented refinement.
-- Planned: Web UI for prompt testing.
+- Memory system stores **only the final rewritten prompt** in the vector DB.
+- Semantic similarity comparison to detect previously seen ideas.
+- Fully Dockerized backend and database system.
+- In-progress memory-assisted refinement based on similarity scoring.
 
 ---
 
 ## Vector Memory Testing
 
-Iris now has a fully functional vector memory backend using PostgreSQL + pgvector.
+Iris now includes a fully operational vector memory backend.
 
-The included `test_memory.py` script demonstrates:
-- Fetching real text embeddings from OpenAI’s Embedding API.
-- Saving vectorized memories into the database.
-- Querying stored memories from the DB.
+### Completed Milestones
+- Final prompt storage confirmed in PostgreSQL using `pgvector`
+- Similarity scoring with cosine distance verified
+- Memory is being embedded using `text-embedding-3-small`
+- Embeddings are now normalized (confirmed via manual test script)
+- Vector index (`hnsw` with `vector_cosine_ops`) created for fast retrieval
 
-Example command to enter the DB and inspect:
+### Example: Inspecting the Vector DB
+
 ```bash
 docker-compose exec db psql -U iris_user -d iris_memory
 ```
 
-Inside the DB terminal:
+Then inside the DB shell:
+
 ```sql
-SELECT id, description FROM memories;
+SELECT id, description FROM memories ORDER BY id DESC;
 ```
 
-This system is ready for semantic recall and memory-augmented prompt refinement.
+To inspect vector column metadata:
+
+```sql
+\d+ memories
+SELECT * FROM pg_indexes WHERE tablename = 'memories';
+```
 
 ---
 
@@ -74,19 +85,24 @@ This system is ready for semantic recall and memory-augmented prompt refinement.
 
 Recursive runs inside Docker for consistent dev and testing environments.
 
-### Start (Backend + Vector Database):
+### Start Backend + Vector DB:
+
 ```bash
 docker-compose up --build -d
 ```
 
-### Run Iris (Manually, On-Demand):
+### Run Iris Agent:
+
 ```bash
 docker-compose exec backend python iris_agent.py
 ```
 
-### Run Vector Memory Test:
+### Optional: Vector Norm Check
+
+You can run a norm test script to ensure embeddings are unit vectors:
+
 ```bash
-docker-compose exec backend python test_memory.py
+docker-compose exec backend python test_vector_norm.py
 ```
 
 ---
@@ -105,17 +121,17 @@ docker-compose exec backend python test_memory.py
 - [x] Manual insert/query test
 
 ### **Phase 3:** Memory-Assisted Refinement (In Progress)
-- [x] Integrate pgvector for semantic memory storage
-- [ ] Enable prompt recall and prevent redundant refinements
-- [ ] Memory-assisted prompt optimization
+- [x] Save only final rewritten prompt to DB
+- [x] Enable semantic recall via vector similarity
+- [ ] Improve memory recall quality (optimize distance threshold)
+- [ ] Use memory during refinement to avoid repeating known ideas
 
 ### **Phase 4:** Auto-Chaining Recommender (Planned)
 - [ ] Detect multi-goal prompts and suggest task decomposition.
 - [ ] Auto-generate sub-prompts for chained reasoning.
 
 ---
+
 ## Author
 
 Created and maintained by [Cyberbot777](https://github.com/Cyberbot777).
-
-
