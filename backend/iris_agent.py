@@ -187,28 +187,25 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
     finally:
         db.close()
 
-# === Entry Point ===``
+# === Entry Point — Memory-First Agent ===
 if __name__ == "__main__":
-    messy_prompt = "Discuss the engineering challenges of a sustainable lunar habitat, focusing on energy needs and radiation protection."
+    test_prompt = "like talk about zero trust, not like deep-deep but give the main stuff and explain how it's not like the old way with firewalls or whatever and why ppl use it now"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    phase = "Phase 4 — Multi-Pass Semantic Memory Testing"
+    print("\n=== Iris Prompt Review (Memory-Aware Mode) ===")
+    print(f"=== {timestamp} ===\n")
+    print("Test Prompt:")
+    print(test_prompt)
 
-    print("\n=== Iris Prompt Review ===")
-    print(f"=== {phase} — {timestamp} ===\n")
-    print("=== Original Messy Prompt (Starting Point) ===")
-    print(messy_prompt + "\n")
+    print("\n=== Checking Memory First ===")
+    memory_match = find_similar_prompt(test_prompt, similarity_threshold=0.2)
 
-    result = multi_pass_refine_prompt(messy_prompt, passes=5)
-
-    for pass_data in result["history"]:
-        print(f"\n=== Pass {pass_data['pass']} ===")
-        print(pass_data["review_output"])
-
-    print("\n=== Final Refined Prompt ===")
-    print(result["final_prompt"])
-
-    save_prompt_to_memory(result["final_prompt"])
-
-    similarity_prompt = "Analyze the impact of feral cats on native bird populations in New Zealand and suggest conservation strategies."
-    find_similar_prompt(similarity_prompt, similarity_threshold=0.2)
+    if memory_match:
+        print("\nIris recalled a similar prompt — skipping refinement.")
+        print(f"Recalled Prompt:\n{memory_match}")
+    else:
+        print("\nNo good memory match found — running refinement.")
+        result = multi_pass_refine_prompt(test_prompt, passes=5)
+        print("\n=== Final Refined Prompt ===")
+        print(result["final_prompt"])
+        save_prompt_to_memory(result["final_prompt"])
