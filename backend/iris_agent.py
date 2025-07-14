@@ -24,31 +24,57 @@ DEBUG_MODE = True
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+
+
+# === Memory Context Builder ===
+def build_memory_context(matches: list) -> str:
+    """
+    Build a contextual string from top-N memory matches for use in the prompt review process.
+    Highlights the top (most similar) match as a high-priority prior success.
+    """
+    if not matches:
+        return ""
+
+    context = ["You’ve previously rewritten prompts like these:\n"]
+    for i, (desc, dist) in enumerate(matches, 1):
+        context.append(f"{i}. \"{desc.strip()}\"  (similarity: {dist:.4f})")
+
+    # Highlight the best match again at the bottom
+    top_match = matches[0][0].strip()
+    top_score = matches[0][1]
+    context.append("\nMost relevant prior success (highest similarity):")
+    context.append(f"\"{top_match}\"  (similarity: {top_score:.4f})")
+
+    context.append("\nBased on these examples, review and rewrite the new prompt below:\n")
+    return "\n".join(context)
+
 # === Prompt Review ===
-def review_and_rewrite_prompt(messy_prompt: str) -> dict:
-    """Run Iris agent to review and rewrite a prompt."""
-    review_template = f"""
-Analyze the following prompt for clarity, length, and level of detail.
+def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> dict:
+    """Run Iris agent to review and rewrite a prompt, optionally using memory context."""
 
-Check specifically:
-1. Is this prompt too long or overly complex?
-2. Is this prompt too short or lacking necessary context or details?
-3. Are there any ambiguous or unclear phrases?
+    prompt_intro = f"\nPrompt:\n\"\"\"{messy_prompt}\"\"\"\n"
 
-Prompt:
-\"\"\"{messy_prompt}\"\"\"
+    full_prompt = ""
+    if memory_context:
+        full_prompt += memory_context.strip() + "\n\n"
 
-Provide:
-- Provide a clarity rating from 1 to 10 in whole number only.
-- Specific issues found.
-- Suggestions for improving the prompt.
-- A fully rewritten version of the prompt that resolves the identified issues, phrased clearly and professionally.
-"""
+    full_prompt += "Analyze the following prompt for clarity, length, and level of detail.\n\n"
+    full_prompt += "Check specifically:\n"
+    full_prompt += "1. Is this prompt too long or overly complex?\n"
+    full_prompt += "2. Is this prompt too short or lacking necessary context or details?\n"
+    full_prompt += "3. Are there any ambiguous or unclear phrases?\n"
+    full_prompt += prompt_intro
+    full_prompt += "\nProvide:\n"
+    full_prompt += "- Provide a clarity rating from 1 to 10 in whole number only.\n"
+    full_prompt += "- Specific issues found (exactly 3).\n"
+    full_prompt += "- Suggestions for improving the prompt (exactly 3).\n"
+    full_prompt += "- A fully rewritten version of the prompt that resolves the identified issues, phrased clearly and professionally.\n"
+
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are an expert prompt engineer."},
-            {"role": "user", "content": review_template}
+            {"role": "user", "content": full_prompt}
         ]
     )
 
@@ -57,14 +83,17 @@ Provide:
         "review_output": response.choices[0].message.content.strip()
     }
 
+
 # === Multi Pass Refinement ===
-def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9) -> dict:
+def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9, memory_context: str = "") -> dict:
     prompt = initial_prompt
     history = []
     previous_score = None
 
     for i in range(passes):
-        result = review_and_rewrite_prompt(prompt)
+        combined_prompt = f"{memory_context.strip()}\n{prompt.strip()}" if memory_context else prompt
+        result = review_and_rewrite_prompt(combined_prompt)
+
         output = result["review_output"]
         prompt = output
 
@@ -107,13 +136,11 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
         "history": history
     }
 
+
 # === Memory Save ===
 def save_prompt_to_memory(prompt_text: str):
     """Save only the final rewritten prompt to the vector memory DB."""
     final_prompt = extract_final_prompt(prompt_text)
-
-    if DEBUG_MODE:
-        print(f"[Debug] Extracted prompt:\n{final_prompt}")
 
     response = client.embeddings.create(
         input=[final_prompt],
@@ -162,7 +189,7 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
 
 # === Entry Point — Memory-Aware Agent with Top-N Recall ===
 if __name__ == "__main__":
-    test_prompt = "Why is the sky blue?"
+    test_prompt = "What causes the ocean's tidal patterns to change during the day, and how do lunar and solar forces contribute to this cycle?"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     print("\n=== Iris Prompt Review (Memory-Aware Mode) ===")
@@ -173,16 +200,23 @@ if __name__ == "__main__":
     print("\n=== Retrieving Top-N Memory Matches ===")
     matches = find_top_n_matches(test_prompt, top_n=3)
 
+    memory_context = ""
     if matches:
         print("\n=== Top 3 Memory Matches ===")
         for i, (desc, dist) in enumerate(matches, 1):
             print(f"{i}. Distance: {dist:.4f}")
             print(desc + "\n")
+
+        memory_context = build_memory_context(matches)
+        if DEBUG_MODE:
+            print("\n=== Memory Context ===")
+            print(memory_context)
     else:
         print("No memory matches found.")
 
     print("\n=== Running Refinement ===")
-    result = multi_pass_refine_prompt(test_prompt, passes=5)
+    result = multi_pass_refine_prompt(test_prompt, passes=5, memory_context=memory_context)
+
     print("\n=== Final Refined Prompt ===")
     print(result["final_prompt"])
     save_prompt_to_memory(result["final_prompt"])

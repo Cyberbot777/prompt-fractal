@@ -18,6 +18,8 @@ Iris performs self-improvement by:
 - Auto-stopping when clarity improvements stabilize.
 - Saving final prompts to a vector database with OpenAI embeddings.
 - Comparing new prompts to historical memory using semantic similarity.
+- Leveraging **contextual memory injection** to guide new refinements using the top-N most relevant past prompts.
+- Improving recursively by **prioritizing past high-scoring examples**, helping Iris evolve more intelligently with each cycle.
 
 This project explores **recursive prompting** — where an LLM teaches itself to write better prompts through feedback, iteration, and memory.
 
@@ -43,8 +45,9 @@ This project explores **recursive prompting** — where an LLM teaches itself to
 - Auto-stop mechanism when clarity stabilizes.
 - Memory system stores **only the final rewritten prompt** in the vector DB.
 - Semantic similarity comparison to detect previously seen ideas.
+- Memory-aware refinement using **contextual recall of top-N nearest prompts**.
+- Dynamic prompt rewriting that adapts based on successful past examples.
 - Fully Dockerized backend and database system.
-- In-progress memory-assisted refinement based on similarity scoring.
 
 ---
 
@@ -136,20 +139,19 @@ docker-compose exec backend python test_vector_norm.py
 - [x] PostgreSQL + pgvector storage
 - [x] Manual insert/query test
 
-### **Phase 3:** Memory-Assisted Refinement (In Progress)
+### **Phase 3:** Memory-Assisted Refinement
 - [x] Save only final rewritten prompt to DB
 - [x] Enable semantic recall via vector similarity
 - [x] Use memory during refinement to avoid repeating known ideas
-- [ ] Improve memory recall quality (threshold tuning, N-best ranking, logging)
+- [x] Improve memory recall quality (threshold tuning, N-best ranking, logging)
+- [x] Prioritize high-scoring historical prompts when forming memory context
 
 ### **Phase 4:** Auto-Chaining Recommender (Planned)
 - [ ] Detect multi-goal prompts and suggest task decomposition
 - [ ] Auto-generate sub-prompts for chained reasoning
-
 
 ---
 
 ## Author
 
 Created and maintained by [Cyberbot777](https://github.com/Cyberbot777).
-
