@@ -1,4 +1,4 @@
-# iris_agent.py — Iris
+# iris_agent.py — Iris (with DEBUG_MODE)
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -17,6 +17,8 @@ import psycopg
 # Final Prompt Util
 from utils import extract_final_prompt
 
+# === Debug Flag ===
+DEBUG_MODE = False  # Set to False for clean output, True for full dev logs
 
 # Load environment variables and initialize OpenAI client
 load_dotenv()
@@ -55,27 +57,7 @@ Provide:
         "review_output": response.choices[0].message.content.strip()
     }
 
-# === Phase 1 — Single Pass ===
-def run_agent():
-    print("Iris Agent Starting...")
-
-    messy_prompt = (
-        "Explain how to get are carrer as a lwayer but like go deep but also make it simple "
-        "but not too simple and also give examples and maybe something else too idk."
-    )
-
-    result = review_and_rewrite_prompt(messy_prompt)
-
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    phase = "Phase 1 — Review Test"
-
-    print("\n=== Iris Prompt Review ===")
-    print(f"=== {phase} — {timestamp} ===\n")
-    print(f"Original Prompt:\n{messy_prompt}\n")
-    print("Review Output:")
-    print(result["review_output"])
-
-# === Phase 2 — Multi Pass Refinement ===
+# === Multi Pass Refinement ===
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9) -> dict:
     prompt = initial_prompt
     history = []
@@ -83,16 +65,12 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
 
     for i in range(passes):
         result = review_and_rewrite_prompt(prompt)
-        history.append({
-            "pass": i + 1,
-            "review_output": result["review_output"],
-            "prompt_after_pass": result["review_output"]
-        })
-        prompt = result["review_output"]
+        output = result["review_output"]
+        prompt = output
 
         score = None
         try:
-            lines = result["review_output"].splitlines()
+            lines = output.splitlines()
             for line in lines:
                 if "clarity" in line.lower() and ("rating" in line.lower() or "score" in line.lower()):
                     clean_line = line.replace("**", "").replace(":", "").strip()
@@ -101,9 +79,20 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
                         score = digits[0]
                         break
         except Exception as e:
-            print(f"Auto-stop check failed: {e}")
+            if DEBUG_MODE:
+                print(f"[Debug] Auto-stop check failed: {e}")
 
-        print(f"[Debug] Current score: {score}, Previous score: {previous_score}")
+        if DEBUG_MODE:
+            print(f"\n=== Pass {i + 1} ===")
+            print(output)
+            print(f"[Debug] Current score: {score}, Previous score: {previous_score}")
+
+        history.append({
+            "pass": i + 1,
+            "review_output": output,
+            "score": score
+        })
+
         if score is not None:
             if previous_score is not None and score >= auto_stop_score and previous_score >= (auto_stop_score - 1):
                 print(f"\nAuto-stop triggered at Pass {i + 1} — Stable Clarity {score}")
@@ -118,17 +107,14 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
         "history": history
     }
 
-# === Phase 3 — Memory Save ===
+# === Memory Save ===
 def save_prompt_to_memory(prompt_text: str):
     """Save only the final rewritten prompt to the vector memory DB."""
-    
-    # Extract only the final rewritten prompt
     final_prompt = extract_final_prompt(prompt_text)
 
-    # DEBUG FINAL PROMPT
-    print("Debug: Extracted prompt:", final_prompt)
+    if DEBUG_MODE:
+        print(f"[Debug] Extracted prompt:\n{final_prompt}")
 
-    # Generate embedding from the final prompt ONLY
     response = client.embeddings.create(
         input=[final_prompt],
         model="text-embedding-3-small"
@@ -140,15 +126,12 @@ def save_prompt_to_memory(prompt_text: str):
         memory = Memory(description=final_prompt, embedding=embedding)
         db.add(memory)
         db.commit()
-        print("Memory saved successfully.")
-        print("Saved prompt:")
-        print(final_prompt)
+        print(f"Memory saved successfully:\n{final_prompt}")
     finally:
         db.close()
 
-
-# === Phase 4 — Memory Similarity Recall ===
-def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
+# === Memory Similarity Recall ===
+def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
     response = client.embeddings.create(
         input=[prompt_text],
         model="text-embedding-3-small"
@@ -169,10 +152,9 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
             """),
             {"embedding": embedding}
         ).fetchone()
-        if result:
-            print(f"\n[Debug] Result row: {dict(result._mapping)}")
 
         if result:
+            print(f"[Debug] Result row: {dict(result._mapping)}")
             print(f"[Similarity Score] Distance: {result.distance}")
             if result.distance <= similarity_threshold:
                 print(f"Found similar prompt:\n{result.description}")
@@ -189,7 +171,7 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.5):
 
 # === Entry Point — Memory-First Agent ===
 if __name__ == "__main__":
-    test_prompt = "How is zero trust different from the old firewall model and why is everyone using it now?"
+    test_prompt = "Why is the sky blue?"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     print("\n=== Iris Prompt Review (Memory-Aware Mode) ===")
