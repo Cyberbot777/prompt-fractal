@@ -17,8 +17,8 @@ import psycopg
 # Final Prompt Util
 from utils import extract_final_prompt
 
-# === Debug Flag ===
-DEBUG_MODE = False  # Set to False for clean output, True for full dev logs
+# Debug Flag- False for clean output, True for full dev logs
+DEBUG_MODE = True 
 
 # Load environment variables and initialize OpenAI client
 load_dotenv()
@@ -130,8 +130,9 @@ def save_prompt_to_memory(prompt_text: str):
     finally:
         db.close()
 
-# === Memory Similarity Recall ===
-def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
+# === Memory Top n Recall ===
+def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
+    """Return the top-N most similar prompts from memory with their distances."""
     response = client.embeddings.create(
         input=[prompt_text],
         model="text-embedding-3-small"
@@ -143,33 +144,23 @@ def find_similar_prompt(prompt_text: str, similarity_threshold: float = 0.2):
         raw_conn = db.connection().connection
         register_vector(raw_conn.driver_connection)
 
-        result = db.execute(
-            text("""
-                SELECT id, description, embedding <=> :embedding AS distance
+        results = db.execute(
+            text(f"""
+                SELECT description, embedding <=> :embedding AS distance
                 FROM memories
                 ORDER BY distance
-                LIMIT 1;
+                LIMIT :top_n;
             """),
-            {"embedding": embedding}
-        ).fetchone()
+            {"embedding": embedding, "top_n": top_n}
+        ).fetchall()
 
-        if result:
-            print(f"[Debug] Result row: {dict(result._mapping)}")
-            print(f"[Similarity Score] Distance: {result.distance}")
-            if result.distance <= similarity_threshold:
-                print(f"Found similar prompt:\n{result.description}")
-                return result.description
-            else:
-                print("Prompt exists, but similarity score is too low.")
-                return None
-        else:
-            print("No similar prompt found.")
-            return None
+        return [(row.description, row.distance) for row in results]
 
     finally:
         db.close()
 
-# === Entry Point — Memory-First Agent ===
+
+# === Entry Point — Memory-Aware Agent with Top-N Recall ===
 if __name__ == "__main__":
     test_prompt = "Why is the sky blue?"
 
@@ -179,15 +170,19 @@ if __name__ == "__main__":
     print("Test Prompt:")
     print(test_prompt)
 
-    print("\n=== Checking Memory First ===")
-    memory_match = find_similar_prompt(test_prompt, similarity_threshold=0.2)
+    print("\n=== Retrieving Top-N Memory Matches ===")
+    matches = find_top_n_matches(test_prompt, top_n=3)
 
-    if memory_match:
-        print("\nIris recalled a similar prompt — skipping refinement.")
-        print(f"Recalled Prompt:\n{memory_match}")
+    if matches:
+        print("\n=== Top 3 Memory Matches ===")
+        for i, (desc, dist) in enumerate(matches, 1):
+            print(f"{i}. Distance: {dist:.4f}")
+            print(desc + "\n")
     else:
-        print("\nNo good memory match found — running refinement.")
-        result = multi_pass_refine_prompt(test_prompt, passes=5)
-        print("\n=== Final Refined Prompt ===")
-        print(result["final_prompt"])
-        save_prompt_to_memory(result["final_prompt"])
+        print("No memory matches found.")
+
+    print("\n=== Running Refinement ===")
+    result = multi_pass_refine_prompt(test_prompt, passes=5)
+    print("\n=== Final Refined Prompt ===")
+    print(result["final_prompt"])
+    save_prompt_to_memory(result["final_prompt"])
