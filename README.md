@@ -48,6 +48,10 @@ This project explores **recursive prompting** — where an LLM teaches itself to
 - Memory-aware refinement using **contextual recall of top-N nearest prompts**.
 - Dynamic prompt rewriting that adapts based on successful past examples.
 - Fully Dockerized backend and database system.
+- **Memory-Aware Refinement**: Iris recalls top-N similar prompts from past rewrites using vector search (pgvector) and builds contextual memory to guide new prompt improvements.
+- **Adaptive Self-Improvement**: As prompts are refined and saved, Iris improves future rewrites using accumulated knowledge — achieving higher clarity scores faster.
+- **Empirical Validation Framework**: Built-in debug and logging tools show step-by-step refinement passes, scores, and final output for transparency and testing.
+
 
 ---
 
