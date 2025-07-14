@@ -89,6 +89,7 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
     prompt = initial_prompt
     history = []
     previous_score = None
+    best_score = None 
 
     for i in range(passes):
         combined_prompt = f"{memory_context.strip()}\n{prompt.strip()}" if memory_context else prompt
@@ -122,40 +123,47 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
             "score": score
         })
 
+        # Update best score if applicable
         if score is not None:
+            if best_score is None or score > best_score:
+                best_score = score
+
             if previous_score is not None and score >= auto_stop_score and previous_score >= (auto_stop_score - 1):
                 print(f"\nAuto-stop triggered at Pass {i + 1} — Stable Clarity {score}")
                 return {
                     "final_prompt": prompt,
+                    "clarity_rating": best_score,
                     "history": history
                 }
             previous_score = score
 
     return {
         "final_prompt": prompt,
+        "clarity_rating": best_score,
         "history": history
     }
 
 
-# === Memory Save ===
-def save_prompt_to_memory(prompt_text: str):
-    """Save only the final rewritten prompt to the vector memory DB."""
-    final_prompt = extract_final_prompt(prompt_text)
 
-    response = client.embeddings.create(
-        input=[final_prompt],
-        model="text-embedding-3-small"
-    )
-    embedding = response.data[0].embedding
+# === Final Prompt Saver ===
+def save_prompt_to_memory(final_prompt: str, clarity_score: int = None) -> None:
+    """Embed and store the final refined prompt in the vector DB with optional clarity score."""
+    from db import SessionLocal
+    from models import Memory
 
-    db = SessionLocal()
-    try:
-        memory = Memory(description=final_prompt, embedding=embedding)
+    with SessionLocal() as db:
+        embedding = client.embeddings.create(
+            model="text-embedding-3-small",
+            input=final_prompt
+        ).data[0].embedding
+
+        memory = Memory(description=final_prompt, embedding=embedding, clarity=clarity_score)
         db.add(memory)
         db.commit()
-        print(f"Memory saved successfully:\n{final_prompt}")
-    finally:
-        db.close()
+
+    print("Memory saved successfully:")
+    print(final_prompt)
+
 
 # === Memory Top n Recall ===
 def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
@@ -189,7 +197,7 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
 
 # === Entry Point — Memory-Aware Agent with Top-N Recall ===
 if __name__ == "__main__":
-    test_prompt = "What causes the ocean's tidal patterns to change during the day, and how do lunar and solar forces contribute to this cycle?"
+    test_prompt = "What role does the sun play in the formation of ocean tides, and how does it differ from the moon’s influence?"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     print("\n=== Iris Prompt Review (Memory-Aware Mode) ===")
@@ -219,4 +227,7 @@ if __name__ == "__main__":
 
     print("\n=== Final Refined Prompt ===")
     print(result["final_prompt"])
-    save_prompt_to_memory(result["final_prompt"])
+    
+    final_clean_prompt = extract_final_prompt(result["final_prompt"])
+    save_prompt_to_memory(final_clean_prompt, clarity_score=result["clarity_rating"])
+
