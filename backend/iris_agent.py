@@ -26,7 +26,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 
-# === Memory Context Builder ===
+# Memory Context Builder
 def build_memory_context(matches: list) -> str:
     """
     Build a contextual string from top-N memory matches for use in the prompt review process.
@@ -36,19 +36,20 @@ def build_memory_context(matches: list) -> str:
         return ""
 
     context = ["You’ve previously rewritten prompts like these:\n"]
-    for i, (desc, dist) in enumerate(matches, 1):
-        context.append(f"{i}. \"{desc.strip()}\"  (similarity: {dist:.4f})")
+    for i, (desc, dist, clarity) in enumerate(matches, 1):
+        context.append(f'{i}. "{desc.strip()}"  (similarity: {dist:.4f}, clarity: {clarity})')
 
-    # Highlight the best match again at the bottom
     top_match = matches[0][0].strip()
     top_score = matches[0][1]
+    top_clarity = matches[0][2]
     context.append("\nMost relevant prior success (highest similarity):")
-    context.append(f"\"{top_match}\"  (similarity: {top_score:.4f})")
+    context.append(f'"{top_match}"  (similarity: {top_score:.4f}, clarity: {top_clarity})')
 
     context.append("\nBased on these examples, review and rewrite the new prompt below:\n")
     return "\n".join(context)
 
-# === Prompt Review ===
+
+# Prompt Review
 def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> dict:
     """Run Iris agent to review and rewrite a prompt, optionally using memory context."""
 
@@ -84,7 +85,7 @@ def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> di
     }
 
 
-# === Multi Pass Refinement ===
+# Multi Pass Refinement
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9, memory_context: str = "") -> dict:
     prompt = initial_prompt
     history = []
@@ -145,7 +146,7 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
 
 
 
-# === Final Prompt Saver ===
+# Final Prompt Saver
 def save_prompt_to_memory(final_prompt: str, clarity_score: int = None) -> None:
     """Embed and store the final refined prompt in the vector DB with optional clarity score."""
     from db import SessionLocal
@@ -165,9 +166,9 @@ def save_prompt_to_memory(final_prompt: str, clarity_score: int = None) -> None:
     print(final_prompt)
 
 
-# === Memory Top n Recall ===
+# Top-N Memory Retrieval
 def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
-    """Return the top-N most similar prompts from memory with their distances."""
+    """Return the top-N most similar prompts from memory with their distances and clarity scores."""
     response = client.embeddings.create(
         input=[prompt_text],
         model="text-embedding-3-small"
@@ -180,8 +181,8 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
         register_vector(raw_conn.driver_connection)
 
         results = db.execute(
-            text(f"""
-                SELECT description, embedding <=> :embedding AS distance
+            text("""
+                SELECT description, embedding <=> :embedding AS distance, clarity
                 FROM memories
                 ORDER BY distance
                 LIMIT :top_n;
@@ -189,15 +190,16 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
             {"embedding": embedding, "top_n": top_n}
         ).fetchall()
 
-        return [(row.description, row.distance) for row in results]
+        return [(row.description, row.distance, row.clarity) for row in results]
 
     finally:
         db.close()
 
 
-# === Entry Point — Memory-Aware Agent with Top-N Recall ===
+
+# Entry Point — Memory-Aware Agent with Top-N Recall
 if __name__ == "__main__":
-    test_prompt = "What role does the sun play in the formation of ocean tides, and how does it differ from the moon’s influence?"
+    test_prompt = "Compare and contrast functional programming and object-oriented programming in terms of readability, scalability, and real-world application. Then, provide examples of when to use each paradigm."
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     print("\n=== Iris Prompt Review (Memory-Aware Mode) ===")
@@ -209,25 +211,22 @@ if __name__ == "__main__":
     matches = find_top_n_matches(test_prompt, top_n=3)
 
     memory_context = ""
-    if matches:
-        print("\n=== Top 3 Memory Matches ===")
-        for i, (desc, dist) in enumerate(matches, 1):
-            print(f"{i}. Distance: {dist:.4f}")
-            print(desc + "\n")
-
+    if matches and matches[0][1] < 0.2 and matches[0][2] == 10:
         memory_context = build_memory_context(matches)
         if DEBUG_MODE:
             print("\n=== Memory Context ===")
             print(memory_context)
     else:
-        print("No memory matches found.")
+        print("Memory matches not close enough — skipping memory context.")
 
     print("\n=== Running Refinement ===")
     result = multi_pass_refine_prompt(test_prompt, passes=5, memory_context=memory_context)
 
     print("\n=== Final Refined Prompt ===")
     print(result["final_prompt"])
-    
+
     final_clean_prompt = extract_final_prompt(result["final_prompt"])
     save_prompt_to_memory(final_clean_prompt, clarity_score=result["clarity_rating"])
+
+
 
