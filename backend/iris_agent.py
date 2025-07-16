@@ -53,6 +53,28 @@ def build_memory_context(matches: list) -> str:
     context.append("\nBased on these examples, review and rewrite the new prompt below:\n")
     return "\n".join(context)
 
+# # Complexity Detection
+# def is_complex_prompt(prompt: str) -> bool:
+#     """
+#     Detect whether a prompt is complex or multi-step.
+#     This checks for common patterns that suggest subtasks, sequencing, or comparisons.
+#     """
+#     indicators = [
+#         "compare and contrast",
+#         "step by step",
+#         "multiple steps",
+#         "multiple parts",
+#         "in order",
+#         "1.", "2.", "3.",
+#         "then", "after that", "next",
+#         "list and explain",
+#         "analyze and summarize"
+#     ]
+
+#     prompt_lower = prompt.lower()
+#     return any(indicator in prompt_lower for indicator in indicators)
+
+
 
 # Prompt Review
 def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> dict:
@@ -198,6 +220,20 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
 
     finally:
         db.close()
+
+# if __name__ == "__main__":
+#     test_prompts = [
+#         "What is the difference between classification and regression?",
+#         "Compare and contrast Bitcoin and Ethereum in terms of consensus mechanism, smart contract capability, and real-world usage. Then recommend use cases for each.",
+#         "Explain how to fine-tune a model using LoRA. List steps in order and give one example at each stage.",
+#         "Write a fun sci-fi story prompt for a solo RPG game."
+#     ]
+
+#     print("\n=== Complexity Detection Test ===")
+#     for p in test_prompts:
+#         is_complex = is_complex_prompt(p)
+#         print(f"\nPrompt:\n{p}\n→ Complex: {is_complex}")
+
 
 
 
