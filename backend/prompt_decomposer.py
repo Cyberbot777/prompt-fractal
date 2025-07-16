@@ -1,31 +1,14 @@
 # prompt_decomposer.py — PromptDecomposer (Chain-of-Thought Preprocessor)
 from openai import OpenAI
-import os
 from dotenv import load_dotenv
+from langsmith import traceable
 import re
+import os
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Subtask Refinement
-def refine_subtask(subtask: str) -> str:
-    """
-    Use OpenAI to refine a subtask into a clear, actionable instruction.
-    """
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "system",
-                "content": (
-                    "You are a world-class prompt engineer. Your job is to rewrite a single subtask prompt "
-                    "to be clear, concise, and directly actionable. Use precise language. Avoid ambiguity or fluff."
-                )
-            },
-            {"role": "user", "content": subtask}
-        ]
-    )
-    return response.choices[0].message.content.strip()
+
 
 # Decompose Complex Prompt into Subtasks
 def decompose_prompt_into_subtasks(prompt: str) -> list[str]:
@@ -53,6 +36,27 @@ def decompose_prompt_into_subtasks(prompt: str) -> list[str]:
     lines = [line.strip() for line in output.splitlines() if line.strip()]
     subtasks = [re.sub(r"^\s*\d+[\.\)]\s*", "", line) for line in lines]
     return subtasks
+
+# Subtask Refinement
+@traceable(name="Refine Subtask")
+def refine_subtask(subtask: str) -> str:
+    """
+    Use OpenAI to refine a subtask into a clear, actionable instruction.
+    """
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You are a world-class prompt engineer. Your job is to rewrite a single subtask prompt "
+                    "to be clear, concise, and directly actionable. Use precise language. Avoid ambiguity or fluff."
+                )
+            },
+            {"role": "user", "content": subtask}
+        ]
+    )
+    return response.choices[0].message.content.strip()
 
 # Recompose Subtasks into Chain-of-Thought Prompt
 def recompose_subtasks(subtasks: list[str]) -> str:
