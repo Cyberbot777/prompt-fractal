@@ -4,7 +4,9 @@ case_studies
 phase1_logs.txt
 phase2_logs.txt
 validations 
+case_studies
 
-TEchnical_Notes.md 
+RecursiveTechNote.md
+SubTaskProposal.md
 
 .env

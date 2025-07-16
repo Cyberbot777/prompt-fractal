@@ -18,8 +18,14 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Run LangChain
+RUN pip install -U langchain langchain-openai
+
 # Copy app code
 COPY . .
 
 # Default to sleep so container stays up during dev
 CMD ["tail", "-f", "/dev/null"]
+
+
+

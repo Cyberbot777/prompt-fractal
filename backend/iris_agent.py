@@ -17,7 +17,12 @@ import psycopg
 # Final Prompt Util
 from utils import extract_final_prompt
 
-# Debug Flag- False for clean output, True for full dev logs
+# LangChain / LangSmith
+from langsmith import traceable
+
+
+
+# Debug Flag - False for clean output, True for full dev logs
 DEBUG_MODE = True 
 
 # Load environment variables and initialize OpenAI client
@@ -86,6 +91,7 @@ def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> di
 
 
 # Multi Pass Refinement
+@traceable(name="Multi Pass Prompt Refinement")
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9, memory_context: str = "") -> dict:
     prompt = initial_prompt
     history = []
@@ -149,8 +155,6 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
 # Final Prompt Saver
 def save_prompt_to_memory(final_prompt: str, clarity_score: int = None) -> None:
     """Embed and store the final refined prompt in the vector DB with optional clarity score."""
-    from db import SessionLocal
-    from models import Memory
 
     with SessionLocal() as db:
         embedding = client.embeddings.create(
@@ -227,6 +231,3 @@ if __name__ == "__main__":
 
     final_clean_prompt = extract_final_prompt(result["final_prompt"])
     save_prompt_to_memory(final_clean_prompt, clarity_score=result["clarity_rating"])
-
-
-
