@@ -51,7 +51,8 @@ This project explores **recursive prompting** — where an LLM teaches itself to
 - **Memory-Aware Refinement**: Iris recalls top-N similar prompts from past rewrites using vector search (pgvector) and builds contextual memory to guide new prompt improvements.
 - **Adaptive Self-Improvement**: As prompts are refined and saved, Iris improves future rewrites using accumulated knowledge — achieving higher clarity scores faster.
 - **Empirical Validation Framework**: Built-in debug and logging tools show step-by-step refinement passes, scores, and final output for transparency and testing.
-
+- **Chain-of-Thought Decomposition**: For complex or multi-part prompts, Iris invokes a custom Chain-of-Thought decomposer module that splits the prompt into subtasks, refines each subtask, then recomposes the results into a clean, coherent prompt.
+- **Automatic Complexity Detection**: Iris uses a lightweight signal-based heuristic to detect multi-phase or complex prompts (e.g., prompts containing phrases like "compare and contrast," "step-by-step," or multi-part lists) and route them through the Chain-of-Thought flow.
 
 ---
 
@@ -104,6 +105,25 @@ Memory is embedded via OpenAI’s `text-embedding-3-small`, stored in PostgreSQL
 
 ---
 
+## Chain-of-Thought Decomposition Validation
+
+In July 2025, we added a **Chain-of-Thought Prompt Decomposer** to support complex or multi-focus prompts.
+
+When Iris detects signal phrases indicating a multi-part task, she routes the prompt through this new module:
+1. The decomposer breaks it into subtasks.
+2. Each subtask is refined individually.
+3. The subtasks are recombined into a single clean CoT-style prompt.
+4. The result is then returned to Iris for final recursive refinement and scoring.
+
+We verified the decomposition and refinement chain using **LangSmith**, confirming that each step is invoked and traced correctly.
+
+### Screenshots
+
+![CoT Output](frontend/public/CoTOutput.png)
+![CoT LangSmith Validation](frontend/public/CoTvalidation.png)
+
+---
+
 ## Docker Usage
 
 Recursive runs inside Docker for consistent dev and testing environments.
@@ -118,6 +138,12 @@ docker-compose up --build -d
 
 ```bash
 docker-compose exec backend python iris_agent.py
+```
+
+### Run Chain-of-Thought Decomposer:
+
+```bash
+docker-compose exec backend python prompt_decomposer.py
 ```
 
 ### Optional: Vector Norm Check
@@ -150,12 +176,22 @@ docker-compose exec backend python test_vector_norm.py
 - [x] Improve memory recall quality (threshold tuning, N-best ranking, logging)
 - [x] Prioritize high-scoring historical prompts when forming memory context
 
-### **Phase 4:** Auto-Chaining Recommender (Planned)
-- [ ] Detect multi-goal prompts and suggest task decomposition
-- [ ] Auto-generate sub-prompts for chained reasoning
+### **Phase 4:** Chain-of-Thought Preprocessing
+- [x] Add prompt decomposer module
+- [x] Break prompt into subtasks
+- [x] Refine subtasks individually
+- [x] Reassemble final CoT prompt
+- [x] Return to Iris for multi-pass review
+- [x] Validate full chain in LangSmith
+
+### **Phase 5:** Agent Routing Automation (Planned)
+- [ ] Modular router between Iris and Decomposer
+- [ ] LangGraph or dispatcher-based flow manager
+- [ ] Route intelligently based on complexity heuristics
 
 ---
 
 ## Author
 
 Created and maintained by [Cyberbot777](https://github.com/Cyberbot777).
+
