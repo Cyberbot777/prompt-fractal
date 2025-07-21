@@ -31,27 +31,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 
-# Memory Context Builder
-def build_memory_context(matches: list) -> str:
-    """
-    Build a contextual string from top-N memory matches for use in the prompt review process.
-    Highlights the top (most similar) match as a high-priority prior success.
-    """
-    if not matches:
-        return ""
 
-    context = ["You’ve previously rewritten prompts like these:\n"]
-    for i, (desc, dist, clarity) in enumerate(matches, 1):
-        context.append(f'{i}. "{desc.strip()}"  (similarity: {dist:.4f}, clarity: {clarity})')
-
-    top_match = matches[0][0].strip()
-    top_score = matches[0][1]
-    top_clarity = matches[0][2]
-    context.append("\nMost relevant prior success (highest similarity):")
-    context.append(f'"{top_match}"  (similarity: {top_score:.4f}, clarity: {top_clarity})')
-
-    context.append("\nBased on these examples, review and rewrite the new prompt below:\n")
-    return "\n".join(context)
 
 # # Complexity Detection
 # def is_complex_prompt(prompt: str) -> bool:
@@ -190,6 +170,29 @@ def save_prompt_to_memory(final_prompt: str, clarity_score: int = None) -> None:
 
     print("Memory saved successfully:")
     print(final_prompt)
+    
+
+# Memory Context Builder
+def build_memory_context(matches: list) -> str:
+    """
+    Build a contextual string from top-N memory matches for use in the prompt review process.
+    Highlights the top (most similar) match as a high-priority prior success.
+    """
+    if not matches:
+        return ""
+
+    context = ["You’ve previously rewritten prompts like these:\n"]
+    for i, (desc, dist, clarity) in enumerate(matches, 1):
+        context.append(f'{i}. "{desc.strip()}"  (similarity: {dist:.4f}, clarity: {clarity})')
+
+    top_match = matches[0][0].strip()
+    top_score = matches[0][1]
+    top_clarity = matches[0][2]
+    context.append("\nMost relevant prior success (highest similarity):")
+    context.append(f'"{top_match}"  (similarity: {top_score:.4f}, clarity: {top_clarity})')
+
+    context.append("\nBased on these examples, review and rewrite the new prompt below:\n")
+    return "\n".join(context)
 
 
 # Top-N Memory Retrieval
@@ -239,7 +242,7 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
 
 # Entry Point — Memory-Aware Agent with Top-N Recall
 if __name__ == "__main__":
-    test_prompt = "Compare and contrast functional programming and object-oriented programming in terms of readability, scalability, and real-world application. Then, provide examples of when to use each paradigm."
+    test_prompt = "I want to be come a movie star. How do I get there if no degree?"
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     print("\n=== Iris Prompt Review (Memory-Aware Mode) ===")

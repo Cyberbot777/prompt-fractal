@@ -66,12 +66,12 @@ def refine_subtask(subtask: str) -> str:
     return response.choices[0].message.content.strip()
 
 
-# === Recompose Subtasks into Chain-of-Thought Prompt ===
+# Recompose Subtasks into CoT Prompt
 def recompose_subtasks(subtasks: list[str]) -> str:
     return " ".join(subtasks)
 
 
-# === Main Runner (Traceable Parent Block) ===
+# Main Runner
 @traceable(name="PromptDecomposer CoT Flow")
 def run_prompt_decomposer(prompt: str) -> str:
     print("\n=== PromptDecomposer Test ===\n")
@@ -96,6 +96,7 @@ def run_prompt_decomposer(prompt: str) -> str:
 
 
 if __name__ == "__main__":
-    test_prompt = "You're designing a decentralized voting system for a global organization. Explain the core components needed for secure and transparent voting. Evaluate the trade-offs between using Ethereum vs. a custom Layer 2 solution. List at least three key privacy concerns and how you would address them. Recommend a final architecture and justify your reasoning."
+    
+    test_prompt = "I want to be come a movie star. How do I get there if no degree?"
     
     run_prompt_decomposer(test_prompt)
