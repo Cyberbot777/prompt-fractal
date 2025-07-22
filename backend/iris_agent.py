@@ -1,31 +1,25 @@
-# iris_agent.py — Iris (with DEBUG_MODE)
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from datetime import datetime
 from sqlalchemy import text
-
-# Database imports for vector memory
 from db import SessionLocal
 from models import Memory
-
-# pgvector wrapper and adapter
 from pgvector import Vector
 from pgvector.psycopg import register_vector
 import psycopg
 
-# Final Prompt Util
 from utils import extract_final_prompt
 
 # LangChain / LangSmith
-from langsmith import traceable
+# from langsmith import traceable
 
 
 
 # Debug Flag - False for clean output, True for full dev logs
 DEBUG_MODE = True 
 
-# Load environment variables and initialize OpenAI client
+
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -93,7 +87,7 @@ def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> di
 
 
 # Multi Pass Refinement
-@traceable(name="Multi Pass Prompt Refinement")
+# @traceable(name="Multi Pass Prompt Refinement")
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9, memory_context: str = "") -> dict:
     prompt = initial_prompt
     history = []
@@ -224,23 +218,8 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
     finally:
         db.close()
 
-# if __name__ == "__main__":
-#     test_prompts = [
-#         "What is the difference between classification and regression?",
-#         "Compare and contrast Bitcoin and Ethereum in terms of consensus mechanism, smart contract capability, and real-world usage. Then recommend use cases for each.",
-#         "Explain how to fine-tune a model using LoRA. List steps in order and give one example at each stage.",
-#         "Write a fun sci-fi story prompt for a solo RPG game."
-#     ]
 
-#     print("\n=== Complexity Detection Test ===")
-#     for p in test_prompts:
-#         is_complex = is_complex_prompt(p)
-#         print(f"\nPrompt:\n{p}\n→ Complex: {is_complex}")
-
-
-
-
-# Entry Point — Memory-Aware Agent with Top-N Recall
+# Entry Point 
 if __name__ == "__main__":
     test_prompt = "I want to be come a movie star. How do I get there if no degree?"
 

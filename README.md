@@ -100,8 +100,8 @@ Memory is embedded via OpenAI’s `text-embedding-3-small`, stored in PostgreSQL
 
 ### Screenshots
 
-![Semantic Memory Screenshot 1](frontend/public/semantic1.png)
-![Semantic Memory Screenshot 2](frontend/public/semantic2.png)
+![Semantic Memory Screenshot 1](tests/img/semantic1.png)
+![Semantic Memory Screenshot 2](tests/img/semantic2.png)
 
 ---
 
@@ -119,14 +119,29 @@ We verified the decomposition and refinement chain using **LangSmith**, confirmi
 
 ### Screenshots
 
-![CoT Output](frontend/public/CoTOutput.png)
-![CoT LangSmith Validation](frontend/public/CoTvalidation.png)
+![CoT Output](tests/img/CoTOutput.png)
+![CoT LangSmith Validation](tests/img/CoTvalidation.png)
+
 
 ---
 
 ## Docker Usage
 
 Recursive runs inside Docker for consistent dev and testing environments.
+
+### Environment Setup (One-Time Step)
+
+Before running anything, copy the example environment file and add your OpenAI API key:
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+Then open the new `.env` file and replace the placeholder with your actual key:
+
+```env
+OPENAI_API_KEY=sk-...
+```
 
 ### Start Backend + Vector DB:
 

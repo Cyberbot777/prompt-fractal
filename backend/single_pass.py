@@ -1,4 +1,4 @@
-# === Phase 1 — Single Pass ===
+# Phase 1 — Single Pass
 def run_agent():
     print("Iris Agent Starting...")
 

@@ -7,5 +7,5 @@ class Memory(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     description = Column(String, nullable=False)
-    embedding = Column(Vector(1536))  # Adjust dimension if needed
+    embedding = Column(Vector(1536)) 
     clarity = Column(Integer, nullable=True)

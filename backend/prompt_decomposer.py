@@ -1,9 +1,8 @@
-# prompt_decomposer.py — PromptDecomposer (Chain-of-Thought Preprocessor)
 import os
 import re
 from dotenv import load_dotenv
 from openai import OpenAI
-from langsmith import traceable
+# from langsmith import traceable
 
 
 load_dotenv()
@@ -12,7 +11,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 # Decompose Complex Prompt into Subtasks
-@traceable(name="Decompose Prompt into Subtasks")
+# @traceable(name="Decompose Prompt into Subtasks")
 def decompose_prompt_into_subtasks(prompt: str) -> list[str]:
     """
     Use OpenAI to split a complex prompt into a flat list of subtasks.
@@ -45,7 +44,7 @@ def decompose_prompt_into_subtasks(prompt: str) -> list[str]:
     return subtasks
 
 # Subtask Refinement
-@traceable(name="Refine Subtask")
+# @traceable(name="Refine Subtask")
 def refine_subtask(subtask: str) -> str:
     """
     Use OpenAI to refine a subtask into a clear, actionable instruction.
@@ -71,8 +70,8 @@ def recompose_subtasks(subtasks: list[str]) -> str:
     return " ".join(subtasks)
 
 
-# Main Runner
-@traceable(name="PromptDecomposer CoT Flow")
+# Entry Point
+# @traceable(name="PromptDecomposer CoT Flow")
 def run_prompt_decomposer(prompt: str) -> str:
     print("\n=== PromptDecomposer Test ===\n")
     print("Prompt:")

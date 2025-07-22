@@ -1,0 +1,512 @@
+
+# Iris Agent - Empirical Validation Test for Top-N Memory Retrieval
+# ---------------------------------------------------------------
+
+Objective:
+Verify that Iris successfully retrieves and utilizes top-N most similar prompts from vector memory during refinement.
+
+This test uses a completely unrelated test prompt to the current memory (which contains variations of "Why is the sky blue?").
+We'll seed a few tide-related prompts into memory, then verify that Iris recalls and uses them during refinement.
+
+---------------------------------------------------------------
+Step 1: Clear Memory (optional)
+  - This step is only if you want a clean test environment.
+  - If skipping, make sure your vector DB has *no tide-related prompts* before starting.
+
+---------------------------------------------------------------
+Step 2: Seed Memory with Tide-Related Prompts
+Manually add the following prompts by inserting and running these in your `iris_agent.py` (inside `if __name__ == "__main__":`):
+
+    save_prompt_to_memory("What causes ocean tides? Explain how the moon and sun affect the rise and fall of sea levels.")
+    save_prompt_to_memory("Describe the gravitational effects of the moon on ocean tides. Why do we have high and low tides?")
+    save_prompt_to_memory("How do lunar and solar positions influence the Earth's tides? Provide a general explanation suitable for middle school students.")
+
+Run the file using:
+    docker-compose exec backend python iris_agent.py
+
+Check console to confirm:
+    Memory saved successfully: ...
+
+---------------------------------------------------------------
+Step 3: Run the Test Prompt
+
+Replace the test prompt in your entry point with:
+
+    test_prompt = "What causes the tides to move in and out every day?"
+
+Then run again using:
+    docker-compose exec backend python iris_agent.py
+
+Expected Output:
+  - Top 3 memory matches will include your 3 tide prompts.
+  - Iris will rewrite your prompt using words like "gravitational", "moon", "lunar", "ocean", etc.
+  - This confirms N-memory is influencing the rewrite behavior.
+
+---------------------------------------------------------------
+Step 4: Save and Submit Results
+
+After running the above:
+- Copy the full terminal output into a log file.
+- Attach this test file and log to your project repo for empirical validation.
+
+End of Test.
+
+
+Validation Tests
+
+++++ RUN 1 ++++
+=== Iris Prompt Review (Memory-Aware Mode) ===
+=== 2025-07-14 18:34:35 UTC ===
+
+Test Prompt:
+Why do ocean tides occur, and what causes the difference between high tide and low tide?
+
+=== Retrieving Top-N Memory Matches ===
+
+=== Top 3 Memory Matches ===
+1. Distance: 0.7147
+Why does the sky appear blue during the daytime? Explain the scientific phenomenon behind this color effect, covering aspects such as Rayleigh scattering and how sunlight interacts with the Earth's atmosphere. Tailor your explanation to be accessible to a general audience intrigued by everyday mysteries. Understanding this can deepen your appreciation of the natural world's beauty and wonder by unraveling the science behind our blue skies. This understanding can also serve as a gateway to appreciating other atmospheric phenomena and can spark curiosity about the interaction between light and matter in our environment.
+
+2. Distance: 0.7227
+Why does the sky appear blue? In 150-200 words, provide an accessible explanation of the scientific principles, such as Rayleigh scattering and the interaction of sunlight with the Earth's atmosphere, that cause the sky's blue hue. Tailor your response for an audience interested in basic scientific concepts, ensuring clarity and simplicity in your explanation.
+
+3. Distance: 0.7403
+Why does the sky appear blue during the day? In a well-structured and comprehensive response, explain this phenomenon, focusing primarily on the scientific principles involved, such as Rayleigh scattering and the interaction of sunlight with Earth's atmosphere. Ensure your analysis is grounded in scientific reasoning and provides a detailed exploration of the factors contributing to the blue appearance of the sky.
+
+
+=== Memory Context ===
+You’ve previously rewritten prompts like these:
+
+1. "Why does the sky appear blue during the daytime? Explain the scientific phenomenon behind this color effect, covering aspects such as Rayleigh scattering and how sunlight interacts with the Earth's atmosphere. Tailor your explanation to be accessible to a general audience intrigued by everyday mysteries. Understanding this can deepen your appreciation of the natural world's beauty and wonder by unraveling the science behind our blue skies. This understanding can also serve as a gateway to appreciating other atmospheric phenomena and can spark curiosity about the interaction between light and matter in our environment."  (similarity: 0.7147)
+2. "Why does the sky appear blue? In 150-200 words, provide an accessible explanation of the scientific principles, such as Rayleigh scattering and the interaction of sunlight with the Earth's atmosphere, that cause the sky's blue hue. Tailor your response for an audience interested in basic scientific concepts, ensuring clarity and simplicity in your explanation."  (similarity: 0.7227)
+3. "Why does the sky appear blue during the day? In a well-structured and comprehensive response, explain this phenomenon, focusing primarily on the scientific principles involved, such as Rayleigh scattering and the interaction of sunlight with Earth's atmosphere. Ensure your analysis is grounded in scientific reasoning and provides a detailed exploration of the factors contributing to the blue appearance of the sky."  (similarity: 0.7403)
+
+Based on these examples, review and rewrite the new prompt below:
+
+
+=== Running Refinement ===
+
+=== Pass 1 ===
+Clarity Rating: 7
+
+Specific Issues:
+1. The prompt is slightly long and may contain unnecessary repetition.
+2. Context could be more clearly defined for the target audience.
+3. The prompt lacks specific guidance on the depth of explanation required.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language and remove redundant phrases for clarity.
+2. Clarify the target audience or level of knowledge expected in the response.
+3. Provide a clear word count or depth expectation for the explanation.
+
+Rewritten Prompt:
+"Why do ocean tides occur, and what causes the difference between high tide and low tide? In 100-150 words, explain the scientific reasons behind ocean tides, including the gravitational pull of the moon and sun, and how this leads to the variation between high and low tides. Tailor your explanation to a general audience interested in natural phenomena, ensuring a concise yet informative response."
+[Debug] Current score: 7, Previous score: None
+
+=== Pass 2 ===
+Clarity Rating: 8
+
+Specific Issues:
+1. The prompt is slightly repetitive and verbose.
+2. The target audience or level of knowledge expected is not explicitly defined.
+3. Lack of clear word count or depth expectation for the explanation.
+
+Suggestions for Improving the Prompt:
+1. Streamline the language to enhance clarity and conciseness.
+2. Clearly define the target audience or level of knowledge expected.
+3. Provide a specific word count or depth expectation for the response.
+
+Rewritten Prompt:
+"Why do ocean tides occur, and what causes the variation between high and low tides? Explain in 100-150 words the scientific basis for ocean tides, focusing on the gravitational influences of the moon and sun that result in the tidal fluctuations. Tailor your explanation for a general audience interested in natural phenomena, aiming for a brief yet informative response."
+[Debug] Current score: 8, Previous score: 7
+
+=== Pass 3 ===
+Clarity Rating: 7
+
+Specific Issues:
+1. Repetitive and verbose language.
+2. Undefined target audience or level of knowledge expected.
+3. Lack of clear word count or depth expectation for the explanation.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language for better clarity.
+2. Define the target audience or level of knowledge required.
+3. Provide a specific word count or depth expectation.
+
+Rewritten Prompt:
+"Why do ocean tides occur, and what causes the variation between high and low tides? Explain in 100-150 words the scientific basis for ocean tides, focusing on how gravitational forces from the moon and sun create the tidal patterns. Tailor your explanation for a general audience intrigued by natural phenomena, aiming for concise yet insightful responses."
+[Debug] Current score: 7, Previous score: 8
+
+=== Pass 4 ===
+Clarity Rating: 8
+
+Specific Issues:
+1. Repetitive and verbose language.
+2. Undefined target audience or level of knowledge expected.
+3. Lack of clear word count or depth expectation for the explanation.
+
+Suggestions for Improving the Prompt:
+1. Simplify the language for better clarity.
+2. Define the target audience or level of knowledge required.
+3. Provide a specific word count or depth expectation.
+
+Rewritten Prompt:
+"Why do ocean tides occur, and what causes the variation between high and low tides? Explain in 100-150 words the scientific basis for ocean tides, focusing on how gravitational forces from the moon and sun create the tidal patterns. Tailor your explanation for a general audience interested in natural phenomena. Aim for a concise yet insightful response."
+[Debug] Current score: 8, Previous score: 7
+
+=== Pass 5 ===
+- Clarity Rating: 9
+
+Specific Issues:
+1. Lack of clear target audience indication.
+2. Ambiguity regarding the required level of knowledge.
+3. Absence of specific word count guidelines.
+
+Suggestions for Improving the Prompt:
+1. Define the target audience clearly.
+2. Specify the expected level of knowledge.
+3. Provide a specific word count requirement.
+
+Rewritten Prompt:
+"Why do ocean tides occur, and what causes the variation between high and low tides? In 100-150 words, elucidate the gravitational mechanisms driven by the moon and sun that lead to ocean tides. Tailor your explanation towards individuals curious about natural phenomena. Ensure conciseness while delivering substantial insight."
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 5 — Stable Clarity 9
+
+=== Final Refined Prompt ===
+- Clarity Rating: 9
+
+Specific Issues:
+1. Lack of clear target audience indication.
+2. Ambiguity regarding the required level of knowledge.
+3. Absence of specific word count guidelines.
+
+Suggestions for Improving the Prompt:
+1. Define the target audience clearly.
+2. Specify the expected level of knowledge.
+3. Provide a specific word count requirement.
+
+Rewritten Prompt:
+"Why do ocean tides occur, and what causes the variation between high and low tides? In 100-150 words, elucidate the gravitational mechanisms driven by the moon and sun that lead to ocean tides. Tailor your explanation towards individuals curious about natural phenomena. Ensure conciseness while delivering substantial insight."
+Memory saved successfully:
+Why do ocean tides occur, and what causes the variation between high and low tides? In 100-150 words, elucidate the gravitational mechanisms driven by the moon and sun that lead to ocean tides. Tailor your explanation towards individuals curious about natural phenomena. Ensure conciseness while delivering substantial insight.
+
++++ RUN 2 +++
+=== Iris Prompt Review (Memory-Aware Mode) ===
+=== 2025-07-14 18:49:10 UTC ===
+
+Test Prompt:
+What causes the ocean's tidal patterns to change during the day, and how do lunar and solar forces contribute to this cycle?
+
+=== Retrieving Top-N Memory Matches ===
+
+=== Top 3 Memory Matches ===
+1. Distance: 0.2883
+In 100-150 words, explain how the gravitational forces of the moon and sun influence the daily ocean tides. Tailor your explanation for those interested in natural phenomena. Highlight the key lunar and solar impacts on tidal patterns. Provide a clear and insightful account of how Earth's tides are shaped by these celestial bodies.
+
+2. Distance: 0.3022
+How do the gravitational forces of the moon and sun affect ocean tides? In 100-150 words, elaborate on how these celestial bodies' pull impacts the daily ebb and flow of tide levels. Tailor your explanation for readers drawn to natural phenomena, offering a succinct yet comprehensive insight into how these forces shape Earth's tidal patterns.
+
+3. Distance: 0.3321
+Why do ocean tides occur, and what causes the variation between high and low tides? In 100-150 words, elucidate the gravitational mechanisms driven by the moon and sun that lead to ocean tides. Tailor your explanation towards individuals curious about natural phenomena. Ensure conciseness while delivering substantial insight.
+
+
+=== Memory Context ===
+You’ve previously rewritten prompts like these:
+
+1. "In 100-150 words, explain how the gravitational forces of the moon and sun influence the daily ocean tides. Tailor your explanation for those interested in natural phenomena. Highlight the key lunar and solar impacts on tidal patterns. Provide a clear and insightful account of how Earth's tides are shaped by these celestial bodies."  (similarity: 0.2883)
+2. "How do the gravitational forces of the moon and sun affect ocean tides? In 100-150 words, elaborate on how these celestial bodies' pull impacts the daily ebb and flow of tide levels. Tailor your explanation for readers drawn to natural phenomena, offering a succinct yet comprehensive insight into how these forces shape Earth's tidal patterns."  (similarity: 0.3022)
+3. "Why do ocean tides occur, and what causes the variation between high and low tides? In 100-150 words, elucidate the gravitational mechanisms driven by the moon and sun that lead to ocean tides. Tailor your explanation towards individuals curious about natural phenomena. Ensure conciseness while delivering substantial insight."  (similarity: 0.3321)
+
+Most relevant prior success (highest similarity):
+"In 100-150 words, explain how the gravitational forces of the moon and sun influence the daily ocean tides. Tailor your explanation for those interested in natural phenomena. Highlight the key lunar and solar impacts on tidal patterns. Provide a clear and insightful account of how Earth's tides are shaped by these celestial bodies."  (similarity: 0.2883)
+
+Based on these examples, review and rewrite the new prompt below:
+
+
+=== Running Refinement ===
+
+=== Pass 1 ===
+Clarity Rating: 8
+
+Specific Issues Identified:
+1. The prompt is a bit wordy and could be more concise.
+2. It does not clearly specify the word count limit for the response.
+3. The prompt lacks a clear directive on the target audience.
+
+Suggestions for Improvement:
+1. Clarify the word count limit for the response to guide candidates.
+2. Simplify the wording to make the prompt more direct and concise.
+3. Specify the intended audience to tailor the response appropriately.
+
+Rewritten Prompt:
+"What causes the daily changes in ocean tides, and how do the gravitational forces of the moon and sun influence this phenomenon? In 100-150 words, explain the relationship between lunar and solar forces and the fluctuation of tidal patterns, directing your explanation towards individuals interested in natural phenomena."
+[Debug] Current score: 8, Previous score: None
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific Issues Found:
+1. The prompt could benefit from a more engaging introduction to capture interest.
+2. It lacks a clear explanation of why this knowledge is relevant or important.
+3. There is no indication of the expected format or any specific terms to use in the response.
+
+Suggestions for Improving the Prompt:
+1. Add a brief statement on the significance of understanding ocean tide mechanics upfront.
+2. Include a note on the expected response format (e.g., scientific explanation, anecdotal response).  
+3. Specify any keywords or terms to include in the explanation to guide candidates.
+
+Rewritten Prompt:
+"Why is understanding the influence of the moon and sun on ocean tides crucial for coastal communities? In 100-150 words, elucidate how lunar and solar gravitational forces interact to shape daily tides, catering to individuals fascinated by natural phenomena. Ensure to include keywords like gravitational pull and tidal patterns in your explanation for clarity and precision."
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 2 — Stable Clarity 9
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific Issues Found:
+1. The prompt could benefit from a more engaging introduction to capture interest.
+2. It lacks a clear explanation of why this knowledge is relevant or important.
+3. There is no indication of the expected format or any specific terms to use in the response.
+
+Suggestions for Improving the Prompt:
+1. Add a brief statement on the significance of understanding ocean tide mechanics upfront.
+2. Include a note on the expected response format (e.g., scientific explanation, anecdotal response).  
+3. Specify any keywords or terms to include in the explanation to guide candidates.
+
+Rewritten Prompt:
+"Why is understanding the influence of the moon and sun on ocean tides crucial for coastal communities? In 100-150 words, elucidate how lunar and solar gravitational forces interact to shape daily tides, catering to individuals fascinated by natural phenomena. Ensure to include keywords like gravitational pull and tidal patterns in your explanation for clarity and precision."
+Memory saved successfully:
+Why is understanding the influence of the moon and sun on ocean tides crucial for coastal communities? In 100-150 words, elucidate how lunar and solar gravitational forces interact to shape daily tides, catering to individuals fascinated by natural phenomena. Ensure to include keywords like gravitational pull and tidal patterns in your explanation for clarity and precision.
+
++++ RUN 3 +++ RUN 4 +++
+$ docker-compose exec backend python iris_agent.py
+
+=== Iris Prompt Review (Memory-Aware Mode) ===
+=== 2025-07-14 19:53:35 UTC ===
+
+Test Prompt:
+Compare the tidal behavior of open ocean regions to that of enclosed bays and estuaries. What key differences exist and why?
+
+=== Retrieving Top-N Memory Matches ===
+
+=== Top 3 Memory Matches ===
+1. Distance: 0.4415
+In 100-150 words, elucidate how regional variations in ocean tides impact coastal communities, exploring the influence of tidal characteristics on coastal ecosystems, economies, and local activities. Tailor your explanation for individuals interested in coastal phenomena, incorporating terms like tidal range, currents, and coastline features for a comprehensive view. Ensure to link regional tidal dynamics with wider oceanographic and environmental science themes to provide a holistic understanding.
+
+2. Distance: 0.5263
+Why is understanding the influence of the moon and sun on ocean tides crucial for coastal communities? In 100-150 words, elucidate how lunar and solar gravitational forces interact to shape daily tides, catering to individuals fascinated by natural phenomena. Ensure to include keywords like gravitational pull and tidal patterns in your explanation for clarity and precision.
+
+3. Distance: 0.5476
+Why do ocean tides occur, and what causes the variation between high and low tides? In 100-150 words, elucidate the gravitational mechanisms driven by the moon and sun that lead to ocean tides. Tailor your explanation towards individuals curious about natural phenomena. Ensure conciseness while delivering substantial insight.
+
+
+=== Memory Context ===
+You’ve previously rewritten prompts like these:
+
+1. "In 100-150 words, elucidate how regional variations in ocean tides impact coastal communities, exploring the influence of tidal characteristics on coastal ecosystems, economies, and local activities. Tailor your explanation for individuals interested in coastal phenomena, incorporating terms like tidal range, currents, and coastline features for a comprehensive view. Ensure to link regional tidal dynamics with wider oceanographic and environmental science themes to provide a holistic understanding."  (similarity: 0.4415)
+2. "Why is understanding the influence of the moon and sun on ocean tides crucial for coastal communities? In 100-150 words, elucidate how lunar and solar gravitational forces interact to shape daily tides, catering to individuals fascinated by natural phenomena. Ensure to include keywords like gravitational pull and tidal patterns in your explanation for clarity and precision."  (similarity: 0.5263)
+3. "Why do ocean tides occur, and what causes the variation between high and low tides? In 100-150 words, elucidate the gravitational mechanisms driven by the moon and sun that lead to ocean tides. Tailor your explanation towards individuals curious about natural phenomena. Ensure conciseness while delivering substantial insight."  (similarity: 0.5476)
+
+Most relevant prior success (highest similarity):
+"In 100-150 words, elucidate how regional variations in ocean tides impact coastal communities, exploring the influence of tidal characteristics on coastal ecosystems, economies, and local activities. Tailor your explanation for individuals interested in coastal phenomena, incorporating terms like tidal range, currents, and coastline features for a comprehensive view. Ensure to link regional tidal dynamics with wider oceanographic and environmental science themes to provide a holistic understanding."  (similarity: 0.4415)
+
+Based on these examples, review and rewrite the new prompt below:
+
+
+=== Running Refinement ===
+
+=== Pass 1 ===
+Clarity rating: 5
+
+Specific issues found:
+1. The prompt is a bit lengthy and convoluted, which might make it challenging for participants to grasp the main objective quickly.
+2. The prompt lacks specific details about what aspects of tidal behavior to focus on when comparing open ocean regions to enclosed bays and estuaries.
+3. The instruction to discuss "key differences" is vague and could benefit from more explicit guidance on the specific aspects to compare.
+
+Suggestions for improving the prompt:
+1. Simplify the language and structure of the prompt for clearer understanding.
+2. Provide explicit details on the aspects of tidal behavior to focus on in the comparison between open ocean regions and enclosed bays/estuaries.
+3. Reframe the request for "key differences" to include specific elements for comparison, adding clarity to the task.
+
+Fully rewritten prompt:
+"Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries. Focus on aspects such as tidal range, frequency, and influences on local ecosystems. Identify specific differences in tidal behavior, including how geography and surrounding landforms impact tides in these different environments. Provide a detailed analysis of the similarities and discrepancies in tidal characteristics to deepen understanding of ocean dynamics in diverse coastal settings."
+[Debug] Current score: 5, Previous score: None
+
+=== Pass 2 ===
+Clarity rating: 8
+
+Specific issues found:
+1. The prompt is slightly verbose and may need further simplification for easier comprehension.
+2. Details regarding the specific aspects of tidal behavior to compare between open ocean regions and enclosed bays/estuaries are missing.
+3. The instruction to analyze "similarities and discrepancies" could be more clearly defined with specific guidance.
+
+Suggestions for improving the prompt:
+1. Simplify the language and streamline the structure for enhanced clarity.
+2. Include explicit details on the aspects of tidal behavior to be compared between open ocean regions and enclosed bays/estuaries.
+3. Define the parameters for comparing "similarities and discrepancies" more explicitly to guide participants effectively.
+
+Fully rewritten prompt:
+"Compare and contrast the tidal patterns in open ocean regions and enclosed bays/estuaries focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze specific differences in tidal behavior influenced by geography and surrounding topography in these distinct environments. Provide a comprehensive evaluation of both commonalities and variations in tidal characteristics to deepen insights into ocean dynamics across diverse coastal settings."
+[Debug] Current score: 8, Previous score: 5
+
+=== Pass 3 ===
+Clarity rating: 7
+
+Specific issues found:
+1. The prompt lacks explicit details on the aspects of tidal behavior to compare between open ocean regions and enclosed bays/estuaries.
+2. The instruction to analyze "similarities and discrepancies" is not clearly defined with specific guidance.
+3. The language could be simplified further for easier comprehension.
+
+Suggestions for improving the prompt:
+1. Add specific details on the aspects of tidal behavior to be compared between open ocean regions and enclosed bays/estuaries.
+2. Define the parameters for comparing "similarities and discrepancies" more explicitly for participants.
+3. Further simplify the language to enhance clarity.
+
+Fully rewritten prompt:
+"Compare and contrast the tidal patterns in open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze distinct differences in tidal behavior influenced by geography and surrounding topography in these environments. Provide a detailed assessment of both commonalities and variations in tidal characteristics to enhance understanding of ocean dynamics across diverse coastal settings."
+[Debug] Current score: 7, Previous score: 8
+
+=== Pass 4 ===
+Clarity rating: 5
+
+Specific issues found:
+1. The prompt is overly complex and contains jargon that may confuse participants.
+2. Lack of explicit guidance on how to analyze "similarities and discrepancies" in tidal patterns.       
+3. The prompt lacks specific details on the aspects of tidal behavior to compare between open ocean regions and enclosed bays/estuaries.
+
+Suggestions for improving the prompt:
+1. Simplify the language and remove unnecessary technical terms for easier comprehension.
+2. Define clearly how participants should compare "similarities and discrepancies" in tidal patterns.    
+3. Add explicit details on the specific aspects of tidal behavior to be compared between open ocean regions and enclosed bays/estuaries.
+
+Fully rewritten prompt:
+"Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze the differences in tidal behavior influenced by geography and topography in these environments. Provide a detailed evaluation of both similarities and differences in tidal characteristics to enhance understanding of ocean dynamics in diverse coastal settings."
+[Debug] Current score: 5, Previous score: 7
+
+=== Pass 5 ===
+Clarity rating: 8
+
+Specific issues found:
+1. The prompt lacks specific details on how to analyze "similarities and discrepancies" in tidal patterns.
+2. The language could be simplified further for easier comprehension.
+3. The prompt does not clearly define the scope or parameters for comparing tidal patterns between open ocean regions and enclosed bays/estuaries.
+
+Suggestions for improving the prompt:
+1. Define explicitly how participants should analyze "similarities and discrepancies" in tidal patterns to provide clear guidance.
+2. Simplify the language even more and eliminate any remaining technical terms that could confuse participants.
+3. Clearly outline the specific aspects of tidal behavior participants should examine when comparing open ocean regions and enclosed bays/estuaries.
+
+Fully rewritten prompt:
+"Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze the differences in tidal behavior influenced by geography and topography in these environments. Provide a detailed evaluation of both the similarities and differences in tidal characteristics to deepen understanding of ocean dynamics in diverse coastal settings."
+[Debug] Current score: 8, Previous score: 5
+
+=== Final Refined Prompt ===
+Clarity rating: 8
+
+Specific issues found:
+1. The prompt lacks specific details on how to analyze "similarities and discrepancies" in tidal patterns.
+2. The language could be simplified further for easier comprehension.
+3. The prompt does not clearly define the scope or parameters for comparing tidal patterns between open ocean regions and enclosed bays/estuaries.
+
+Suggestions for improving the prompt:
+1. Define explicitly how participants should analyze "similarities and discrepancies" in tidal patterns to provide clear guidance.
+2. Simplify the language even more and eliminate any remaining technical terms that could confuse participants.
+3. Clearly outline the specific aspects of tidal behavior participants should examine when comparing open ocean regions and enclosed bays/estuaries.
+
+Fully rewritten prompt:
+"Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze the differences in tidal behavior influenced by geography and topography in these environments. Provide a detailed evaluation of both the similarities and differences in tidal characteristics to deepen understanding of ocean dynamics in diverse coastal settings."
+Memory saved successfully:
+Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze the differences in tidal behavior influenced by geography and topography in these environments. Provide a detailed evaluation of both the similarities and differences in tidal characteristics to deepen understanding of ocean dynamics in diverse coastal settings.
+
+cyber@Cyber MINGW64 ~/Desktop/CODE/recursive (main)
+$ docker-compose exec backend python iris_agent.py
+
+=== Iris Prompt Review (Memory-Aware Mode) ===
+=== 2025-07-14 19:54:21 UTC ===
+
+Test Prompt:
+Compare the tidal behavior of open ocean regions to that of enclosed bays and estuaries. What key differences exist and why?
+
+=== Retrieving Top-N Memory Matches ===
+
+=== Top 3 Memory Matches ===
+1. Distance: 0.1673
+Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze the differences in tidal behavior influenced by geography and topography in these environments. Provide a detailed evaluation of both the similarities and differences in tidal characteristics to deepen understanding of ocean dynamics in diverse coastal settings.
+
+2. Distance: 0.4415
+In 100-150 words, elucidate how regional variations in ocean tides impact coastal communities, exploring the influence of tidal characteristics on coastal ecosystems, economies, and local activities. Tailor your explanation for individuals interested in coastal phenomena, incorporating terms like tidal range, currents, and coastline features for a comprehensive view. Ensure to link regional tidal dynamics with wider oceanographic and environmental science themes to provide a holistic understanding.
+
+3. Distance: 0.5263
+Why is understanding the influence of the moon and sun on ocean tides crucial for coastal communities? In 100-150 words, elucidate how lunar and solar gravitational forces interact to shape daily tides, catering to individuals fascinated by natural phenomena. Ensure to include keywords like gravitational pull and tidal patterns in your explanation for clarity and precision.
+
+
+=== Memory Context ===
+You’ve previously rewritten prompts like these:
+
+1. "Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze the differences in tidal behavior influenced by geography and topography in these environments. Provide a detailed evaluation of both the similarities and differences in tidal characteristics to deepen understanding of ocean dynamics in diverse coastal settings."  (similarity: 0.1673)
+2. "In 100-150 words, elucidate how regional variations in ocean tides impact coastal communities, exploring the influence of tidal characteristics on coastal ecosystems, economies, and local activities. Tailor your explanation for individuals interested in coastal phenomena, incorporating terms like tidal range, currents, and coastline features for a comprehensive view. Ensure to link regional tidal dynamics with wider oceanographic and environmental science themes to provide a holistic understanding."  (similarity: 0.4415)
+3. "Why is understanding the influence of the moon and sun on ocean tides crucial for coastal communities? In 100-150 words, elucidate how lunar and solar gravitational forces interact to shape daily tides, catering to individuals fascinated by natural phenomena. Ensure to include keywords like gravitational pull and tidal patterns in your explanation for clarity and precision."  (similarity: 0.5263)
+
+Most relevant prior success (highest similarity):
+"Compare and contrast the tidal patterns between open ocean regions and enclosed bays/estuaries, focusing on factors such as tidal range, frequency, and their impacts on local ecosystems. Analyze the differences in tidal behavior influenced by geography and topography in these environments. Provide a detailed evaluation of both the similarities and differences in tidal characteristics to deepen understanding of ocean dynamics in diverse coastal settings."  (similarity: 0.1673)
+
+Based on these examples, review and rewrite the new prompt below:
+
+
+=== Running Refinement ===
+
+=== Pass 1 ===
+Clarity Rating: 8
+
+Specific issues found:
+1. The prompt is a bit repetitive and could be more concise.
+2. The comparison task could be more specific to guide the response.
+3. The prompt lacks a clear directive on the depth of analysis expected.
+
+Suggestions for improving the prompt:
+1. Streamline the prompt by eliminating unnecessary references and focusing on the core requirements.    
+2. Include specific aspects for comparison, such as tidal range, frequency, or ecosystem impacts.        
+3. Clearly specify the level of detail or analysis expected to guide the response.
+
+Rewritten prompt:
+Compare the tidal characteristics of open ocean regions with those of enclosed bays and estuaries. Analyze specific factors like tidal range, frequency, and ecosystem impacts to identify key differences. Explain the reasons behind these differences and provide a detailed assessment to deepen understanding of ocean dynamics in diverse coastal settings. Your response should elucidate the unique features of tidal behavior in each environment and their implications. Aim for a comprehensive exploration of the distinct traits of open ocean and enclosed bay/estuary tides.
+[Debug] Current score: 8, Previous score: None
+
+=== Pass 2 ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The prompt is excessively detailed and includes unnecessary background information.
+2. It lacks a clear focus on the comparison task and specific aspects to analyze.
+3. The level of detail or depth of analysis expected is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Remove the excessive background information and focus on the essential requirements.
+2. Specify distinct aspects for comparison, such as tidal range, frequency, and ecosystem impacts.       
+3. Clearly outline the expected depth of analysis to guide the response.
+
+Rewritten prompt:
+Compare the tidal characteristics of open ocean regions to those of enclosed bays and estuaries, emphasizing factors like tidal range, frequency, and ecosystem impacts. Analyze the differences in these tidal behaviors and provide a detailed assessment to enhance understanding of ocean dynamics in various coastal settings. Your response should explore the unique features of tidal patterns in each environment and their implications. Strive for a comprehensive examination of the distinct traits of open ocean versus enclosed bay/estuary tides.
+[Debug] Current score: 9, Previous score: 8
+
+Auto-stop triggered at Pass 2 — Stable Clarity 9
+
+=== Final Refined Prompt ===
+Clarity Rating: 9
+
+Specific issues found:
+1. The prompt is excessively detailed and includes unnecessary background information.
+2. It lacks a clear focus on the comparison task and specific aspects to analyze.
+3. The level of detail or depth of analysis expected is not explicitly stated.
+
+Suggestions for improving the prompt:
+1. Remove the excessive background information and focus on the essential requirements.
+2. Specify distinct aspects for comparison, such as tidal range, frequency, and ecosystem impacts.       
+3. Clearly outline the expected depth of analysis to guide the response.
+
+Rewritten prompt:
+Compare the tidal characteristics of open ocean regions to those of enclosed bays and estuaries, emphasizing factors like tidal range, frequency, and ecosystem impacts. Analyze the differences in these tidal behaviors and provide a detailed assessment to enhance understanding of ocean dynamics in various coastal settings. Your response should explore the unique features of tidal patterns in each environment and their implications. Strive for a comprehensive examination of the distinct traits of open ocean versus enclosed bay/estuary tides.
+Memory saved successfully:
+Compare the tidal characteristics of open ocean regions to those of enclosed bays and estuaries, emphasizing factors like tidal range, frequency, and ecosystem impacts. Analyze the differences in these tidal behaviors and provide a detailed assessment to enhance understanding of ocean dynamics in various coastal settings. Your response should explore the unique features of tidal patterns in each environment and their implications. Strive for a comprehensive examination of the distinct traits of open ocean versus enclosed bay/estuary tides.

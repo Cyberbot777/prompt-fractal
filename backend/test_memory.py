@@ -1,15 +1,13 @@
-# backend/test_memory.py
-
 import os
 from db import SessionLocal
 from models import Memory
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# Load .env and API key
+
 load_dotenv(dotenv_path="./backend/.env")
 
-# OpenAI client auto-loads API key from env
+
 client = OpenAI()
 
 # Text to embedding
@@ -38,6 +36,7 @@ try:
     print("Queried Memory:")
     print("ID:", result.id)
     print("Description:", result.description)
-    print("Embedding (first 5 dims):", result.embedding[:5])  # Print a few dims
+    print("Embedding (first 5 dims):", result.embedding[:5])  
+    
 finally:
     db.close()

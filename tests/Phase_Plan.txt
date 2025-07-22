@@ -1,0 +1,124 @@
+---
+
+### Phase 2.5 — Memory-Assisted Refinement (Planned Next Step)
+
+**Objective:**
+Introduce a semantic memory system to Iris, allowing her to recall past prompts and their most effective refinements.
+
+**Motivation:**
+Recent Phase 2 testing has revealed that Iris:
+- Performs well on many prompts, but sometimes over-refines or destabilizes after reaching an already clear result.
+- Lacks the ability to recognize when she's already solved a prompt effectively in prior sessions.
+- Wastes refinement passes on prompts she has already successfully simplified in the past.
+
+This memory system will directly address these issues by enabling Iris to:
+1. Retrieve prior refinement records for similar prompts.
+2. Suggest previously successful refined prompts as starting points.
+3. Detect redundant refinement attempts early and recommend skipping or stopping.
+
+**Scope (Minimum Viable Implementation):**
+- Store refined prompt histories in PostgreSQL with pgvector for vector similarity search.
+- Retrieve top-matching past prompts (e.g., top 3) based on semantic similarity.
+- Recommend high-clarity prior results to the user before starting new refinements.
+- Keep memory usage as **non-intrusive** during Phase 2.5 — Iris will only *suggest* based on memory (no automatic overwriting or skipping yet).
+
+**Benefits:**
+- Increases Iris’s stability and efficiency, particularly for recurring or long-winded prompts.
+- Reduces wasted refinement cycles.
+- Prepares the foundation for more advanced future reasoning and chaining features.
+
+**Relationship to Phase 3 (CoT Detection & Chaining):**
+Memory-assisted refinement lays the groundwork for future CoT detection by:
+- Providing examples of previously chained or decomposed prompts.
+- Helping Iris recognize complex patterns from past reasoning cases.
+
+This step must come **before** Phase 3 to ensure stability before introducing more advanced reasoning.
+
+**Next Steps:**
+- Design the prompt memory database schema.
+- Integrate pgvector for similarity-based retrieval.
+- Build a testing plan to evaluate memory-assisted refinement effectiveness.
+
+---
+
+
+=== FUTURE FEATURE CONCEPT — Phase 3: Chain-of-Thought (CoT) Detection & Prompt Chaining ===
+
+**Objective:**
+Introduce an intelligent pre-refinement reasoning step for Iris, enabling it to detect when a prompt is too complex or multi-objective for direct recursive refinement.
+
+**Feature Concept:**
+Before entering the refinement loop, Iris will analyze the initial prompt and ask itself:
+"Does this prompt contain multiple distinct objectives or tasks that would benefit from decomposition into sub-prompts before refinement?"
+
+**Behavior:**
+1. If Yes:
+   - Recommend prompt chaining to the user.
+   - Automatically suggest sub-prompts for each identified objective (user can edit if desired).
+   - Skip or delay full refinement until sub-prompts are addressed.
+
+2. If No:
+   - Proceed with normal recursive refinement as currently implemented.
+
+**Benefits:**
+- Prevents over-simplification or loss of meaning in complex prompts.
+- Improves clarity and accuracy for multi-part tasks.
+- Adds a reasoning phase that aligns with chain-of-thought prompting best practices.
+- Creates a strong foundation for integrating future memory and semantic recall features.
+
+**Ideal Trigger Cases:**
+- Prompts containing multiple distinct goals or topics.
+- Requests involving multiple examples, methods, or perspectives.
+- Tasks blending strategic, technical, and tactical components.
+
+---
+
+**STEP BY STEP (Phase 3: CoT Detection & Prompt Chaining)**
+
+STEP 1 — CoT Detection:
+Iris analyzes the prompt to determine whether it contains multiple distinct objectives or tasks.
+→ YES: Move to Step 2  
+→ NO: Proceed with normal recursive refinement.
+
+(Optional Future Enhancement:  
+Leverage semantic memory (via pgvector) to retrieve similar past prompts and assist CoT detection.)
+
+STEP 2 — Sub-Prompt Suggestion:
+Iris automatically generates suggested sub-prompts based on the detected objectives, breaking down the task into clearer, smaller parts.
+The user can review, edit, or approve these sub-prompts before proceeding.
+
+STEP 3 — Decision Point (User-Controlled):
+Option A: Iris chains and refines the sub-prompts herself in a fully autonomous mode.  
+Option B: The user or an external tool processes sub-prompts manually, then optionally returns results to Iris for final review or integration.
+
+STEP 4 — (Optional) Final Merging:
+After refining sub-prompts, Iris can optionally merge or summarize the results into a cohesive final prompt if needed.
+This step would be user-controlled and is planned for advanced future phases.
+
+**Note:** During Phase 3, Iris operates in *recommendation mode* only — sub-prompt chaining and merging remain optional until memory-assisted chaining (Phase 4) is developed.
+
+---
+
+**Memory Integration Note:**
+This CoT Detection and Prompt Chaining phase will serve as a foundational step toward full semantic memory integration in later development stages.
+
+Future versions of Iris will:
+- Store and retrieve past prompts and their decomposition patterns using pgvector (PostgreSQL + vector embeddings).
+- Recall similar prior cases to assist in CoT detection, allowing Iris to "remember" how similar prompts were handled.
+- Suggest smarter, more consistent sub-prompt chains based on historical performance and refinements.
+
+This memory-assisted reasoning will allow Iris to improve over time, becoming more adaptive and efficient in handling complex, multi-layered prompts.
+
+---
+
+**Next Steps for Development:**
+- Design CoT detection prompt template for Iris.
+- Collect diverse sample prompts to fine-tune detection accuracy.
+- Develop a Phase 3 testing plan focused on CoT detection reliability.
+- Optionally, begin groundwork for memory-assisted CoT detection using pgvector.
+
+---
+
+**Related Observation:**
+Testing has shown that recursive refinement alone struggles with complex, multi-layered prompts, often reducing scope excessively to achieve clarity.
+This feature directly addresses that limitation and prepares the system for advanced, memory-enhanced reasoning workflows in future phases.

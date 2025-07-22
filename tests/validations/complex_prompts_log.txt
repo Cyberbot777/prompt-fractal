@@ -1,0 +1,154 @@
+**COMPLEX TEST VALIDATION (SAME PROMPT)**
+
+Definition:
+Complex prompts are highly detailed, layered, or technical in nature. They often contain multiple objectives, specialized terminology, or intricate instructions that require advanced reasoning and comprehension from the agent.
+
+Goal:
+Test Iris's ability to effectively simplify, clarify, and retain the intended meaning of complex prompts, while producing clear, actionable outputs that remain faithful to the original objectives.
+
+
+*** TEST 1 ***
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 17:30:24 UTC ===
+
+**INITIAL PROMPT AND CLARITY RATING**
+Prompt: "As part of a comprehensive strategy for improving workplace productivity and employee satisfaction, explain the interconnected roles of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles. Additionally, include examples demonstrating how each of these components influences organizational success, and suggest actionable methods for integrating them into daily business operations, considering both short-term and long-term perspectives."
+Initial Clarity Rating: 6 (Highly complex, dense, and multi-layered prompt.)
+
+**PASS-BY-PASS CLARITY RATINGS**
+| Pass | Clarity Rating | Notes                                           |
+| ---- | -------------- | ----------------------------------------------- |
+| 1    | 6              | Too complex; prompt overwhelming and unfocused   |
+| 2    | 6              | Attempted simplification; still overly dense     |
+| 3    | 8              | Narrowed focus; improved clarity via simplification |
+| 4    | 6              | Clarity regressed slightly; remained complex     |
+| 5    | 8              | Refocused and stabilized, but narrowed too much  |
+
+**WHETHER AUTO-STOP TRIGGERED** (and at which pass)
+No — Manual stop after max 5 passes.
+
+**FINAL REFINED PROMPT OUTPUT**
+"Analyze the impact of effective communication strategies on the success of cross-functional teams in project management. Utilize real-world examples to demonstrate how communication influences conflict resolution, collaboration, and achievement of project goals. Your analysis should examine the utilization of various communication tools and techniques in diverse team settings to consistently improve project outcomes."
+
+**KEY OBSERVATIONS** (score jumps, stability, unexpected behavior)
+Score Jumps:
+Fluctuated between 6 and 8 as the agent struggled with this complex, multi-layered prompt.
+
+Stability:
+The agent oscillated between simplifying too much and attempting to cover too much, showing inconsistent scoring.
+
+Unexpected Behavior:
+Prompt was repeatedly narrowed in scope (eventually focusing only on communication) to improve clarity, losing coverage of original multi-concept objectives.
+Demonstrates limits of refinement-only approaches on inherently multi-task prompts.
+
+**CONCLUSION**
+Iris was partially successful in clarifying this complex prompt but consistently reduced the scope by removing multiple original objectives.
+
+This result suggests that a prompt-chaining or decomposition step would be beneficial before refinement when faced with dense, multi-objective prompts like this one.
+
+
+
+*** TEST 2 ***
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 17:59:22 UTC ===
+
+**INITIAL PROMPT AND CLARITY RATING**
+Prompt: "As part of a comprehensive strategy for improving workplace productivity and employee satisfaction, explain the interconnected roles of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles. Additionally, include examples demonstrating how each of these components influences organizational success, and suggest actionable methods for integrating them into daily business operations, considering both short-term and long-term perspectives."
+Initial Clarity Rating: 5 (Highly complex and dense; prompt includes multiple overlapping objectives.)
+
+**PASS-BY-PASS CLARITY RATINGS**
+| Pass | Clarity Rating | Notes                                                    |
+| ---- | -------------- | -------------------------------------------------------- |
+| 1    | 5              | Overly dense; lacks clear focus and structural guidance  |
+| 2    | 8              | Clear improvement; introduces structured analysis        |
+| 3    | 9              | Stable high clarity; maintains full original scope       |
+
+**WHETHER AUTO-STOP TRIGGERED** (and at which pass)
+Yes — Pass 3 (Stable clarity ≥ 9 achieved at Passes 2–3)
+
+**FINAL REFINED PROMPT OUTPUT**
+"Discuss the impact of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles on workplace productivity and employee satisfaction. Please analyze each component separately, providing specific examples to illustrate their influence on organizational success. Additionally, propose practical strategies for integrating these elements into daily business operations. Your discussion should incorporate insights from short-term and long-term perspectives to enhance depth and relevance."
+
+**KEY OBSERVATIONS** (score jumps, stability, unexpected behavior)
+Score Jumps:
+Significant improvement from Pass 1 to Pass 2 after Iris restructured the prompt.
+
+Stability:
+Clarity stabilized quickly after structural revisions were introduced.
+
+Unexpected Behavior:
+None — Iris maintained the full complexity and objectives of the original prompt while improving clarity and organization.
+Demonstrates improved handling of complex prompts with better prompt structure.
+
+**CONCLUSION**
+Iris successfully refined this complex prompt while preserving its full intent, demonstrating strong structural reasoning.
+
+Auto-stop functioned as intended, halting the process once high clarity and stability were achieved in just three passes.
+
+
+
+*** TEST 3 ***
+=== Iris Prompt Review ===
+=== Phase 2 — Multi-Pass Refinement Test — 2025-07-09 18:01:26 UTC ===
+
+**INITIAL PROMPT AND CLARITY RATING**
+Prompt: "As part of a comprehensive strategy for improving workplace productivity and employee satisfaction, explain the interconnected roles of effective time management techniques, collaborative teamwork approaches, individual goal-setting practices, and adaptive leadership styles. Additionally, include examples demonstrating how each of these components influences organizational success, and suggest actionable methods for integrating them into daily business operations, considering both short-term and long-term perspectives."
+Initial Clarity Rating: 6 (Highly complex and dense; multi-layered objectives.)
+
+**PASS-BY-PASS CLARITY RATINGS**
+| Pass | Clarity Rating | Notes                                                      |
+| ---- | -------------- | ---------------------------------------------------------- |
+| 1    | 6              | Complex and overwhelming; lacks clear focus                |
+| 2    | 8              | Improved clarity; better structure introduced              |
+| 3    | 7              | Slight regression; some confusion reintroduced             |
+| 4    | 4              | Significant clarity drop; over-complication observed       |
+| 5    | 8              | Recovered to high clarity after focused restructuring       |
+
+**WHETHER AUTO-STOP TRIGGERED** (and at which pass)
+No — Manual stop after maximum 5 passes.
+
+**FINAL REFINED PROMPT OUTPUT**
+"Discuss the interconnected nature of time management, teamwork, goal-setting, and leadership in influencing workplace productivity and employee satisfaction. Explain how these components jointly contribute to organizational success. Provide practical strategies for effectively integrating these elements into daily business operations to enhance short-term efficiency and ensure long-term sustainability. Use a workplace scenario to illustrate the synergistic impact of these interconnected components."
+
+**KEY OBSERVATIONS** (score jumps, stability, unexpected behavior)
+Score Jumps:
+Highly unstable — clarity scores fluctuated across passes, with notable regression in Passes 3 and 4 before recovering in Pass 5.
+
+Stability:
+Agent struggled with this prompt, oscillating between improving and overcomplicating the refinement process.
+
+Unexpected Behavior:
+Frequent back-and-forth between simplifying and overloading the prompt led to volatile scores.
+
+This case demonstrates the clear need for memory-based guidance and prior-case retrieval to stabilize handling of such dense, complex prompts.
+
+**CONCLUSION**
+While Iris eventually produced a high-clarity output, the refinement process was unstable and inefficient, requiring multiple recovery attempts.
+
+This test highlights the limitations of memory-less recursive refinement on deeply complex prompts and reinforces the importance of future semantic memory integration.
+
+
+=== CUMULATIVE SYNOPSIS — Complex Prompt Validation (Round 1: Consistency, Same Prompt) ===
+
+This round tested Iris’s ability to consistently refine a highly complex, multi-layered prompt across three separate runs.
+
+**Findings:**
+- Iris achieved a high final clarity rating (8 or 9) in all tests, confirming its capacity to eventually clarify complex prompts.
+- Performance varied significantly across tests:
+  - Test 2 demonstrated smooth refinement with clear structure, auto-stopping at Pass 3 with stable, high clarity.
+  - Tests 1 and 3 showed instability, with frequent score fluctuations and occasional regressions in clarity before recovery.
+  - In Test 3, Iris displayed notable difficulty, oscillating between oversimplifying and overcomplicating the prompt before stabilizing late.
+
+**Insights:**
+- Iris can successfully refine complex prompts but struggles with stability and efficiency under certain conditions.
+- The agent's effectiveness depends heavily on its ability to restructure the prompt early in the refinement process.
+- Results suggest a limit to memory-less recursive refinement; some prompts trigger oscillations and inconsistent outcomes due to complexity and overlapping objectives.
+
+**Conclusion:**
+While Iris demonstrates the ability to refine complex prompts with persistence, its performance is inconsistent across repeated runs without memory support.
+
+This testing strongly reinforces the need for future semantic memory integration (via pgvector) and chain-of-thought reasoning, which would allow Iris to:
+- Recall successful prior strategies for similar complex prompts.
+- Detect high-risk prompts requiring special handling before refinement.
+- Improve stability, efficiency, and output quality in future iterations.
+
