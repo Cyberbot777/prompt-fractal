@@ -11,49 +11,34 @@ import psycopg
 
 from utils import extract_final_prompt
 
-# LangChain / LangSmith
-# from langsmith import traceable
+# Iris Debug Mode
+DEBUG_MODE = True
 
+# LangSmith Tracing Toggle
+USE_TRACING = False
 
+try:
+    if USE_TRACING:
+        from langsmith import traceable
+    else:
+        def traceable(*args, **kwargs):
+            def wrapper(func):
+                return func
+            return wrapper
+except ImportError:
+    def traceable(*args, **kwargs):
+        def wrapper(func):
+            return func
+        return wrapper
 
-# Debug Flag - False for clean output, True for full dev logs
-DEBUG_MODE = True 
-
-
+# Load API Key
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-
-
-
-
-# # Complexity Detection
-# def is_complex_prompt(prompt: str) -> bool:
-#     """
-#     Detect whether a prompt is complex or multi-step.
-#     This checks for common patterns that suggest subtasks, sequencing, or comparisons.
-#     """
-#     indicators = [
-#         "compare and contrast",
-#         "step by step",
-#         "multiple steps",
-#         "multiple parts",
-#         "in order",
-#         "1.", "2.", "3.",
-#         "then", "after that", "next",
-#         "list and explain",
-#         "analyze and summarize"
-#     ]
-
-#     prompt_lower = prompt.lower()
-#     return any(indicator in prompt_lower for indicator in indicators)
-
 
 
 # Prompt Review
 def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> dict:
     """Run Iris agent to review and rewrite a prompt, optionally using memory context."""
-
     prompt_intro = f"\nPrompt:\n\"\"\"{messy_prompt}\"\"\"\n"
 
     full_prompt = ""
@@ -87,7 +72,7 @@ def review_and_rewrite_prompt(messy_prompt: str, memory_context: str = "") -> di
 
 
 # Multi Pass Refinement
-# @traceable(name="Multi Pass Prompt Refinement")
+@traceable(name="Multi Pass Prompt Refinement")
 def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_score: int = 9, memory_context: str = "") -> dict:
     prompt = initial_prompt
     history = []
@@ -147,11 +132,9 @@ def multi_pass_refine_prompt(initial_prompt: str, passes: int = 5, auto_stop_sco
     }
 
 
-
 # Final Prompt Saver
 def save_prompt_to_memory(final_prompt: str, clarity_score: int = None) -> None:
     """Embed and store the final refined prompt in the vector DB with optional clarity score."""
-
     with SessionLocal() as db:
         embedding = client.embeddings.create(
             model="text-embedding-3-small",
@@ -164,14 +147,11 @@ def save_prompt_to_memory(final_prompt: str, clarity_score: int = None) -> None:
 
     print("Memory saved successfully:")
     print(final_prompt)
-    
+
 
 # Memory Context Builder
 def build_memory_context(matches: list) -> str:
-    """
-    Build a contextual string from top-N memory matches for use in the prompt review process.
-    Highlights the top (most similar) match as a high-priority prior success.
-    """
+    """Construct context from prior top-N prompt matches for memory injection."""
     if not matches:
         return ""
 
@@ -219,7 +199,7 @@ def find_top_n_matches(prompt_text: str, top_n: int = 3) -> list:
         db.close()
 
 
-# Entry Point 
+# Entry Point
 if __name__ == "__main__":
     test_prompt = "I want to be come a movie star. How do I get there if no degree?"
 

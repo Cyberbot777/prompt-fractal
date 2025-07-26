@@ -2,16 +2,31 @@ import os
 import re
 from dotenv import load_dotenv
 from openai import OpenAI
-# from langsmith import traceable
 
+# LangSmith Tracing Toggle
+USE_TRACING = False 
 
+try:
+    if USE_TRACING:
+        from langsmith import traceable
+    else:
+        def traceable(*args, **kwargs):
+            def wrapper(func):
+                return func
+            return wrapper
+except ImportError:
+    def traceable(*args, **kwargs):
+        def wrapper(func):
+            return func
+        return wrapper
+
+# Load API Key
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-
 # Decompose Complex Prompt into Subtasks
-# @traceable(name="Decompose Prompt into Subtasks")
+@traceable(name="Decompose Prompt into Subtasks")
 def decompose_prompt_into_subtasks(prompt: str) -> list[str]:
     """
     Use OpenAI to split a complex prompt into a flat list of subtasks.
@@ -43,8 +58,9 @@ def decompose_prompt_into_subtasks(prompt: str) -> list[str]:
     subtasks = [re.sub(r"^\s*\d+[\.\)]\s*", "", line) for line in lines]
     return subtasks
 
+
 # Subtask Refinement
-# @traceable(name="Refine Subtask")
+@traceable(name="Refine Subtask")
 def refine_subtask(subtask: str) -> str:
     """
     Use OpenAI to refine a subtask into a clear, actionable instruction.
@@ -70,8 +86,8 @@ def recompose_subtasks(subtasks: list[str]) -> str:
     return " ".join(subtasks)
 
 
-# Entry Point
-# @traceable(name="PromptDecomposer CoT Flow")
+# Entry Point: Full Decomposition Flow
+@traceable(name="PromptDecomposer CoT Flow")
 def run_prompt_decomposer(prompt: str) -> str:
     print("\n=== PromptDecomposer Test ===\n")
     print("Prompt:")
@@ -94,8 +110,7 @@ def run_prompt_decomposer(prompt: str) -> str:
     return final_prompt.strip()
 
 
+# Manual Test Run
 if __name__ == "__main__":
-    
     test_prompt = "I want to be come a movie star. How do I get there if no degree?"
-    
     run_prompt_decomposer(test_prompt)
