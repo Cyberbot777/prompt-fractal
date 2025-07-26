@@ -1,4 +1,3 @@
-# Use lightweight Python base
 FROM python:3.11-slim
 
 # Set environment to avoid prompts

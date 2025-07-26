@@ -1,4 +1,54 @@
 RecursiveTechNote.md
 SubTaskProposal.md
 
-.env
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+*.db
+*.env
+.env.*
+
+# === Virtual Environments ===
+venv/
+.env/
+.venv/
+*.egg-info/
+pip-log.txt
+
+# === Jupyter / IPython (if ever used) ===
+.ipynb_checkpoints
+
+# === VSCode ===
+.vscode/
+
+# === Docker ===
+*.bak
+*.tar
+*.pid
+*.seed
+docker-compose.override.yml
+
+# === OS Specific ===
+.DS_Store
+Thumbs.db
+
+# === Logs & Test Artifacts ===
+*.log
+tests/validations/
+tests/case_studies/
+phase*_logs.txt
+Phase_Plan.txt
+Synopsis_*.txt
+
+# === Secrets ===
+*.key
+*.pem
+openai_key.txt
+
+
+/tests/*
+!/tests/img/

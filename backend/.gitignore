@@ -1,35 +1,34 @@
-# Python
+# === Python ===
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.pkl
-*.env
+
+# === Environments ===
+.env
+.env.*
 .venv/
 venv/
 ENV/
 env/
+
+# === Databases ===
 *.sqlite3
 *.db
 
-# Docker
+# === Docker + Logs ===
 *.log
 *.pid
 *.tar
 *.sock
 
-# Environment Files
-.env
-.env.*
-
-# Test Logs
+# === Tests (Optional) ===
 tests/*.txt
 tests/test_log.txt
 
-# VSCode or IDE Settings (optional, but common)
+# === Editor + OS ===
 .vscode/
 .idea/
-
-# OS-generated files
 .DS_Store
 Thumbs.db
